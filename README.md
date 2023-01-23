@@ -1,7 +1,7 @@
 # atlassian-connect-sample-app-node
 
 ## About
-This repository contains a Node JS starter for building an [Atlassian Connect app](https://developer.atlassian.com/cloud/jira/platform/getting-started-with-connect/).
+This repository contains a [Express](https://expressjs.com/en/4x/api.html) starter for building an [Atlassian Connect app](https://developer.atlassian.com/cloud/jira/platform/getting-started-with-connect/).
 This app is aimed to help you to easily add your integration in Jira.
 
 ## Table of Contents
