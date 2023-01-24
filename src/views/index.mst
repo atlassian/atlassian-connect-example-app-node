@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{index}}</title>
+</head>
+<body style="padding: 5% 10%;">
+<br/>
+<br/>
+<h3>Node app:</h3>
+<hr>
+<h1>
+    {{body}}
+</h1>
+<br/>
+<br/>
+</body>
+<!-- This script is needed for all the views in the connect app -->
+<script src="https://connect-cdn.atl-paas.net/all.js" async></script>
+</html>

@@ -5,7 +5,10 @@ import baseUrl from '../utils';
 const routes = Router();
 
 routes.get('/', (_req, res) => {
-    return res.json({ message: 'This is the sample connect app done in Node!' });
+    res.render('index.mst', {
+        index: 'Index Page',
+        body: 'This is the body'
+    });
 });
 
 routes.get('/config', async (_req, res) => {
