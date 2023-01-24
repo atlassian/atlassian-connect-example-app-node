@@ -1,6 +1,8 @@
-const baseUrl = process.env.BASE_URL;
+type Props = {
+    baseUrl: string;
+};
 
-export const connectAppDescriptor = {
+export const connectAppDescriptor = ({ baseUrl }: Props) => ({
     name: 'Sample Connect App Node',
     description: 'Atlassian Connect app - Node',
     key: 'com.atlassian.sample-app-node',
@@ -32,4 +34,4 @@ export const connectAppDescriptor = {
             }
         ]
     }
-};
+});
