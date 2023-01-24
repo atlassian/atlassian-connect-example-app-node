@@ -1,4 +1,6 @@
-# atlassian-connect-sample-app-node
+# [WIP] atlassian-connect-sample-app-node
+
+> **_NOTE:_**  This repository is in progress and is not ready yet.
 
 ## About
 This repository contains a [Express](https://expressjs.com/en/4x/api.html) starter for building an [Atlassian Connect app](https://developer.atlassian.com/cloud/jira/platform/getting-started-with-connect/).
