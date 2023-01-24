@@ -1,0 +1,18 @@
+version: '1'
+
+services:
+  tunnel:
+    image: wernight/ngrok
+    container_name: ngrok
+    ports:
+      - "4040:4040"
+    command: ngrok http -log stdout --authtoken $NGROK_AUTHTOKEN app:3000
+
+  app:
+    container_name: app
+    volumes:
+      - .:/app
+    build:
+      context: .
+    ports:
+      - "3000:3000" # main port
