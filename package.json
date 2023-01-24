@@ -7,8 +7,7 @@
   "private": false,
   "scripts": {
     "build": "tsc --project ./",
-    "start": "nodemon src/server.ts",
-    "start:prod": "node dist/server.js"
+    "start": "nodemon src/server.ts"
   },
   "dependencies": {
     "express": "^4.18.2",

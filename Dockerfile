@@ -6,4 +6,5 @@ WORKDIR /app
 # Installing packages
 RUN yarn install --frozen-lockfile
 
-CMD ["yarn", "start:dev"]
+# Only for dev instances, not for PROD
+CMD ["yarn", "start"]

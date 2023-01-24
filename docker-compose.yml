@@ -10,8 +10,6 @@ services:
 
   app:
     container_name: app
-    depends_on:
-      - tunnel
     volumes:
       - .:/app
     build:
