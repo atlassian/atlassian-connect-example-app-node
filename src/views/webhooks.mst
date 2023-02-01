@@ -9,6 +9,7 @@
 <br>
 <div>
     {{body}}
+    <a href="/webhooks" style="float: right;">Refresh</a>
 </div>
 <br>
 <hr>

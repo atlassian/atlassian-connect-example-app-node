@@ -19,7 +19,7 @@ export const baseUrl = async (): Promise<string> => {
 }
 
 export const appendLogsToFile = (title: string, data: string): void => {
-    const logData = Date.now() + ' : ' +title + ' ---> ' + JSON.stringify(data) + '\n\n\n';
+    const logData = new Date().toISOString() + ' : ' +title + ' ---> ' + JSON.stringify(data) + '\n\n\n';
     fs.appendFile(LOG_FILE, logData, (err) => {
         if (err) {
             throw err;
