@@ -1,12 +1,13 @@
 import { Router } from 'express';
-import { appendLogsToFile } from '../utils';
+import {appendLogsToFile, readLogsFromFile} from '../utils';
 
 export const WebhooksRouter = Router();
 
 WebhooksRouter.get('/', (_req, res) => {
     res.render('webhooks.mst', {
         index: 'Webhooks',
-        body: 'Check out the logs coming in from the webhooks:'
+        body: 'Check out the logs coming in from the webhooks:',
+        logs: readLogsFromFile()
     });
 });
 

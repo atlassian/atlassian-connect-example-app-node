@@ -1,5 +1,5 @@
 import fs from "fs";
-import util from "util";
+// import util from "util";
 import path from "path";
 
 const LOG_FILE = path.join(process.cwd(), "webhooks-log.txt");
@@ -18,7 +18,15 @@ export const baseUrl = async (): Promise<string> => {
     return data.tunnels[0].public_url;
 }
 
-export const appendLogsToFile = (title, data) => {
-    const logFile = fs.createWriteStream(LOG_FILE, {flags : 'a'});
-    logFile.write(title + ' ---> ' + util.format(JSON.stringify(data)) + '\n');
+export const appendLogsToFile = (title: string, data: string): void => {
+    const logData = Date.now() + ' : ' +title + ' ---> ' + JSON.stringify(data) + '\n\n\n';
+    fs.appendFile(LOG_FILE, logData, (err) => {
+        if (err) {
+            throw err;
+        }
+    });
 }
+
+export const readLogsFromFile = (): string => {
+    return fs.readFileSync(LOG_FILE, {encoding: 'utf-8'});
+};

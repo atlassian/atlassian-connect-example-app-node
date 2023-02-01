@@ -13,9 +13,7 @@
 <br>
 <hr>
 <br>
-<div>
-    Logs----
-</div>
+<pre style="overflow: auto;background: #000;color: #fff;border-radius: 4px;padding: 6px 12px;">{{logs}}</pre>
 <br/>
 <br/>
 </body>
