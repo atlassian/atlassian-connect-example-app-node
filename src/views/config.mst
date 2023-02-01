@@ -7,6 +7,9 @@
 <body style="padding: 5% 10%;">
 <br/>
 <br/>
+<a href="/">Home</a>
+<br/>
+<br/>
 <h3>Atlassian Connect Config:</h3>
 <hr>
 <pre>{{config}}</pre>
