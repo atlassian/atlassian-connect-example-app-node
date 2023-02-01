@@ -7,17 +7,9 @@
 <body style="padding: 5% 10%;">
 <br/>
 <br/>
-<h3>Node app:</h3>
+<h3>Atlassian Connect Config:</h3>
 <hr>
-<div>
-    {{body}}
-</div>
-<br>
-<hr>
-<br>
-<div>
-    Check out the <a href="/config">atlassian config</a>!
-</div>
+<pre>{{config}}</pre>
 <br/>
 <br/>
 </body>
