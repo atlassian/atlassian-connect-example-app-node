@@ -11,13 +11,17 @@ routes.get('/', (_req, res) => {
     });
 });
 
-routes.get('/config', async (_req, res) => {
+routes.get('/config', async (req, res) => {
     const props = { baseUrl: await baseUrl() };
 
-    res.render('config.mst', {
-        index: 'Connect app descriptor',
-        config: JSON.stringify(connectAppDescriptor(props), undefined, 2)
-    });
+    if (req.query.isView) {
+        res.render('config.mst', {
+            index: 'Connect app descriptor',
+            config: JSON.stringify(connectAppDescriptor(props), undefined, 2)
+        });
+    } else {
+        res.json(connectAppDescriptor(props));
+    }
 })
 
 export default routes;
