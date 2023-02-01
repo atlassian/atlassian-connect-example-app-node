@@ -5,6 +5,11 @@
     <title>{{index}}</title>
 </head>
 <body style="padding: 5% 10%;">
+<br/>
+<br/>
+<a href="/">Home</a>
+<br/>
+<br/>
 <hr>
 <br>
 <div>

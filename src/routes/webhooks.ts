@@ -9,7 +9,7 @@ WebhooksRouter.get('/', (_req, res) => {
         logs = readLogsFromFile();
    } catch (e) {
         console.log("Error: ", e);
-        logs = 'No logs yet!';
+        logs = 'No logs yet!!';
     }
     res.render('webhooks.mst', {
         index: 'Webhook',
