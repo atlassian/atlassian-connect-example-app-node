@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aui/9.5.1/aui/aui-prototyping.min.css" />
+    <link rel="stylesheet" href="/public/css/main.css">
     <title>{{index}}</title>
 </head>
-<body style="background: #fff;padding: 5% 10%;">
+<body>
 <br/>
 <br/>
 <h3>Node app:</h3>

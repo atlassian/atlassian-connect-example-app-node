@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { connectAppDescriptor } from '../config';
 import { baseUrl } from '../utils';
 import { WebhooksRouter } from './webhooks';
+import { PublicRouter } from './public';
 
 const routes = Router();
 
@@ -24,6 +25,8 @@ routes.get('/config', async (req, res) => {
         res.json(connectAppDescriptor(props));
     }
 })
+
+routes.use('/public', PublicRouter);
 
 routes.use('/webhooks', WebhooksRouter);
 

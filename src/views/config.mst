@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aui/9.5.1/aui/aui-prototyping.min.css" />
+    <link rel="stylesheet" href="/public/css/main.css">
     <title>{{index}}</title>
 </head>
-<body style="background: #fff;padding: 5% 10%;">
+<body>
 <br/>
 <br/>
 <a class="aui-button" href="/">Home</a>
@@ -13,7 +14,7 @@
 <br/>
 <h3>Atlassian Connect Config:</h3>
 <hr>
-<pre style="background: #f4f5f7;padding: 12px;border-radius: 4px;">{{config}}</pre>
+<pre class="config-container">{{config}}</pre>
 <br/>
 <br/>
 </body>

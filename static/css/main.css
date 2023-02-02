@@ -1,0 +1,24 @@
+body {
+    background: #fff;
+    padding: 5% 10%;
+}
+
+.flexed {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.config-container {
+    background: #f4f5f7;
+    padding: 12px;
+    border-radius: 4px;
+}
+
+.logs-container {
+    overflow: auto;
+    background: #000;
+    color: #fff;
+    border-radius: 4px;
+    padding: 6px 12px;
+}

@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aui/9.5.1/aui/aui-prototyping.min.css" />
+    <link rel="stylesheet" href="/public/css/main.css">
     <title>{{index}}</title>
 </head>
-<body style="background: #fff;padding: 5% 10%;">
+<body>
 <br/>
 <br/>
 <a class="aui-button" href="/">Home</a>
@@ -13,7 +14,7 @@
 <br/>
 <hr>
 <br>
-<div style="display: flex;justify-content: space-between;align-items: center;">
+<div class="flexed">
     <div>{{body}}</div>
     <a class="aui-button" href="/webhooks">
         <span class="aui-icon aui-icon-small aui-iconfont-refresh">Refresh</span>
@@ -23,7 +24,7 @@
 <br>
 <hr>
 <br>
-<pre style="overflow: auto;background: #000;color: #fff;border-radius: 4px;padding: 6px 12px;">{{logs}}</pre>
+<pre class="logs-container">{{logs}}</pre>
 <br/>
 <br/>
 </body>
