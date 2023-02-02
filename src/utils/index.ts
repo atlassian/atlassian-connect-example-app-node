@@ -30,3 +30,7 @@ export const appendLogsToFile = (title: string, data: string): void => {
 export const readLogsFromFile = (): string => {
     return fs.readFileSync(LOG_FILE, {encoding: 'utf-8'});
 };
+
+export const removeLogFile = () => {
+    return fs.unlinkSync(LOG_FILE);
+};

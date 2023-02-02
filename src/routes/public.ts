@@ -1,5 +1,5 @@
-import { Router, static as Static } from "express";
-import path from "path";
+import { Router, static as Static } from 'express';
+import path from 'path';
 
 export const PublicRouter = Router();
 
