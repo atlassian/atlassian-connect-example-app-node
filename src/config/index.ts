@@ -27,15 +27,15 @@ export const connectAppDescriptor = ({ baseUrl }: Props) => ({
         webhooks: [
             {
                 event: "jira:issue_created",
-                url: "webhooks/jira-issue_created"
+                url: "webhooks/jira/issue-created"
             },
             {
                 event: "jira:issue_deleted",
-                url: "webhooks/jira-issue_deleted"
+                url: "webhooks/jira/issue-deleted"
             },
             {
                 event: "jira:issue_updated",
-                url: "webhooks/jira-issue_updated"
+                url: "webhooks/jira/issue-updated"
             }
         ],
         generalPages: [
