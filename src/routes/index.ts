@@ -3,6 +3,7 @@ import { connectAppDescriptor } from '../config';
 import { baseUrl } from '../utils';
 import { WebhooksRouter } from './webhooks';
 import { PublicRouter } from './public';
+import { ConnectDescriptorGet } from "./atlassian-connect";
 
 const Routes = Router();
 
@@ -24,7 +25,9 @@ Routes.get('/config', async (req, res) => {
     } else {
         res.json(connectAppDescriptor(props));
     }
-})
+});
+
+Routes.get("/atlassian-connect.json", ConnectDescriptorGet);
 
 Routes.use('/public', PublicRouter);
 

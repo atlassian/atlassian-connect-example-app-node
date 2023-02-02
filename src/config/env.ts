@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { connectAppDescriptor } from '../config';
-import baseUrl from '../utils';
+import { baseUrl } from '../utils';
 
 const routes = Router();
 

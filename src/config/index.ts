@@ -1,52 +1,59 @@
-type Props = {
+type ConnectAppDescriptorProps = {
     baseUrl: string;
 };
 
-export const connectAppDescriptor = ({ baseUrl }: Props) => ({
-    name: 'Sample Connect App Node',
-    description: 'Atlassian Connect app - Node',
-    key: 'com.atlassian.sample-app-node',
-    baseUrl,
-    vendor: {
-        name: 'Node connect app sample',
-        url: 'https://github.com/atlassian/atlassian-connect-sample-app-node/'
-    },
-    authentication: {
-        type: 'none'
-    },
-    scopes: [ "READ" ],
-    apiVersion: 1,
-    modules: {
-        postInstallPage: {
-            url: '/',
-            key: 'acn-index',
-            name: {
-                value: 'Index'
-            },
+type ConnectJsonPrimitive = string | number | boolean | null
+type ConnectJsonObject = { [k: string]: ConnectJsonValue }
+type ConnectJsonArray = ConnectJsonValue[]
+type ConnectJsonValue = ConnectJsonArray | ConnectJsonObject | ConnectJsonPrimitive
+
+export const connectAppDescriptor = ({ baseUrl }: ConnectAppDescriptorProps): ConnectJsonValue => {
+    return {
+        name: 'Sample Connect App Node',
+        description: 'Atlassian Connect app - Node',
+        key: 'com.atlassian.sample-app-node',
+        baseUrl,
+        vendor: {
+            name: 'Node connect app sample',
+            url: 'https://github.com/atlassian/atlassian-connect-sample-app-node/'
         },
-        webhooks: [
-            {
-                event: "jira:issue_created",
-                url: "webhooks/jira/issue-created"
-            },
-            {
-                event: "jira:issue_deleted",
-                url: "webhooks/jira/issue-deleted"
-            },
-            {
-                event: "jira:issue_updated",
-                url: "webhooks/jira/issue-updated"
-            }
-        ],
-        generalPages: [
-            {
+        authentication: {
+            type: 'none'
+        },
+        scopes: [ "READ" ],
+        apiVersion: 1,
+        modules: {
+            postInstallPage: {
                 url: '/',
-                key: 'acn-contact',
-                location: 'none',
+                key: 'acn-index',
                 name: {
-                    'value': 'Index'
+                    value: 'Index'
+                },
+            },
+            webhooks: [
+                {
+                    event: "jira:issue_created",
+                    url: "webhooks/jira/issue-created"
+                },
+                {
+                    event: "jira:issue_deleted",
+                    url: "webhooks/jira/issue-deleted"
+                },
+                {
+                    event: "jira:issue_updated",
+                    url: "webhooks/jira/issue-updated"
                 }
-            }
-        ]
+            ],
+            generalPages: [
+                {
+                    url: '/',
+                    key: 'acn-contact',
+                    location: 'none',
+                    name: {
+                        'value': 'Index'
+                    }
+                }
+            ]
+        }
     }
-});
+}
