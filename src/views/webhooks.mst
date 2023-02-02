@@ -2,19 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aui/9.5.1/aui/aui-prototyping.min.css" />
     <title>{{index}}</title>
 </head>
-<body style="padding: 5% 10%;">
+<body style="background: #fff;padding: 5% 10%;">
 <br/>
 <br/>
-<a href="/">Home</a>
+<a class="aui-button" href="/">Home</a>
 <br/>
 <br/>
 <hr>
 <br>
-<div>
-    {{body}}
-    <a href="/webhooks" style="float: right;">Refresh</a>
+<div style="display: flex;justify-content: space-between;align-items: center;">
+    <div>{{body}}</div>
+    <a class="aui-button" href="/webhooks">
+        <span class="aui-icon aui-icon-small aui-iconfont-refresh">Refresh</span>
+        <span>Refresh</span>
+    </a>
 </div>
 <br>
 <hr>
@@ -25,5 +29,4 @@
 </body>
 <!-- This script is needed for all the views in the connect app -->
 <script src="https://connect-cdn.atl-paas.net/all.js" async></script>
-<script src="/public/aui/aui-prototyping.js"  crossorigin="anonymous"  referrerpolicy="no-referrer" nonce="{{nonce}}"></script>
 </html>

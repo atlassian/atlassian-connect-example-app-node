@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aui/9.5.1/aui/aui-prototyping.min.css" />
     <title>{{index}}</title>
 </head>
-<body style="padding: 5% 10%;">
+<body style="background: #fff;padding: 5% 10%;">
 <br/>
 <br/>
 <h3>Node app:</h3>
@@ -32,5 +33,4 @@
 </body>
 <!-- This script is needed for all the views in the connect app -->
 <script src="https://connect-cdn.atl-paas.net/all.js" async></script>
-<script src="/public/aui/aui-prototyping.js"  crossorigin="anonymous"  referrerpolicy="no-referrer" nonce="{{nonce}}"></script>
 </html>
