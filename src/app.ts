@@ -1,5 +1,5 @@
 import express from 'express';
-import routes from './routes';
+import Routes from './routes';
 import mustache from 'mustache-express';
 
 class App {
@@ -23,7 +23,7 @@ class App {
     }
 
     routes() {
-        this.server.use(routes);
+        this.server.use(Routes);
     }
 }
 

@@ -2,17 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aui/9.5.1/aui/aui-prototyping.min.css" />
+    <link rel="stylesheet" href="/public/css/main.css">
     <title>{{index}}</title>
 </head>
-<body style="padding: 5% 10%;">
+<body>
 <br/>
 <br/>
-<a href="/">Home</a>
+<a class="aui-button" href="/">Home</a>
 <br/>
 <br/>
 <h3>Atlassian Connect Config:</h3>
 <hr>
-<pre>{{config}}</pre>
+<pre class="config-container">{{config}}</pre>
 <br/>
 <br/>
 </body>

@@ -1,17 +1,19 @@
 import { Router } from 'express';
 import { connectAppDescriptor } from '../config';
-import baseUrl from '../utils';
+import { baseUrl } from '../utils';
+import { WebhooksRouter } from './webhooks';
+import { PublicRouter } from './public';
 
-const routes = Router();
+const Routes = Router();
 
-routes.get('/', (_req, res) => {
+Routes.get('/', (_req, res) => {
     res.render('index.mst', {
         index: 'Index Page',
         body: 'You in the home page!'
     });
 });
 
-routes.get('/config', async (req, res) => {
+Routes.get('/config', async (req, res) => {
     const props = { baseUrl: await baseUrl() };
 
     if (req.query.isView) {
@@ -24,4 +26,8 @@ routes.get('/config', async (req, res) => {
     }
 })
 
-export default routes;
+Routes.use('/public', PublicRouter);
+
+Routes.use('/webhooks', WebhooksRouter);
+
+export default Routes;
