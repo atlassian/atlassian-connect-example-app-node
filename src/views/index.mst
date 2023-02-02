@@ -24,9 +24,6 @@
         <li>
             <a href="/config?isView=1">Atlassian Connect App config</a>
         </li>
-        <li>
-            <a href="/webhooks">Jira Webhooks</a>
-        </li>
     </ul>
 </div>
 <br/>
