@@ -9,23 +9,23 @@
 <body>
 <br/>
 <br/>
-<h3>Node app:</h3>
-<hr>
-<br>
-<div>
-    {{body}}
+<a class="aui-button" href="/">Home</a>
+<br/>
+<br/>
+<div class="flexed">
+    <div>Checkout the logs:</div>
+    <div>
+        <a class="aui-button" href="/webhooks">
+            <span class="aui-icon aui-icon-small aui-iconfont-refresh">Refresh</span>
+            <span>Refresh</span>
+        </a>
+    </div>
 </div>
 <br>
-<hr>
-<br>
-<div>
-    Check out the links:
-    <ul>
-        <li>
-            <a href="/config">Atlassian Connect App config</a>
-            <a href="/webhooks">Jira Webhook Logs</a>
-        </li>
-    </ul>
+<div class="logs-container">
+    {{#logs}}
+        <pre>{{.}}</pre>
+    {{/logs}}
 </div>
 <br/>
 <br/>

@@ -4,13 +4,28 @@ import { DBFile } from '../db';
 export const WebhooksRouter = Router();
 
 WebhooksRouter.get('/', (_, res) => {
-    DBFile.find({}, (error, data) => {
+    // TODO: Figure out a way to get the host
+    const host = 'https://kmaharjan4.atlassian.net';
+
+    DBFile.findOne({ host }, (error, data) => {
             if (error) {
                 console.log("Error fetching logs: ", error);
-                res.status(500).json(error);
-            }else {
-                console.log("Logs fetched successfully", data);
-                res.json(data);
+                res.render('webhooks.mst', {
+                    index: 'Webhooks Page',
+                    logs: [ "No logs yet!" ]
+                });
+            } else {
+                if (data && data.logs.length) {
+                    res.render('webhooks.mst', {
+                        index: 'Webhooks Page',
+                        logs: data.logs
+                    });
+                } else {
+                    res.render('webhooks.mst', {
+                        index: 'Webhooks Page',
+                        logs: [ "No logs yet!" ]
+                    });
+                }
             }
         }
     );
@@ -22,7 +37,7 @@ WebhooksRouter.post('/jira/issue-created', (req, res) => {
 
     DBFile.update(
         { host },
-        { $push: { logs: `Issue created ---> ${JSON.stringify(req.body)}` } },
+        { $push: { logs: `${new Date().toISOString()} : Issue created ---> ${JSON.stringify(req.body)}` } },
         {},
         (error, data) => {
             if (error) {
@@ -34,8 +49,6 @@ WebhooksRouter.post('/jira/issue-created', (req, res) => {
             }
         }
     );
-
-    res.sendStatus(200);
 });
 
 WebhooksRouter.post('/jira/issue-updated', (req, res) => {
@@ -44,7 +57,7 @@ WebhooksRouter.post('/jira/issue-updated', (req, res) => {
 
     DBFile.update(
         { host },
-        { $push: { logs: `Issue updated ---> ${JSON.stringify(req.body)}` } },
+        { $push: { logs: `${new Date().toISOString()} : Issue updated ---> ${JSON.stringify(req.body)}` } },
         {},
         (error, data) => {
             if (error) {
@@ -56,8 +69,6 @@ WebhooksRouter.post('/jira/issue-updated', (req, res) => {
             }
         }
     );
-
-    res.sendStatus(200);
 });
 
 WebhooksRouter.post('/jira/issue-deleted', (req, res) => {
@@ -66,7 +77,7 @@ WebhooksRouter.post('/jira/issue-deleted', (req, res) => {
 
     DBFile.update(
         { host },
-        { $push: { logs: `Issue deleted ---> ${JSON.stringify(req.body)}` } },
+        { $push: { logs: `${new Date().toISOString()} : Issue deleted ---> ${JSON.stringify(req.body)}` } },
         {},
         (error, data) => {
             if (error) {
@@ -78,7 +89,5 @@ WebhooksRouter.post('/jira/issue-deleted', (req, res) => {
             }
         }
     );
-
-    res.sendStatus(200);
 });
 
