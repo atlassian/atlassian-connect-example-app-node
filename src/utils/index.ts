@@ -12,5 +12,7 @@ export const baseUrl = async (): Promise<string> => {
     }
 
     const data = await response.json();
-    return data.tunnels[1].public_url;
+    const tunnel = data.tunnels.filter(tunnel => tunnel.proto === "https");
+
+    return tunnel[0].public_url;
 }
