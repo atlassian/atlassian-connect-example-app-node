@@ -7,6 +7,8 @@ import { ConnectDescriptorGet } from "./atlassian-connect";
 
 const Routes = Router();
 
+Routes.get('/atlassian-connect.json', ConnectDescriptorGet);
+
 Routes.get('/', (_req, res) => {
     res.render('index.mst', {
         index: 'Index Page',
@@ -14,20 +16,13 @@ Routes.get('/', (_req, res) => {
     });
 });
 
-Routes.get('/config', async (req, res) => {
+Routes.get('/config', async (_req, res) => {
     const props = { baseUrl: await baseUrl() };
-
-    if (req.query.isView) {
-        res.render('config.mst', {
-            index: 'Connect app descriptor',
-            config: JSON.stringify(connectAppDescriptor(props), undefined, 2)
-        });
-    } else {
-        res.json(connectAppDescriptor(props));
-    }
+    res.render('config.mst', {
+        index: 'Connect app descriptor',
+        config: JSON.stringify(connectAppDescriptor(props), undefined, 2)
+    });
 });
-
-Routes.get("/atlassian-connect.json", ConnectDescriptorGet);
 
 Routes.use('/public', PublicRouter);
 
