@@ -23,6 +23,8 @@
     <ul>
         <li>
             <a href="/config">Atlassian Connect App config</a>
+        </li>
+        <li>
             <a href="/webhooks">Jira Webhook Logs</a>
         </li>
     </ul>
