@@ -7,7 +7,6 @@ export const DBFile = new Datastore({
 });
 
 export type TenantType = {
-    key: string;
-    description: string;
     host: string;
+    logs: Array<string>
 };
