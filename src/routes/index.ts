@@ -1,9 +1,10 @@
 import { Router } from 'express';
+import { ConnectDescriptorGet } from './atlassian-connect';
+import { EventsRouter } from './events';
+import { PublicRouter } from './public';
+import { WebhooksRouter } from './webhooks';
 import { connectAppDescriptor } from '../config';
 import { baseUrl } from '../utils';
-import { WebhooksRouter } from './webhooks';
-import { PublicRouter } from './public';
-import { ConnectDescriptorGet } from "./atlassian-connect";
 
 const Routes = Router();
 
@@ -23,6 +24,8 @@ Routes.get('/config', async (_req, res) => {
         config: JSON.stringify(connectAppDescriptor(props), undefined, 2)
     });
 });
+
+Routes.use('/events', EventsRouter);
 
 Routes.use('/public', PublicRouter);
 

@@ -12,5 +12,5 @@ export const baseUrl = async (): Promise<string> => {
     }
 
     const data = await response.json();
-    return data.tunnels[1].public_url;
+    return data.tunnels[0].public_url;
 }
