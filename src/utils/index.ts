@@ -6,9 +6,11 @@
  */
 export const baseUrl = async (): Promise<string> => {
     const response = await fetch('http://tunnel:4040/api/tunnels');
+
     if (!response.ok) {
         throw new Error(`ngrok tunnel error: ${response}`);
     }
+
     const data = await response.json();
-    return data.tunnels[0].public_url;
+    return data.tunnels[1].public_url;
 }
