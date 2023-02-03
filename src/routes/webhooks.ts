@@ -18,7 +18,7 @@ WebhooksRouter.get('/', (_, res) => {
                 if (data && data.logs.length) {
                     res.render('webhooks.mst', {
                         index: 'Webhooks Page',
-                        logs: data.logs
+                        logs: data.logs.sort().reverse()
                     });
                 } else {
                     res.render('webhooks.mst', {
