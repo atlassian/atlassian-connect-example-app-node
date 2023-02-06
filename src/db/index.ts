@@ -11,18 +11,6 @@ export const DBFile = new Datastore({
     autoload: true
 });
 
-export const findAll = (successCallback: Function, failureCallback: Function) => {
-    DBFile.find({}, (error, data) => {
-        if (error) {
-            console.log("Error when finding: ", error);
-            failureCallback && failureCallback(error);
-        } else {
-            console.log("Found successfully", data);
-            successCallback && successCallback(data);
-        }
-    });
-};
-
 export const findOneInDb = (query: {}, successCallback: Function, failureCallback: Function) => {
     DBFile.findOne(query, (error, data) => {
         if (error) {
