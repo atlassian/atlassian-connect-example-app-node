@@ -3,6 +3,7 @@ import path from 'path';
 
 export type TenantType = {
     host: string;
+    clientKey: string;
     logs: Array<string>
 };
 
