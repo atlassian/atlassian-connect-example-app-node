@@ -1,11 +1,14 @@
 import { Router } from 'express';
+import { ConnectDescriptorGet } from './atlassian-connect';
+import { EventsRouter } from './events';
+import { PublicRouter } from './public';
+import { WebhooksRouter } from './webhooks';
 import { connectAppDescriptor } from '../config';
 import { baseUrl } from '../utils';
-import { WebhooksRouter } from './webhooks';
-import { PublicRouter } from './public';
-import { ConnectDescriptorGet } from "./atlassian-connect";
 
 const Routes = Router();
+
+Routes.get('/atlassian-connect.json', ConnectDescriptorGet);
 
 Routes.get('/', (_req, res) => {
     res.render('index.mst', {
@@ -14,20 +17,15 @@ Routes.get('/', (_req, res) => {
     });
 });
 
-Routes.get('/config', async (req, res) => {
+Routes.get('/config', async (_req, res) => {
     const props = { baseUrl: await baseUrl() };
-
-    if (req.query.isView) {
-        res.render('config.mst', {
-            index: 'Connect app descriptor',
-            config: JSON.stringify(connectAppDescriptor(props), undefined, 2)
-        });
-    } else {
-        res.json(connectAppDescriptor(props));
-    }
+    res.render('config.mst', {
+        index: 'Connect app descriptor',
+        config: JSON.stringify(connectAppDescriptor(props), undefined, 2)
+    });
 });
 
-Routes.get("/atlassian-connect.json", ConnectDescriptorGet);
+Routes.use('/events', EventsRouter);
 
 Routes.use('/public', PublicRouter);
 

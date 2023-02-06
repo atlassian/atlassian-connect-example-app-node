@@ -22,6 +22,10 @@ export const connectAppDescriptor = ({ baseUrl }: ConnectAppDescriptorProps): Co
         },
         scopes: [ "READ" ],
         apiVersion: 1,
+        lifecycle: {
+            installed: '/events/installed',
+            uninstalled: '/events/uninstalled'
+        },
         modules: {
             postInstallPage: {
                 url: '/',
@@ -33,15 +37,15 @@ export const connectAppDescriptor = ({ baseUrl }: ConnectAppDescriptorProps): Co
             webhooks: [
                 {
                     event: "jira:issue_created",
-                    url: "webhooks/jira/issue-created"
+                    url: "/webhooks/jira/issue-created"
                 },
                 {
                     event: "jira:issue_deleted",
-                    url: "webhooks/jira/issue-deleted"
+                    url: "/webhooks/jira/issue-deleted"
                 },
                 {
                     event: "jira:issue_updated",
-                    url: "webhooks/jira/issue-updated"
+                    url: "/webhooks/jira/issue-updated"
                 }
             ],
             generalPages: [
