@@ -1,3 +1,4 @@
+import jwt_decode from 'jwt-decode';
 
 /**
  * This baseUrl is pulled from the ngrok tunnel API,
@@ -15,4 +16,17 @@ export const baseUrl = async (): Promise<string> => {
     const tunnel = data.tunnels.filter(tunnel => tunnel.proto === "https");
 
     return tunnel[0].public_url;
+}
+
+export type DecodedJwtTokenType = {
+    sub: string;
+    qsh: string;
+    iss: string;
+    context: any;
+    exp: number;
+    iat: number;
+};
+
+export const decodeJwtToken = (encodedToken: string): DecodedJwtTokenType => {
+    return jwt_decode(encodedToken);
 }

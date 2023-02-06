@@ -4,6 +4,9 @@ const cookieOptions =  {
     httpOnly: true
 };
 
+/**
+ * This middleware saves the JWT token from Jira into the browser cookies
+ */
 export const jwtTokenMiddleware = (req, res, next) => {
     // Check the cookies first
     if (req.cookies.jwt) {

@@ -1,36 +1,42 @@
 import { Router } from 'express';
 import { findOneInDb, updateToDb} from '../db';
+import {decodeJwtToken} from '../utils';
 
 export const WebhooksRouter = Router();
 
 WebhooksRouter.get('/', (_req, res) => {
-    // TODO: Decode the jwt from res.locals to get clientKey
-    const clientKey = '5da2d1af-84e0-3d92-bd5d-e26d898fe33c';
+    const decodedTokenValues = decodeJwtToken(res.locals.jwt);
+    if (decodedTokenValues && decodedTokenValues.iss) {
+        const clientKey = decodedTokenValues.iss;
 
-    console.log("webhooks page: ", res.locals);
-
-    findOneInDb(
-        { clientKey },
-        (data) => {
-            if (data && data.logs.length) {
-                res.render('webhooks.mst', {
-                    index: 'Webhooks Page',
-                    logs: data.logs.sort().reverse()
-                });
-            } else {
+        findOneInDb(
+            { clientKey },
+            (data) => {
+                if (data && data.logs.length) {
+                    res.render('webhooks.mst', {
+                        index: 'Webhooks Page',
+                        logs: data.logs.sort().reverse()
+                    });
+                } else {
+                    res.render('webhooks.mst', {
+                        index: 'Webhooks Page',
+                        logs: [ "No logs yet!" ]
+                    });
+                }
+            },
+            () => {
                 res.render('webhooks.mst', {
                     index: 'Webhooks Page',
                     logs: [ "No logs yet!" ]
                 });
             }
-        },
-        () => {
-            res.render('webhooks.mst', {
-                index: 'Webhooks Page',
-                logs: [ "No logs yet!" ]
-            });
-        }
-    );
+        );
+    } else {
+        res.render('webhooks.mst', {
+            index: 'Webhooks Page',
+            logs: [ "No logs yet!" ]
+        });
+    }
 });
 
 WebhooksRouter.post('/jira/issue-created', (req, res) => {
