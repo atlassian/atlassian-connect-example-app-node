@@ -12,7 +12,7 @@ WebhooksRouter.get('/', (_req, res) => {
         findOneInDb(
             { clientKey },
             (data) => {
-                if (data && data.logs.length) {
+                if (data?.logs.length) {
                     res.render('webhooks.mst', {
                         index: 'Webhooks Page',
                         logs: data.logs.sort().reverse()
