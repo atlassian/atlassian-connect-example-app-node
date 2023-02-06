@@ -1,3 +1,6 @@
+/**
+ * These options are required for allowing the app which is inside the iframe to set cookies
+ */
 const cookieOptions =  {
     sameSite: "none",
     secure: true,
