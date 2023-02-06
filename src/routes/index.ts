@@ -5,19 +5,24 @@ import { PublicRouter } from './public';
 import { WebhooksRouter } from './webhooks';
 import { connectAppDescriptor } from '../config';
 import { baseUrl } from '../utils';
+import { jwtTokenMiddleware } from '../middlewares/jwtMiddleware';
 
 const Routes = Router();
 
 Routes.get('/atlassian-connect.json', ConnectDescriptorGet);
 
-Routes.get('/', (_req, res) => {
+Routes.use('/events', EventsRouter);
+
+Routes.use('/public', PublicRouter);
+
+Routes.get('/', jwtTokenMiddleware, (_req, res) => {
     res.render('index.mst', {
         index: 'Index Page',
         body: 'You in the home page!'
     });
 });
 
-Routes.get('/config', async (_req, res) => {
+Routes.get('/config', jwtTokenMiddleware, async (_req, res) => {
     const props = { baseUrl: await baseUrl() };
     res.render('config.mst', {
         index: 'Connect app descriptor',
@@ -25,10 +30,6 @@ Routes.get('/config', async (_req, res) => {
     });
 });
 
-Routes.use('/events', EventsRouter);
-
-Routes.use('/public', PublicRouter);
-
-Routes.use('/webhooks', WebhooksRouter);
+Routes.use('/webhooks', jwtTokenMiddleware, WebhooksRouter);
 
 export default Routes;

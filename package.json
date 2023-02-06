@@ -10,6 +10,7 @@
     "start": "tsnd src/server.ts"
   },
   "dependencies": {
+    "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "mustache-express": "^1.3.2",
