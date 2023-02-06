@@ -52,7 +52,6 @@ export const updateToDb = (query: {}, newData: any, successCallback: Function, f
         if (error) {
             console.log("Error when updating: ", error);
             failureCallback && failureCallback(error);
-
         } else {
             console.log("Updated successfully", data);
             successCallback && successCallback(data);
