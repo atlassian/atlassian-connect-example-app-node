@@ -3,12 +3,14 @@ import { findOneInDb, updateToDb} from '../db';
 
 export const WebhooksRouter = Router();
 
-WebhooksRouter.get('/', (_, res) => {
-    // TODO: Figure out a way to get the host
-    const host = 'https://kmaharjan4.atlassian.net';
+WebhooksRouter.get('/', (_req, res) => {
+    // TODO: Decode the jwt from res.locals to get clientKey
+    const clientKey = '5da2d1af-84e0-3d92-bd5d-e26d898fe33c';
+
+    console.log("webhooks page: ", res.locals);
 
     findOneInDb(
-        { host },
+        { clientKey },
         (data) => {
             if (data && data.logs.length) {
                 res.render('webhooks.mst', {
