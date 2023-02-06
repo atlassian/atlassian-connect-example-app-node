@@ -14,7 +14,7 @@ export const DBFile = new Datastore({
 export const findOneInDb = (query: {}, successCallback: Function, failureCallback: Function) => {
     DBFile.findOne(query, (error, data) => {
         if (error) {
-            console.log("Error when finding: ", error);
+            console.error("Error when finding: ", error);
             failureCallback && failureCallback(error);
         } else {
             console.log("Found successfully", data);
@@ -26,7 +26,7 @@ export const findOneInDb = (query: {}, successCallback: Function, failureCallbac
 export const insertToDb = (data: any, successCallback: Function, failureCallback: Function) => {
     DBFile.insert(data, (error, data) => {
         if (error) {
-            console.log("Error when inserting: ", error);
+            console.error("Error when inserting: ", error);
             failureCallback && failureCallback(error);
         } else {
             console.log("Inserted successfully", data);
@@ -38,7 +38,7 @@ export const insertToDb = (data: any, successCallback: Function, failureCallback
 export const updateToDb = (query: {}, newData: any, successCallback: Function, failureCallback: Function) => {
     DBFile.update(query, newData, {}, (error, data) => {
         if (error) {
-            console.log("Error when updating: ", error);
+            console.error("Error when updating: ", error);
             failureCallback && failureCallback(error);
         } else {
             console.log("Updated successfully", data);
@@ -50,7 +50,7 @@ export const updateToDb = (query: {}, newData: any, successCallback: Function, f
 export const removeFromDB = (query: {}, successCallback: Function, failureCallback: Function) => {
     DBFile.remove(query, (error, data) => {
         if (error) {
-            console.log("Error when removing: ", error);
+            console.error("Error when removing: ", error);
             failureCallback && failureCallback(error);
         } else {
             console.log("Removed successfully", data);
