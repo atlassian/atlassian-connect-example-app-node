@@ -18,7 +18,7 @@ export const connectAppDescriptor = ({ baseUrl }: ConnectAppDescriptorProps): Co
             url: 'https://github.com/atlassian/atlassian-connect-sample-app-node/'
         },
         authentication: {
-            type: 'none'
+            type: 'jwt'
         },
         scopes: [ "READ" ],
         apiVersion: 1,
