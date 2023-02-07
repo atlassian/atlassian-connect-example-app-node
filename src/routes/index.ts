@@ -10,6 +10,13 @@ import { jwtTokenMiddleware } from '../middlewares/jwtMiddleware';
 
 const Routes = Router();
 
+Routes.get('/', (_req, res) => {
+    res.render('index.mst', {
+        index: 'Index Page',
+        body: 'You in the home page!'
+    });
+});
+
 Routes.get('/atlassian-connect.json', ConnectDescriptorGet);
 
 Routes.use('/events', EventsRouter);
@@ -17,13 +24,6 @@ Routes.use('/events', EventsRouter);
 Routes.use('/public', PublicRouter);
 
 Routes.use('/webhooks', WebhooksRouter);
-
-Routes.get('/', (_req, res) => {
-    res.render('index.mst', {
-        index: 'Index Page',
-        body: 'You in the home page!'
-    });
-});
 
 Routes.get('/config', async (_req, res) => {
     const props = { baseUrl: await baseUrl() };
