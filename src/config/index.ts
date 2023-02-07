@@ -32,7 +32,7 @@ export const connectAppDescriptor = ({ baseUrl }: ConnectAppDescriptorProps): Co
                 key: 'acn-index',
                 name: {
                     value: 'Index'
-                },
+                }
             },
             webhooks: [
                 {
