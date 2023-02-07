@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { updateToDb} from '../db';
+import { updateToDb } from '../db';
 
 export const WebhooksRouter = Router();
 
