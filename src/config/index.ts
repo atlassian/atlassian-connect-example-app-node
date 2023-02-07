@@ -9,11 +9,11 @@ type ConnectJsonValue = ConnectJsonArray | ConnectJsonObject | ConnectJsonPrimit
 
 export const connectAppDescriptor = ({ baseUrl }: ConnectAppDescriptorProps): ConnectJsonValue => {
     return {
-        name: 'Sample Connect App Node',
-        description: 'Atlassian Connect app - Node',
-        key: 'com.atlassian.sample-app-node',
-        baseUrl,
-        vendor: {
+            name: 'Sample Connect App Node',
+            description: 'Atlassian Connect app - Node',
+            key: 'com.atlassian.sample-app-node',
+            baseUrl,
+            vendor: {
             name: 'Node connect app sample',
             url: 'https://github.com/atlassian/atlassian-connect-sample-app-node/'
         },
@@ -21,16 +21,16 @@ export const connectAppDescriptor = ({ baseUrl }: ConnectAppDescriptorProps): Co
             type: 'jwt'
         },
         scopes: [ "READ" ],
-        apiVersion: 1,
-        lifecycle: {
+            apiVersion: 1,
+            lifecycle: {
             installed: '/events/installed',
-            uninstalled: '/events/uninstalled'
+                uninstalled: '/events/uninstalled'
         },
         modules: {
             postInstallPage: {
                 url: '/',
-                key: 'acn-index',
-                name: {
+                    key: 'acn-index',
+                    name: {
                     value: 'Index'
                 },
             },
@@ -48,7 +48,7 @@ export const connectAppDescriptor = ({ baseUrl }: ConnectAppDescriptorProps): Co
                     url: "/webhooks/jira/issue-updated"
                 }
             ],
-            generalPages: [
+                generalPages: [
                 {
                     url: '/config',
                     key: 'acn-config',
@@ -67,5 +67,5 @@ export const connectAppDescriptor = ({ baseUrl }: ConnectAppDescriptorProps): Co
                 }
             ]
         }
-    }
-}
+    };
+};
