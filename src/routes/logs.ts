@@ -1,29 +1,23 @@
 import { Router } from 'express';
-import { findOneInDb } from '../db';
+import { findOneInDb, TenantType } from '../db';
+
 export const LogsRouter = Router();
 
-LogsRouter.get('/webhooks', (_req, res) => {
+LogsRouter.get('/webhooks', async (_req, res) => {
     const { clientKey } = res.locals;
-    findOneInDb(
+    const logsData = await findOneInDb(
         { clientKey },
-        (data) => {
-            if (data?.logs.length) {
-                res.render('webhooksLogs.mst', {
-                    index: 'Webhooks Page',
-                    logs: data.logs.sort().reverse()
-                });
-            } else {
-                res.render('webhooksLogs.mst', {
-                    index: 'Webhooks Page',
-                    logs: [ "No logs yet!" ]
-                });
-            }
-        },
-        () => {
-            res.render('webhooksLogs.mst', {
-                index: 'Webhooks Page',
-                logs: [ "No logs yet!" ]
-            });
-        }
-    );
+    ) as TenantType;
+
+    if (logsData?.logs.length) {
+        res.render('webhooksLogs.mst', {
+            index: 'Webhooks Page',
+            logs: logsData.logs.sort().reverse()
+        });
+    } else {
+        res.render('webhooksLogs.mst', {
+            index: 'Webhooks Page',
+            logs: ["No logs yet!"]
+        });
+    }
 });

@@ -1,25 +1,25 @@
 import { Router } from 'express';
-import { insertToDb, removeFromDB, TenantType} from '../db';
+import { insertToDb, removeFromDB, TenantType } from '../db';
 
 export const EventsRouter = Router();
 
-EventsRouter.post('/installed', (req, res) => {
+EventsRouter.post('/installed', async (req, res) => {
     const { baseUrl: host, clientKey } = req.body;
     const newTenant: TenantType = { host, clientKey, logs: [] };
-
-    insertToDb(
-        newTenant,
-        () => { res.sendStatus(200) },
-        (error) => { res.sendStatus(500).json(error) }
-    );
+    const insertedData = await insertToDb(newTenant);
+    if (insertedData) {
+        res.sendStatus(204);
+    } else {
+        res.sendStatus(500);
+    }
 });
 
-EventsRouter.post('/uninstalled', (req, res) => {
+EventsRouter.post('/uninstalled', async (req, res) => {
     const { baseUrl: host, clientKey } = req.body;
-
-    removeFromDB(
-        { host, clientKey },
-        () => { res.sendStatus(200) },
-        (error) => { res.sendStatus(500).json(error) }
-    );
+    const removedData = await removeFromDB({ host, clientKey });
+    if (removedData) {
+        res.sendStatus(204);
+    } else {
+        res.sendStatus(500);
+    }
 });

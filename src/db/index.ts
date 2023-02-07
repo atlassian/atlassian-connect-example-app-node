@@ -8,54 +8,54 @@ export type TenantType = {
 };
 
 export const DBFile = new Datastore({
-    filename: path.join(__dirname, './storage/storageFile.db') ,
+    filename: path.join(__dirname, './storage/storageFile.db'),
     autoload: true
 });
 
-export const findOneInDb = (query: {}, successCallback: Function, failureCallback: Function) => {
+export const findOneInDb = (query: {}) => new Promise((resolve) => {
     DBFile.findOne(query, (error, data) => {
         if (error) {
             console.error("Error when finding: ", error);
-            failureCallback && failureCallback(error);
+            throw new Error(error);
         } else {
             console.log("Found successfully", data);
-            successCallback && successCallback(data);
+            resolve(data);
         }
     });
-};
+});
 
-export const insertToDb = (data: any, successCallback: Function, failureCallback: Function) => {
+export const insertToDb = (data: any) => new Promise((resolve) => {
     DBFile.insert(data, (error, data) => {
         if (error) {
             console.error("Error when inserting: ", error);
-            failureCallback && failureCallback(error);
+            throw new Error(error);
         } else {
             console.log("Inserted successfully", data);
-            successCallback && successCallback(data);
+            resolve(data);
         }
     });
-};
+});
 
-export const updateToDb = (query: {}, newData: any, successCallback: Function, failureCallback: Function) => {
+export const updateToDb = (query: {}, newData: any) => new Promise((resolve) => {
     DBFile.update(query, newData, {}, (error, data) => {
         if (error) {
             console.error("Error when updating: ", error);
-            failureCallback && failureCallback(error);
+            throw new Error(error);
         } else {
             console.log("Updated successfully", data);
-            successCallback && successCallback(data);
+            resolve(data);
         }
     });
-};
+});
 
-export const removeFromDB = (query: {}, successCallback: Function, failureCallback: Function) => {
+export const removeFromDB = (query: {}) => new Promise((resolve) => {
     DBFile.remove(query, (error, data) => {
         if (error) {
             console.error("Error when removing: ", error);
-            failureCallback && failureCallback(error);
+            throw new Error(error);
         } else {
             console.log("Removed successfully", data);
-            successCallback && successCallback(data);
+            resolve(data);
         }
     });
-};
+});
