@@ -1,4 +1,4 @@
-import { decodeJwtToken } from '../utils';
+import {decodeAtlassianJwtToken, decodeJwtToken} from '../utils';
 
 /**
  * This middleware decodes the JWT token from Jira and identifies the users
@@ -10,6 +10,8 @@ export const jwtTokenMiddleware = (req, res, next) => {
     }
 
     const decodedJwtToken = decodeJwtToken(req.query.jwt);
+
+    res.locals.atlassianToken = decodeAtlassianJwtToken(req.query.jwt);
     res.locals.clientKey = decodedJwtToken.iss;
     next();
 };

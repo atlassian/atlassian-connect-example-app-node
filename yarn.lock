@@ -170,6 +170,14 @@ async@~3.2.0:
   resolved "https://packages.atlassian.com/api/npm/npm-remote/async/-/async-3.2.4.tgz#2d22e00f8cddeb5fde5dd33522b56d1cf569a81c"
   integrity sha512-iAB+JbDEGXhyIUavoDl9WP/Jj106Kz9DEn1DPgYw5ruDn0e3Wgi3sKFm55sASdGBNOQB8F59d9qQ7deqrHA8wQ==
 
+atlassian-jwt@^2.0.2:
+  version "2.0.2"
+  resolved "https://packages.atlassian.com/api/npm/npm-remote/atlassian-jwt/-/atlassian-jwt-2.0.2.tgz#38ec00737b4b2761877b74d587f4a0ee198efd4f"
+  integrity sha512-HgG2p+gJeEqKREnPynEDy76UoShF01jTYMSe0NlRL2rEqXBNDzJiiCyUP7P2cbxcRmI4OC8g40zJjqftFNJ/4A==
+  dependencies:
+    jsuri "^1.3.1"
+    lodash "^4.17.21"
+
 balanced-match@^1.0.0:
   version "1.0.2"
   resolved "https://packages.atlassian.com/api/npm/npm-remote/balanced-match/-/balanced-match-1.0.2.tgz#e83e3a7e3f300b34cb9d87f615fa0cbf357690ee"
@@ -563,6 +571,11 @@ is-number@^7.0.0:
   resolved "https://packages.atlassian.com/api/npm/npm-remote/is-number/-/is-number-7.0.0.tgz#7535345b896734d5f80c4d06c50955527a14f12b"
   integrity sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==
 
+jsuri@^1.3.1:
+  version "1.3.1"
+  resolved "https://packages.atlassian.com/api/npm/npm-remote/jsuri/-/jsuri-1.3.1.tgz#cd93fc6a87b255142cb7b0f479f00517ab9395ed"
+  integrity sha512-LLdAeqOf88/X0hylAI7oSir6QUsz/8kOW0FcJzzu/SJRfORA/oPHycAOthkNp7eLPlTAbqVDFbqNRHkRVzEA3g==
+
 jwt-decode@^3.1.2:
   version "3.1.2"
   resolved "https://packages.atlassian.com/api/npm/npm-remote/jwt-decode/-/jwt-decode-3.1.2.tgz#3fb319f3675a2df0c2895c8f5e9fa4b67b04ed59"
@@ -581,6 +594,11 @@ localforage@^1.3.0:
   integrity sha512-14/H1aX7hzBBmmh7sGPd+AOMkkIrHM3Z1PAyGgZigA1H1p5O5ANnMyWzvpAETtG68/dC4pC0ncy3+PPGzXZHPg==
   dependencies:
     lie "3.1.1"
+
+lodash@^4.17.21:
+  version "4.17.21"
+  resolved "https://packages.atlassian.com/api/npm/npm-remote/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
+  integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
 
 lru-cache@~5.1.1:
   version "5.1.1"
