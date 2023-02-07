@@ -1,6 +1,5 @@
 import express from 'express';
 import Routes from './routes';
-import cookieParser from 'cookie-parser';
 import mustache from 'mustache-express';
 
 class App {
@@ -21,7 +20,6 @@ class App {
 
     middlewares() {
         this.server.use(express.json());
-        this.server.use(cookieParser());
     }
 
     routes() {
