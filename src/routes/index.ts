@@ -18,14 +18,14 @@ Routes.use('/public', PublicRouter);
 
 Routes.use('/webhooks', WebhooksRouter);
 
-Routes.get('/', jwtTokenMiddleware, (_req, res) => {
+Routes.get('/', (_req, res) => {
     res.render('index.mst', {
         index: 'Index Page',
         body: 'You in the home page!'
     });
 });
 
-Routes.get('/config', jwtTokenMiddleware, async (_req, res) => {
+Routes.get('/config', async (_req, res) => {
     const props = { baseUrl: await baseUrl() };
     res.render('config.mst', {
         index: 'Connect app descriptor',
