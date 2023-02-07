@@ -13,7 +13,7 @@ WebhooksRouter.post('/jira/issue-created', async (req, res) => {
     if (updatedData) {
         res.sendStatus(200);
     } else {
-        res.status(500);
+        res.sendStatus(500);
     }
 });
 
@@ -27,7 +27,7 @@ WebhooksRouter.post('/jira/issue-updated', async (req, res) => {
     if (updatedData) {
         res.sendStatus(200);
     } else {
-        res.status(500);
+        res.sendStatus(500);
     }
 });
 
@@ -41,7 +41,7 @@ WebhooksRouter.post('/jira/issue-deleted', async (req, res) => {
     if (updatedData) {
         res.sendStatus(200);
     } else {
-        res.status(500);
+        res.sendStatus(500);
     }
 });
 
