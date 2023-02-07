@@ -1,5 +1,4 @@
-import jwt_decode from 'jwt-decode';
-import {decodeAsymmetric, getAlgorithm, getKeyId} from "atlassian-jwt";
+import { decodeSymmetric, getAlgorithm } from 'atlassian-jwt';
 
 /**
  * This baseUrl is pulled from the ngrok tunnel API,
@@ -19,37 +18,10 @@ export const baseUrl = async (): Promise<string> => {
     return tunnel[0].public_url;
 }
 
-export type DecodedJwtTokenType = {
-    sub: string;
-    qsh: string;
-    iss: string;
-    context: any;
-    exp: number;
-    iat: number;
-};
 
-export const decodeJwtToken = (encodedToken: string): DecodedJwtTokenType => {
-    return jwt_decode(encodedToken);
-};
-export const decodeAtlassianJwtToken = async (token) => {
-    console.log("Key Id", getKeyId(token), getAlgorithm(token));
-    const publicKey = await queryAtlassianConnectPublicKey(getKeyId(token));
-    console.log("publicKey", publicKey);
-    return decodeAsymmetric(
-        token,
-        publicKey,
-        getAlgorithm(token),
-        false
-    );
-};
-
-const queryAtlassianConnectPublicKey = async (keyId: string): Promise<string> => {
-    const keyServerUrl = "https://connect-install-keys.atlassian.com";
-
-    const response = await fetch(`${keyServerUrl}/${keyId}`);
-    if (response.status !== 200) {
-        throw new Error(`Unable to get public key for keyId ${keyId}`);
-    }
-    const result = await response.json();
-    return result.data;
+/**
+ * Decoding the JWT token passed from Jira
+ */
+export const decodeJwtToken = (encodedToken: string, sharedSecret: string) => {
+    return decodeSymmetric(encodedToken, sharedSecret, getAlgorithm(encodedToken));
 };
