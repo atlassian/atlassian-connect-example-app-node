@@ -7,7 +7,7 @@ type ConnectJsonObject = { [k: string]: ConnectJsonValue }
 type ConnectJsonArray = ConnectJsonValue[]
 type ConnectJsonValue = ConnectJsonArray | ConnectJsonObject | ConnectJsonPrimitive
 
-export const connectAppDescriptor = ({baseUrl}: ConnectAppDescriptorProps): ConnectJsonValue => {
+export const connectAppDescriptor = ({ baseUrl }: ConnectAppDescriptorProps): ConnectJsonValue => {
     return {
         name: 'Sample Connect App Node',
         description: 'Atlassian Connect app - Node',
@@ -20,7 +20,7 @@ export const connectAppDescriptor = ({baseUrl}: ConnectAppDescriptorProps): Conn
         authentication: {
             type: 'jwt'
         },
-        scopes: ["READ"],
+        scopes: [ "READ" ],
         apiVersion: 1,
         lifecycle: {
             installed: '/events/installed',
