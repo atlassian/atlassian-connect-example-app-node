@@ -29,4 +29,4 @@ export type DecodedJwtTokenType = {
 
 export const decodeJwtToken = (encodedToken: string): DecodedJwtTokenType => {
     return jwt_decode(encodedToken);
-}
+};

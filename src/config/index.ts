@@ -50,11 +50,19 @@ export const connectAppDescriptor = ({ baseUrl }: ConnectAppDescriptorProps): Co
             ],
             generalPages: [
                 {
-                    url: '/',
-                    key: 'acn-contact',
+                    url: '/config',
+                    key: 'acn-config',
                     location: 'none',
                     name: {
-                        'value': 'Index'
+                        'value': 'Connect Descriptor'
+                    }
+                },
+                {
+                    url: '/logs/webhooks',
+                    key: 'acn-logs-webhooks',
+                    location: 'none',
+                    name: {
+                        'value': 'Logs for webhooks'
                     }
                 }
             ]

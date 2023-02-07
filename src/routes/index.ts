@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { ConnectDescriptorGet } from './atlassian-connect';
 import { EventsRouter } from './events';
+import { LogsRouter } from './logs';
 import { PublicRouter } from './public';
 import { WebhooksRouter } from './webhooks';
 import { connectAppDescriptor } from '../config';
@@ -14,6 +15,8 @@ Routes.get('/atlassian-connect.json', ConnectDescriptorGet);
 Routes.use('/events', EventsRouter);
 
 Routes.use('/public', PublicRouter);
+
+Routes.use('/webhooks', WebhooksRouter);
 
 Routes.get('/', jwtTokenMiddleware, (_req, res) => {
     res.render('index.mst', {
@@ -30,6 +33,7 @@ Routes.get('/config', jwtTokenMiddleware, async (_req, res) => {
     });
 });
 
-Routes.use('/webhooks', jwtTokenMiddleware, WebhooksRouter);
+Routes.use('/logs', jwtTokenMiddleware, LogsRouter);
+
 
 export default Routes;
