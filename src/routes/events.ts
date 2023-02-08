@@ -1,12 +1,11 @@
 import { Router } from 'express';
-import { insertToDb, removeFromDB, TenantType } from '../db';
+import { insertToDb, removeFromDB } from '../db';
 
 export const EventsRouter = Router();
 
 EventsRouter.post('/installed', async (req, res) => {
     const { baseUrl: host, clientKey, sharedSecret } = req.body;
-    const newTenant: TenantType = { host, clientKey, sharedSecret, logs: [] };
-    const insertedData = await insertToDb(newTenant);
+    const insertedData = await insertToDb({ host, clientKey, sharedSecret, logs: [] });
     if (insertedData) {
         res.sendStatus(204);
     } else {
