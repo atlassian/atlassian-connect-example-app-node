@@ -5,20 +5,12 @@ export const EventsRouter = Router();
 
 EventsRouter.post('/installed', async (req, res) => {
     const { baseUrl: host, clientKey, sharedSecret } = req.body;
-    const insertedData = await insertToDb({ host, clientKey, sharedSecret, logs: [] });
-    if (insertedData) {
-        res.sendStatus(204);
-    } else {
-        res.sendStatus(500);
-    }
+    await insertToDb({ host, clientKey, sharedSecret, logs: [] });
+    res.sendStatus(204);
 });
 
 EventsRouter.post('/uninstalled', async (req, res) => {
     const { baseUrl: host, clientKey } = req.body;
-    const removedData = await removeFromDB({ host, clientKey });
-    if (removedData) {
-        res.sendStatus(204);
-    } else {
-        res.sendStatus(500);
-    }
+    await removeFromDB({ host, clientKey });
+    res.sendStatus(204);
 });

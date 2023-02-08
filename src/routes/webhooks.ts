@@ -10,11 +10,7 @@ WebhooksRouter.post('/jira/issue-created', async (req, res) => {
         { host },
         { $push: { logs: `${new Date().toISOString()} : Issue created ---> ${JSON.stringify(req.body)}` } }
     );
-    if (updatedData) {
-        res.sendStatus(200);
-    } else {
-        res.sendStatus(500);
-    }
+    res.sendStatus(updatedData ? 200 : 500);
 });
 
 WebhooksRouter.post('/jira/issue-updated', async (req, res) => {
@@ -24,11 +20,7 @@ WebhooksRouter.post('/jira/issue-updated', async (req, res) => {
         { host },
         { $push: { logs: `${new Date().toISOString()} : Issue updated ---> ${JSON.stringify(req.body)}` } }
     );
-    if (updatedData) {
-        res.sendStatus(200);
-    } else {
-        res.sendStatus(500);
-    }
+    res.sendStatus(updatedData ? 200 : 500);
 });
 
 WebhooksRouter.post('/jira/issue-deleted', async (req, res) => {
@@ -38,10 +30,6 @@ WebhooksRouter.post('/jira/issue-deleted', async (req, res) => {
         { host },
         { $push: { logs: `${new Date().toISOString()} : Issue deleted ---> ${JSON.stringify(req.body)}` } }
     );
-    if (updatedData) {
-        res.sendStatus(200);
-    } else {
-        res.sendStatus(500);
-    }
+    res.sendStatus(updatedData ? 200 : 500);
 });
 

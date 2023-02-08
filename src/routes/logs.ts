@@ -11,6 +11,6 @@ LogsRouter.get('/webhooks', async (_req, res) => {
 
     res.render('webhooksLogs.mst', {
         index: 'Webhooks Page',
-        logs: logsData.logs.sort().reverse()
+        logs: logsData ? logsData.logs.sort().reverse() : []
     });
 });
