@@ -26,6 +26,9 @@
     {{#logs}}
         <pre>{{.}}</pre>
     {{/logs}}
+    {{^logs}}
+        <pre>No logs yet!</pre>
+    {{/logs}}
 </div>
 <br/>
 <br/>

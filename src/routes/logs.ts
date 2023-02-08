@@ -9,15 +9,8 @@ LogsRouter.get('/webhooks', async (_req, res) => {
         { clientKey },
     ) as TenantType;
 
-    if (clientKey && logsData?.logs.length) {
-        res.render('webhooksLogs.mst', {
-            index: 'Webhooks Page',
-            logs: logsData.logs.sort().reverse()
-        });
-    } else {
-        res.render('webhooksLogs.mst', {
-            index: 'Webhooks Page',
-            logs: ["No logs yet!"]
-        });
-    }
+    res.render('webhooksLogs.mst', {
+        index: 'Webhooks Page',
+        logs: logsData.logs.sort().reverse()
+    });
 });
