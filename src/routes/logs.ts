@@ -1,9 +1,9 @@
 import { Router } from 'express';
 import { findOneInDb, TenantType } from '../db';
 
-export const LogsRouter = Router();
+export const logsRouter = Router();
 
-LogsRouter.get('/webhooks', async (_req, res) => {
+logsRouter.get('/webhooks', async (_req, res) => {
     const { clientKey } = res.locals;
     const logsData = await findOneInDb(
         { clientKey },

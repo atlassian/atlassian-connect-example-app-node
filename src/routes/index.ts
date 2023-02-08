@@ -1,31 +1,31 @@
 import { Router } from 'express';
-import { ConnectDescriptorGet } from './atlassian-connect';
-import { EventsRouter } from './events';
-import { LogsRouter } from './logs';
-import { PublicRouter } from './public';
-import { WebhooksRouter } from './webhooks';
+import { connectDescriptorGet } from './atlassian-connect';
+import { eventsRouter } from './events';
+import { logsRouter } from './logs';
+import { publicRouter } from './public';
+import { webhooksRouter } from './webhooks';
 import { connectAppDescriptor } from '../config';
 import { baseUrl } from '../utils';
 import { jwtTokenMiddleware } from '../middlewares/jwtMiddleware';
 
-const Routes = Router();
+const routes = Router();
 
-Routes.get('/', (_req, res) => {
+routes.get('/', (_req, res) => {
     res.render('index.mst', {
         index: 'Index Page',
         body: 'You in the home page!'
     });
 });
 
-Routes.get('/atlassian-connect.json', ConnectDescriptorGet);
+routes.get('/atlassian-connect.json', connectDescriptorGet);
 
-Routes.use('/events', EventsRouter);
+routes.use('/events', eventsRouter);
 
-Routes.use('/public', PublicRouter);
+routes.use('/public', publicRouter);
 
-Routes.use('/webhooks', WebhooksRouter);
+routes.use('/webhooks', webhooksRouter);
 
-Routes.get('/config', async (_req, res) => {
+routes.get('/config', async (_req, res) => {
     const props = { baseUrl: await baseUrl() };
     res.render('config.mst', {
         index: 'Connect app descriptor',
@@ -33,7 +33,6 @@ Routes.get('/config', async (_req, res) => {
     });
 });
 
-Routes.use('/logs', jwtTokenMiddleware, LogsRouter);
+routes.use('/logs', jwtTokenMiddleware, logsRouter);
 
-
-export default Routes;
+export default routes;

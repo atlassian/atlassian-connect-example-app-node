@@ -1,5 +1,5 @@
 import express from 'express';
-import Routes from './routes';
+import routes from './routes';
 import mustache from 'mustache-express';
 
 const serverApp = express();
@@ -15,6 +15,6 @@ serverApp.set('views', __dirname + '/views');
 serverApp.use(express.json());
 
 // Setting the routes
-serverApp.use(Routes);
+serverApp.use(routes);
 
-export const App = serverApp;
+export const app = serverApp;

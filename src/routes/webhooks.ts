@@ -1,9 +1,9 @@
 import { Router } from 'express';
 import { updateToDb } from '../db';
 
-export const WebhooksRouter = Router();
+export const webhooksRouter = Router();
 
-WebhooksRouter.post('/jira/issue-created', async (req, res) => {
+webhooksRouter.post('/jira/issue-created', async (req, res) => {
     // Mapping the host set during the installation with the url coming in from the webhooks
     const host = new URL(req.body.user.self).origin;
     const updatedData = await updateToDb(
@@ -13,7 +13,7 @@ WebhooksRouter.post('/jira/issue-created', async (req, res) => {
     res.sendStatus(updatedData ? 200 : 500);
 });
 
-WebhooksRouter.post('/jira/issue-updated', async (req, res) => {
+webhooksRouter.post('/jira/issue-updated', async (req, res) => {
     // Mapping the host set during the installation with the url coming in from the webhooks
     const host = new URL(req.body.user.self).origin;
     const updatedData = await updateToDb(
@@ -23,7 +23,7 @@ WebhooksRouter.post('/jira/issue-updated', async (req, res) => {
     res.sendStatus(updatedData ? 200 : 500);
 });
 
-WebhooksRouter.post('/jira/issue-deleted', async (req, res) => {
+webhooksRouter.post('/jira/issue-deleted', async (req, res) => {
     // Mapping the host set during the installation with the url coming in from the webhooks
     const host = new URL(req.body.user.self).origin;
     const updatedData = await updateToDb(

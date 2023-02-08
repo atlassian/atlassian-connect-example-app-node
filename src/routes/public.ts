@@ -1,6 +1,6 @@
 import { Router, static as Static } from 'express';
 import path from 'path';
 
-export const PublicRouter = Router();
+export const publicRouter = Router();
 
-PublicRouter.use("/", Static(path.join( process.cwd(), "static")));
+publicRouter.use('/', Static(path.join( process.cwd(), 'static')));
