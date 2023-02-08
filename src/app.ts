@@ -1,30 +1,20 @@
 import express from 'express';
-import Routes from './routes';
+import routes from './routes';
 import mustache from 'mustache-express';
 
-class App {
-    public server;
+const serverApp = express();
 
-    constructor() {
-        this.server = express();
-        this.setEngine();
-        this.middlewares();
-        this.routes();
-    }
+// Setting the template engine
+serverApp.engine('mst', mustache());
+serverApp.set('view engine', 'mst');
 
-    setEngine() {
-        this.server.engine('mst', mustache());
-        this.server.set('view engine', 'mst');
-        this.server.set('views', __dirname + '/views');
-    }
+// Setting the views
+serverApp.set('views', __dirname + '/views');
 
-    middlewares() {
-        this.server.use(express.json());
-    }
+// Calling the express.json() method for parsing
+serverApp.use(express.json());
 
-    routes() {
-        this.server.use(Routes);
-    }
-}
+// Setting the routes
+serverApp.use(routes);
 
-export default new App().server
+export const app = serverApp;

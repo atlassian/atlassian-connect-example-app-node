@@ -1,60 +1,51 @@
-import Datastore from 'nedb';
+import Datastore from 'nedb-promises';
 import path from 'path';
 
 export type TenantType = {
+    _id: string | null;
     host: string;
+    sharedSecret: string;
+    clientKey: string;
     logs: Array<string>
 };
 
-export const DBFile = new Datastore({
-    filename: path.join(__dirname, './storage/storageFile.db') ,
+export const DBFile = Datastore.create({
+    filename: path.join(__dirname, './storage/storageFile.db'),
     autoload: true
 });
 
-export const findOneInDb = (query: {}, successCallback: Function, failureCallback: Function) => {
-    DBFile.findOne(query, (error, data) => {
-        if (error) {
-            console.error("Error when finding: ", error);
-            failureCallback && failureCallback(error);
-        } else {
-            console.log("Found successfully", data);
-            successCallback && successCallback(data);
-        }
+export const findOneInDb = async (query: {}) => DBFile.findOne(query)
+    .then(data => {
+        console.log("Found successfully", data);
+        return data;
+    }).catch((error) => {
+        console.error("Error when finding: ", error);
+        throw new Error(error);
     });
-};
 
-export const insertToDb = (data: any, successCallback: Function, failureCallback: Function) => {
-    DBFile.insert(data, (error, data) => {
-        if (error) {
-            console.error("Error when inserting: ", error);
-            failureCallback && failureCallback(error);
-        } else {
-            console.log("Inserted successfully", data);
-            successCallback && successCallback(data);
-        }
+export const insertToDb = async (data: any) => DBFile.insert(data)
+    .then(data => {
+        console.log("Inserted successfully", data);
+        return data;
+    }).catch((error) => {
+        console.error("Error when inserting: ", error);
+        throw new Error(error);
     });
-};
 
-export const updateToDb = (query: {}, newData: any, successCallback: Function, failureCallback: Function) => {
-    DBFile.update(query, newData, {}, (error, data) => {
-        if (error) {
-            console.error("Error when updating: ", error);
-            failureCallback && failureCallback(error);
-        } else {
-            console.log("Updated successfully", data);
-            successCallback && successCallback(data);
-        }
+export const updateToDb = async (query: {}, newData: any) => DBFile.update(query, newData, {})
+    .then(data => {
+        console.log("Updated successfully", data);
+        return data;
+    }).catch((error) => {
+        console.error("Error when updating: ", error);
+        throw new Error(error);
     });
-};
 
-export const removeFromDB = (query: {}, successCallback: Function, failureCallback: Function) => {
-    DBFile.remove(query, (error, data) => {
-        if (error) {
-            console.error("Error when removing: ", error);
-            failureCallback && failureCallback(error);
-        } else {
-            console.log("Removed successfully", data);
-            successCallback && successCallback(data);
-        }
+export const removeFromDB = async (query: {}) => DBFile.remove(query, {})
+    .then(data => {
+        console.log("Removed successfully", data);
+        return data;
+    }).catch((error) => {
+        console.error("Error when removing: ", error);
+        throw new Error(error);
     });
-};

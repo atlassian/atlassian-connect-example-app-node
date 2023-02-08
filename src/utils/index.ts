@@ -1,3 +1,4 @@
+import { decodeSymmetric, getAlgorithm } from 'atlassian-jwt';
 
 /**
  * This baseUrl is pulled from the ngrok tunnel API,
@@ -16,3 +17,11 @@ export const baseUrl = async (): Promise<string> => {
 
     return tunnel[0].public_url;
 }
+
+
+/**
+ * Decoding the JWT token passed from Jira
+ */
+export const decodeJwtToken = (encodedToken: string, sharedSecret: string) => {
+    return decodeSymmetric(encodedToken, sharedSecret, getAlgorithm(encodedToken));
+};

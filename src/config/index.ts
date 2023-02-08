@@ -18,7 +18,7 @@ export const connectAppDescriptor = ({ baseUrl }: ConnectAppDescriptorProps): Co
             url: 'https://github.com/atlassian/atlassian-connect-sample-app-node/'
         },
         authentication: {
-            type: 'none'
+            type: 'jwt'
         },
         scopes: [ "READ" ],
         apiVersion: 1,
@@ -32,7 +32,7 @@ export const connectAppDescriptor = ({ baseUrl }: ConnectAppDescriptorProps): Co
                 key: 'acn-index',
                 name: {
                     value: 'Index'
-                },
+                }
             },
             webhooks: [
                 {
@@ -50,14 +50,22 @@ export const connectAppDescriptor = ({ baseUrl }: ConnectAppDescriptorProps): Co
             ],
             generalPages: [
                 {
-                    url: '/',
-                    key: 'acn-contact',
+                    url: '/config',
+                    key: 'acn-config',
                     location: 'none',
                     name: {
-                        'value': 'Index'
+                        'value': 'Connect Descriptor'
+                    }
+                },
+                {
+                    url: '/logs/webhooks',
+                    key: 'acn-logs-webhooks',
+                    location: 'none',
+                    name: {
+                        'value': 'Logs for webhooks'
                     }
                 }
             ]
         }
-    }
-}
+    };
+};

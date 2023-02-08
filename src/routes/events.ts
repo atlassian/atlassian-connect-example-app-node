@@ -1,25 +1,16 @@
 import { Router } from 'express';
-import { insertToDb, removeFromDB, TenantType} from '../db';
+import { insertToDb, removeFromDB } from '../db';
 
-export const EventsRouter = Router();
+export const eventsRouter = Router();
 
-EventsRouter.post('/installed', (req, res) => {
-    const { baseUrl: host } = req.body;
-    const newTenant: TenantType = { host, logs: [] };
-
-    insertToDb(
-        newTenant,
-        () => { res.sendStatus(200) },
-        (error) => { res.sendStatus(500).json(error) }
-    );
+eventsRouter.post('/installed', async (req, res) => {
+    const { baseUrl: host, clientKey, sharedSecret } = req.body;
+    await insertToDb({ host, clientKey, sharedSecret, logs: [] });
+    res.sendStatus(204);
 });
 
-EventsRouter.post('/uninstalled', (req, res) => {
-    const { baseUrl: host } = req.body;
-
-    removeFromDB(
-        { host },
-        () => { res.sendStatus(200) },
-        (error) => { res.sendStatus(500).json(error) }
-    );
+eventsRouter.post('/uninstalled', async (req, res) => {
+    const { baseUrl: host, clientKey } = req.body;
+    await removeFromDB({ host, clientKey });
+    res.sendStatus(204);
 });
