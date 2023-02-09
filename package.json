@@ -7,7 +7,7 @@
   "private": false,
   "scripts": {
     "build": "tsc --project ./",
-    "setup": "tsnd setup.js && install",
+    "setup": "yarn install && tsnd setup.ts",
     "prestart": "tsnd prestart.ts",
     "start": "tsnd src/server.ts"
   },
