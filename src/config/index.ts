@@ -1,3 +1,5 @@
+import {envVars} from './env';
+
 type ConnectJsonPrimitive = string | number | boolean | null
 type ConnectJsonObject = { [k: string]: ConnectJsonValue }
 type ConnectJsonArray = ConnectJsonValue[]
@@ -7,7 +9,7 @@ export const connectAppDescriptor = {
     name: 'Sample Connect App Node',
     description: 'Atlassian Connect app - Node',
     key: 'com.atlassian.sample-app-node',
-    baseUrl: process.env.APP_URL,
+    baseUrl: envVars.APP_URL,
     vendor: {
         name: 'Node connect app sample',
         url: 'https://github.com/atlassian/atlassian-connect-sample-app-node/'
