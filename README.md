@@ -19,7 +19,7 @@ This app is aimed to help you to easily add your integration in Jira.
 
 ## Getting started
 You can run this app in 3 simple steps:
-- **Installing dependencies** - Run `yarn install` for installing all the dependencies for this app.
+- **Initial Setup** - Run `yarn setup` for the initial setup of the app. This command does two things: installs all the dependencies and sets up the env file for this app.
 
 - **Tunneling** - For this purpose, we are using [ngrok](https://ngrok.com/docs/getting-started). You need to set the ngrok authtoken in the env file, so please make sure you have a ngrok account. 
 Simply go to [ngrok](https://dashboard.ngrok.com/get-started/your-authtoken) and copy your authtoken and paste it in the [.env](./.env) file.

@@ -1,24 +1,8 @@
 import fs from 'fs';
 import path from 'path';
-import { exec } from 'child_process';
 
 const envFileName = '.env';
 const envFilePath = path.resolve(__dirname, envFileName);
-
-const createEnvFile = async () => {
-    if (!fs.existsSync(envFilePath)) {
-        return new Promise<void>((resolve, reject) => {
-            exec('./.husky/create-env.sh', (error, stdout) => {
-                if (error) {
-                    reject(error);
-                    return;
-                }
-                console.info(stdout);
-                resolve();
-            });
-        });
-    }
-};
 
 const callTunnel = async () => {
     const response = await fetch('http://tunnel:4040/api/tunnels');
@@ -53,10 +37,8 @@ const waitForTunnel = async () => {
     }
 };
 
-// Check to see if ngrok is up and running
 (async function main() {
     try {
-        await createEnvFile();
         await waitForTunnel();
         process.exit();
     } catch (e) {
