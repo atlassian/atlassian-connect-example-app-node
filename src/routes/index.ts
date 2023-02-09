@@ -5,7 +5,6 @@ import { logsRouter } from './logs';
 import { publicRouter } from './public';
 import { webhooksRouter } from './webhooks';
 import { connectAppDescriptor } from '../config';
-import { baseUrl } from '../utils';
 import { jwtTokenMiddleware } from '../middlewares/jwtMiddleware';
 
 const routes = Router();
@@ -26,10 +25,9 @@ routes.use('/public', publicRouter);
 routes.use('/webhooks', webhooksRouter);
 
 routes.get('/config', async (_req, res) => {
-    const props = { baseUrl: await baseUrl() };
     res.render('config.mst', {
         index: 'Connect app descriptor',
-        config: JSON.stringify(connectAppDescriptor(props), undefined, 2)
+        config: JSON.stringify(connectAppDescriptor, undefined, 2)
     });
 });
 
