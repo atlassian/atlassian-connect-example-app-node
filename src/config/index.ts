@@ -5,10 +5,12 @@ type ConnectJsonObject = { [k: string]: ConnectJsonValue }
 type ConnectJsonArray = ConnectJsonValue[]
 type ConnectJsonValue = ConnectJsonArray | ConnectJsonObject | ConnectJsonPrimitive
 
+export const APP_KEY = 'com.atlassian.sample-app-node';
+
 export const connectAppDescriptor = {
     name: 'Sample Connect App Node',
     description: 'Atlassian Connect app - Node',
-    key: 'com.atlassian.sample-app-node',
+    key: APP_KEY,
     baseUrl: envVars.APP_URL,
     vendor: {
         name: 'Node connect app sample',
