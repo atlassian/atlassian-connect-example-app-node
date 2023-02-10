@@ -107,3 +107,6 @@ dist
 
 
 /src/db/storage/
+/test-results/
+/playwright-report/
+/playwright/.cache/
