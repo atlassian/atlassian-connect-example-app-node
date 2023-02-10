@@ -14,7 +14,7 @@ export const testData: TestData = {
 			dashboard: `${e2eEnvVars.ATLASSIAN_URL}/jira/dashboards`,
 			yourWork: `${e2eEnvVars.ATLASSIAN_URL}/jira/your-work`,
 			manageApps: `${e2eEnvVars.ATLASSIAN_URL}/plugins/servlet/upm`,
-			connectJson: `${e2eEnvVars.APP_URL}/jira/atlassian-connect.json`,
+			connectJson: `${e2eEnvVars.APP_URL}/atlassian-connect.json`,
 			projects: `${e2eEnvVars.ATLASSIAN_URL}/jira/projects`,
 		},
 		roles: {
