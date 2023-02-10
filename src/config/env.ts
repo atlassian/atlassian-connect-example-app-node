@@ -1,7 +1,7 @@
 import { config } from 'dotenv';
 import path from 'path';
 
-type EnvVars = {
+export type EnvVars = {
     APP_URL: string;
     NGROK_AUTHTOKEN: string;
 };
