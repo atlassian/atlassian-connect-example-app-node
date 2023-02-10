@@ -1,22 +1,20 @@
 import fs from 'fs';
 import path from 'path';
-import { exec } from 'child_process';
 
 const envFileName = '.env';
+const envExampleFileName = '.env.example';
 const envFilePath = path.resolve(__dirname, envFileName);
+const envExampleFilePath = path.resolve(__dirname, envExampleFileName);
 
 // Creates the .env file
 const createEnvFile = async () => {
     if (!fs.existsSync(envFilePath)) {
-        return new Promise<void>((resolve, reject) => {
-            exec('./.husky/create-env.sh', (error, stdout) => {
-                if (error) {
-                    reject(error);
-                    return;
-                }
-                console.info(stdout);
-                resolve();
-            });
+        await fs.copyFile(envExampleFilePath, envFilePath, (err) => {
+            if (err) {
+                console.error("Couldn't create .env file: ", err);
+                throw new Error("Error creating .env file: ");
+            }
+            console.log('.env file created!');
         });
     }
 };
