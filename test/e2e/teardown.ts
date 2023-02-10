@@ -1,5 +1,5 @@
 import { chromium } from '@playwright/test';
-import { clearState } from './e2e-utils';
+import { clearState } from './utils/e2e-utils';
 import { ngrokBypass } from './utils/ngrok';
 import { jiraAppUninstall, jiraLogin } from './utils/jira';
 

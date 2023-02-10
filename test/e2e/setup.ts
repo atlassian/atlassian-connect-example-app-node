@@ -1,8 +1,8 @@
 import { chromium } from "@playwright/test";
 import { jiraAppInstall, jiraLogin } from './utils/jira';
-import { clearState, stateExists } from './e2e-utils';
+import { clearState, stateExists } from './utils/e2e-utils';
 import { ngrokBypass } from './utils/ngrok';
-import { testData } from './constants';
+import { testData } from './utils/constants';
 
 export default async function setup() {
     const browser = await chromium.launch();

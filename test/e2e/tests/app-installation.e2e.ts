@@ -1,8 +1,8 @@
 import { expect, Page, test } from '@playwright/test';
-import { jiraAppInstall, jiraAppUninstall, jiraLogin } from './utils/jira';
-import { testData } from "test/e2e/constants";
+import { jiraAppInstall, jiraAppUninstall, jiraLogin } from '../utils/jira';
+import { testData } from '../utils/constants';
 
-test.skip("App Installation", () => {
+test.describe("App Installation", () => {
 	for (const useState of [false, true]) {
 		test.describe("jira", () => {
 			test.describe(useState ? "with state" : "without state", () => {

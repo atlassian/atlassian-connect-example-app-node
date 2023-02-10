@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import { JiraTestDataRoles, testData } from '../constants';
+import { JiraTestDataRoles, testData } from './constants';
 import { APP_KEY } from '~/src/config';
 
 
