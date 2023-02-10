@@ -6,11 +6,11 @@ const envFilePath = path.resolve(__dirname, envFileName);
 
 const callTunnel = async () => {
     const results = await Promise.all([
-        await fetch('http://tunnel:4040/api/tunnels'),
-        await fetch('http://localhost:4040/api/tunnels')
+        fetch('http://tunnel:4040/api/tunnels').catch(() => undefined),
+        fetch('http://localhost:4040/api/tunnels').catch(() => undefined)
     ]);
 
-    const response = results.find((value) => value.ok) as Response;
+    const response = results.find((value) => value?.ok);
 
     return response ? response.json() : Promise.reject();
 };
@@ -20,7 +20,7 @@ const waitForTunnel = async () => {
     const response = await callTunnel()
         .catch(callTunnel)
         .catch(callTunnel)
-        .catch(() => undefined);
+        .catch(() => (e) => console.log('f', e));
     if (response) {
         try {
             let envContents = fs.readFileSync(envFilePath, { encoding: 'utf-8' });

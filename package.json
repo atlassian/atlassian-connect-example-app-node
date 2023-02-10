@@ -7,8 +7,8 @@
   "private": false,
   "scripts": {
     "build": "tsc --project ./",
-    "setup": "yarn install && tsnd setup.ts",
     "prestart": "tsnd prestart.ts",
+    "postinstall": "tsnd setup.ts",
     "start": "tsnd src/server.ts"
   },
   "dependencies": {
