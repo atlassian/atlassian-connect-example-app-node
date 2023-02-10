@@ -5,13 +5,14 @@ const envFileName = '.env';
 const envFilePath = path.resolve(__dirname, envFileName);
 
 const callTunnel = async () => {
-    const response = await fetch('http://tunnel:4040/api/tunnels');
+    const results = await Promise.all([
+        await fetch('http://tunnel:4040/api/tunnels'),
+        await fetch('http://localhost:4040/api/tunnels')
+    ]);
 
-    if (!response.ok) {
-        throw new Error(`ngrok tunnel error: ${response}`);
-    }
+    const response = results.find((value) => value.ok) as Response;
 
-    return response.json();
+    return response ? response.json() : Promise.reject();
 };
 
 const waitForTunnel = async () => {
