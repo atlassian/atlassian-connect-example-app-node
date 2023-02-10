@@ -14,7 +14,6 @@ export default async function setup() {
     // login and save state before tests
     await Promise.all([
         ngrokBypass(page).then(async (page) => jiraLogin(page, "admin", true))
-        // githubLogin(await browser.newPage(), "admin", true).then(githubAppUpdateURLs)
     ]);
 
     await jiraAppInstall(page);
@@ -22,7 +21,7 @@ export default async function setup() {
     await browser.close();
 
     // Check to make sure state exists before continuing
-    if (!stateExists(testData.jira.roles.admin) || !stateExists(testData.github.roles.admin)) {
+    if (!stateExists(testData.jira.roles.admin)) {
         throw "Missing state";
     }
 }

@@ -24,22 +24,6 @@ export const testData: TestData = {
 				state: `${STATE_PATH}/jira-admin.json`
 			}
 		}
-	},
-	github: {
-		urls: {
-			base: e2eEnvVars.GITHUB_URL,
-			login: `${e2eEnvVars.GITHUB_URL}/login`,
-			logout: `${e2eEnvVars.GITHUB_URL}/logout`,
-			appSettings: `${e2eEnvVars.GITHUB_URL}/settings/apps/${e2eEnvVars.APP_NAME}`,
-			apps: `${e2eEnvVars.GITHUB_URL}/user/settings/apps`
-		},
-		roles: {
-			admin: {
-				username: e2eEnvVars.GITHUB_USERNAME,
-				password: e2eEnvVars.GITHUB_PASSWORD
-				// storage: `${STATE_PATH}/github-admin.json`
-			}
-		}
 	}
 };
 
@@ -48,7 +32,6 @@ export interface TestData {
 	state: string;
 	appUrl: string;
 	jira: TestDataEntry<JiraTestDataURLs, JiraTestDataRoles>;
-	github: TestDataEntry<GithubTestDataURLs>;
 }
 
 export interface TestDataEntry<U extends TestDataURLs = TestDataURLs, R extends TestDataRoles = TestDataRoles> {
@@ -71,16 +54,11 @@ export interface JiraTestDataURLs extends TestDataURLs {
 	projects: string;
 }
 
-export interface GithubTestDataURLs extends TestDataURLs {
-	appSettings: string;
-	apps: string;
-}
 
 export interface TestDataRoles {
 	admin: TestDataRole;
 }
 
-export type GithubTestDataRoles = TestDataRoles;
 export type JiraTestDataRoles = TestDataRoles;
 
 export interface TestDataRole {
