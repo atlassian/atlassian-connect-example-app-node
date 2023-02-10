@@ -20,7 +20,7 @@ const waitForTunnel = async () => {
     const response = await callTunnel()
         .catch(callTunnel)
         .catch(callTunnel)
-        .catch(() => (e) => console.log('f', e));
+        .catch(() => undefined);
     if (response) {
         try {
             let envContents = fs.readFileSync(envFilePath, { encoding: 'utf-8' });
