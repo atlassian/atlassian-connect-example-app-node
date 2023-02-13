@@ -27,13 +27,15 @@ Simply go to [ngrok](https://dashboard.ngrok.com/get-started/your-authtoken) and
 - **Running docker compose** - Then simply run `docker-compose up`. Once the docker finishes running, you can view the tunneled URL in the logs. 
 ![img.png](static/images/tunnel-output.png)
 
-After you have the tunneled URL, check for the config in the url `/config`(`https://TUNNELED_URL/config`). This is the __app descriptor URL__ for uploading the app and installing in Jira.
+After you have the tunneled URL, check for the config in the url `/atlassian-connect.json`(`https://TUNNELED_URL/config`). This is the __app descriptor URL__ for uploading the app and installing in Jira.
 
 ## Running your application
 - TBD
 
 ## Testing
-- TBD
+We have added a basic end to end test for installing and uninstalling the app, using [playwright](https://playwright.dev/docs/intro). You can add your own test cases on top of it. 
+
+To run the end to end test, please add the values for `ATLASSIAN_URL`, `JIRA_ADMIN_USERNAME` and `JIRA_ADMIN_PASSWORD` in the `.env` file. Then simply run `yarn test:e2e` in the terminal.
 
 ## Getting help
 - TBD
