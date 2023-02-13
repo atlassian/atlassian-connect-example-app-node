@@ -50,7 +50,6 @@ jobs:
           echo "ATLASSIAN_URL=${{ secrets.ATLASSIAN_URL }}" >> .env
           echo "JIRA_ADMIN_USERNAME=${{ secrets.JIRA_ADMIN_USERNAME }}" >> .env
           echo "JIRA_ADMIN_PASSWORD=${{ secrets.JIRA_ADMIN_PASSWORD }}" >> .env
-          echo "ACD=ACD" >> .env
           cat .env
       - run: docker-compose up -d
       - run: yarn run test:e2e
