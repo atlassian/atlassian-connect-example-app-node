@@ -51,5 +51,4 @@ jobs:
           echo "JIRA_ADMIN_USERNAME=${{ secrets.E2E_JIRA_USERNAME }}" >> .env
           echo "JIRA_ADMIN_PASSWORD=${{ secrets.E2E_JIRA_PASSWORD }}" >> .env
       - run: docker-compose up -d
-      - name: wait for app to be ready
       - run: yarn run test:e2e
