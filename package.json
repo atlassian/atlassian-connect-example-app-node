@@ -12,7 +12,7 @@
     "start": "tsnd src/server.ts",
     "test:e2e": "yarn test:e2e:install && yarn test:e2e:start",
     "test:e2e:install": "playwright install",
-    "test:e2e:start": "NODE_ENV=e2e playwright test",
+    "test:e2e:start": "playwright test",
     "test:e2e:debug": "PWDEBUG=1 yarn test:e2e --headed"
   },
   "dependencies": {
