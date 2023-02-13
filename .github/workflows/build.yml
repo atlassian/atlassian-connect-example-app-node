@@ -45,6 +45,7 @@ jobs:
       - run: yarn install --frozen-lockfile
       - name: create .env file
         run: |
+          rm .env # remove .env file is already exists
           echo "APP_URL=http://localhost" >> .env
           echo "NGROK_AUTHTOKEN=${{ secrets.NGROK_AUTHTOKEN }}" >> .env
           echo "ATLASSIAN_URL=${{ secrets.ATLASSIAN_URL }}" >> .env
