@@ -45,7 +45,6 @@ jobs:
       - run: yarn install --frozen-lockfile
       - name: create .env file
         run: |
-          yarn add ts-node && tsnd prestart.ts
           rm .env # remove .env file is already exists
           echo "APP_URL=http://localhost" >> .env
           echo "NGROK_AUTHTOKEN=${{ secrets.NGROK_AUTHTOKEN }}" >> .env
