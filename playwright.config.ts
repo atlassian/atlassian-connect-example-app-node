@@ -13,7 +13,10 @@ export default defineConfig({
   globalSetup: './test/e2e/setup.ts',
   globalTeardown: './test/e2e/teardown.ts',
 
-  /* Configure projects for major browsers */
+  /**
+   * Configure projects for major browsers
+   * TODO: add other browsers too
+   */
   projects: [
     {
       name: 'chromium',
