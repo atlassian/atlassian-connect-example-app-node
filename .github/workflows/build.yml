@@ -42,9 +42,6 @@ jobs:
     concurrency: e2e
     steps:
       - uses: actions/checkout@v1
-      - uses: volta-cli/action@v4
-      - uses: docker-practice/actions-setup-docker@master
-
       - run: yarn install --frozen-lockfile
       - name: create .env file
         run: |
@@ -53,5 +50,5 @@ jobs:
           echo "ATLASSIAN_URL=${{ secrets.E2E_ATLASSIAN_URL }}" >> .env
           echo "JIRA_ADMIN_USERNAME=${{ secrets.E2E_JIRA_USERNAME }}" >> .env
           echo "JIRA_ADMIN_PASSWORD=${{ secrets.E2E_JIRA_PASSWORD }}" >> .env
-      - run: docker-compose up -d
+      - run: docker-compose up
       - run: yarn run test:e2e
