@@ -35,3 +35,21 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
           sleep 60s
+
+  e2e-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    concurrency: e2e
+    steps:
+      - uses: actions/checkout@v1
+      - run: yarn install --frozen-lockfile
+      - name: create .env file
+        run: |
+          echo "APP_URL=" > .env
+          echo "NGROK_AUTHTOKEN=${{ secrets.E2E_NGROK_AUTHTOKEN }}" >> .env
+          echo "ATLASSIAN_URL=${{ secrets.E2E_ATLASSIAN_URL }}" >> .env
+          echo "JIRA_ADMIN_USERNAME=${{ secrets.E2E_JIRA_USERNAME }}" >> .env
+          echo "JIRA_ADMIN_PASSWORD=${{ secrets.E2E_JIRA_PASSWORD }}" >> .env
+      - run: docker-compose up -d
+      - name: wait for app to be ready
+      - run: yarn run test:e2e
