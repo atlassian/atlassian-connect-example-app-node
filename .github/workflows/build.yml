@@ -42,6 +42,9 @@ jobs:
     concurrency: e2e
     steps:
       - uses: actions/checkout@v1
+      - uses: volta-cli/action@v4
+      - uses: docker-practice/actions-setup-docker@master
+
       - run: yarn install --frozen-lockfile
       - name: create .env file
         run: |
