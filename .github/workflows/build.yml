@@ -45,11 +45,10 @@ jobs:
       - run: yarn install --frozen-lockfile
       - name: create .env file
         run: |
-          rm .env # remove .env file is already exists
           echo "APP_URL=http://localhost" >> .env
           echo "NGROK_AUTHTOKEN=${{ secrets.NGROK_AUTHTOKEN }}" >> .env
           echo "ATLASSIAN_URL=${{ secrets.ATLASSIAN_URL }}" >> .env
           echo "JIRA_ADMIN_USERNAME=${{ secrets.JIRA_ADMIN_USERNAME }}" >> .env
           echo "JIRA_ADMIN_PASSWORD=${{ secrets.JIRA_ADMIN_PASSWORD }}" >> .env
-      - run: docker-compose up && cat .env
+      - run: docker-compose up -d
       - run: yarn run test:e2e
