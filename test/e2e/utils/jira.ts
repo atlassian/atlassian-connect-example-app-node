@@ -12,11 +12,6 @@ export const jiraLogin = async (page: Page, roleName: keyof JiraTestDataRoles, s
 	}
 	await page.goto(data.urls.login);
 	await page.waitForLoadState();
-	// This is a hack because atlassian auth is all frontend, it shows the login page and form
-	// but then redirects to the correct page if the token is available.  However, playwright
-	// will continue after the page loads and try to fill in the form before being redirected,
-	// causing a flow issue.  This is non-standard for any authentication as it should
-	// return a redirect header instead so the page doesn't have to load, then redirect.
 	await page.waitForTimeout(500);
 	await page.waitForLoadState();
 	if (page.url().startsWith(data.urls.auth)) {
@@ -41,7 +36,6 @@ export const jiraAppInstall = async (page: Page): Promise<Page> => {
 
 	// If app is already installed, uninstall it first
 	if (await removeApp(page)) {
-		// Need to do this to guarantee that we can install the app right after in marketplace (this is a marketplace bug)
 		await page.reload();
 		await page.waitForSelector("#upm-manage-plugins-user-installed");
 	}
