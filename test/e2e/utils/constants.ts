@@ -11,11 +11,9 @@ export const testData: TestData = {
 			login: `${e2eEnvVars.ATLASSIAN_URL}/login`,
 			auth: `https://id.atlassian.com/login`,
 			logout: `${e2eEnvVars.ATLASSIAN_URL}/logout`,
-			dashboard: `${e2eEnvVars.ATLASSIAN_URL}/jira/dashboards`,
 			yourWork: `${e2eEnvVars.ATLASSIAN_URL}/jira/your-work`,
 			manageApps: `${e2eEnvVars.ATLASSIAN_URL}/plugins/servlet/upm`,
 			connectJson: `${e2eEnvVars.APP_URL}/atlassian-connect.json`,
-			projects: `${e2eEnvVars.ATLASSIAN_URL}/jira/projects`,
 		},
 		roles: {
 			admin: {
@@ -47,11 +45,9 @@ export interface TestDataURLs {
 
 export interface JiraTestDataURLs extends TestDataURLs {
 	yourWork: string;
-	dashboard: string;
 	auth: string;
 	manageApps: string;
 	connectJson: string;
-	projects: string;
 }
 
 
