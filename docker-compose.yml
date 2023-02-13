@@ -16,5 +16,3 @@ services:
       context: .
     ports:
       - "3000:3000" # main port
-    environment:
-      NODE_ENV: $NODE_ENV
