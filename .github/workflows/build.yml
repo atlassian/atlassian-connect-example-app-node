@@ -46,9 +46,9 @@ jobs:
       - name: create .env file
         run: |
           echo "APP_URL=" > .env
-          echo "NGROK_AUTHTOKEN=${{ secrets.E2E_NGROK_AUTHTOKEN }}" >> .env
-          echo "ATLASSIAN_URL=${{ secrets.E2E_ATLASSIAN_URL }}" >> .env
-          echo "JIRA_ADMIN_USERNAME=${{ secrets.E2E_JIRA_USERNAME }}" >> .env
-          echo "JIRA_ADMIN_PASSWORD=${{ secrets.E2E_JIRA_PASSWORD }}" >> .env
-      - run: docker-compose up
+          echo "NGROK_AUTHTOKEN=${{ secrets.NGROK_AUTHTOKEN }}" >> .env
+          echo "ATLASSIAN_URL=${{ secrets.ATLASSIAN_URL }}" >> .env
+          echo "JIRA_ADMIN_USERNAME=${{ secrets.JIRA_ADMIN_USERNAME }}" >> .env
+          echo "JIRA_ADMIN_PASSWORD=${{ secrets.JIRA_ADMIN_PASSWORD }}" >> .env
+      - run: docker-compose up -d
       - run: yarn run test:e2e
