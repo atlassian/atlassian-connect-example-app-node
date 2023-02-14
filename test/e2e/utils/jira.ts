@@ -5,7 +5,7 @@ import { APP_KEY } from '~/src/config';
 
 const data = testData.jira;
 
-export const jiraLogin = async (page: Page, roleName: keyof JiraTestDataRoles, saveState = false): Promise<Page> => {
+export const jiraLogin = async (page: Page, roleName: keyof JiraTestDataRoles): Promise<Page> => {
 	const role = data.roles[roleName];
 	if (!role.username || !role.password) {
 		throw "Jira username or password missing";
@@ -22,10 +22,6 @@ export const jiraLogin = async (page: Page, roleName: keyof JiraTestDataRoles, s
 		await passinput.fill(role.password);
 		await passinput.press("Enter");
 		await page.waitForURL(data.urls.yourWork);
-
-		if (saveState && role.state) {
-			await page.context().storageState({ path: role.state });
-		}
 	}
 
 	return page;
