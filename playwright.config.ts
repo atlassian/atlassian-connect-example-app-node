@@ -1,12 +1,12 @@
 import { defineConfig, devices } from '@playwright/test';
 
-const TIMEOUT_MS =90;
+const TIMEOUT_MS = 90 * 1000;
 
 export default defineConfig({
   testDir: './test/e2e',
   testMatch: /.*\.e2e\.ts/,
   outputDir: './test/e2e/test-results',
-  timeout: TIMEOUT_MS * 1000,
+  timeout: TIMEOUT_MS,
   use: {
     trace: 'retain-on-failure',
     video: 'retain-on-failure',
