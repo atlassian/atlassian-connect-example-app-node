@@ -27,7 +27,7 @@ Simply go to [ngrok](https://dashboard.ngrok.com/get-started/your-authtoken) and
 - **Running docker compose** - Then simply run `docker-compose up`. Once the docker finishes running, you can view the tunneled URL in the logs. 
 ![img.png](static/images/tunnel-output.png)
 
-After you have the tunneled URL, check for the config in the url `/atlassian-connect.json`(`https://TUNNELED_URL/config`). This is the __app descriptor URL__ for uploading the app and installing in Jira.
+After you have the tunneled URL, check for the config in the url `/atlassian-connect.json`(`https://TUNNELED_URL/atlassian-connect.json`). This is the __app descriptor URL__ for uploading the app and installing in Jira.
 
 ## Running your application
 - TBD
