@@ -2,7 +2,7 @@ import { decodeJwtToken } from '../utils';
 import { findOneInDb, TenantType } from '../db';
 
 /**
- * This middleware decodes the JWT token from Jira and identifies the users
+ * This middleware decodes the JWT token from Jira and identifies the users.
  */
 export const jwtTokenMiddleware = async (req, res, next) => {
     if (!req.query.jwt) {
