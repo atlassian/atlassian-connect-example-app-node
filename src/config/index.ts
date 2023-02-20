@@ -5,6 +5,8 @@ type ConnectJsonObject = { [k: string]: ConnectJsonValue }
 type ConnectJsonArray = ConnectJsonValue[]
 type ConnectJsonValue = ConnectJsonArray | ConnectJsonObject | ConnectJsonPrimitive
 
+export const APP_KEY = 'com.atlassian.sample-app-node';
+
 /**
  * General schema can be seen here: https://bitbucket.org/atlassian/connect-schemas/raw/master/jira-global-schema.json
  */
@@ -23,7 +25,7 @@ export const connectAppDescriptor = {
     /**
      *  A unique key to identify your connect app. This key must be <= 64 characters.
      */
-    key: 'com.atlassian.sample-app-node',
+    key: APP_KEY,
 
     /**
      * The base url of the remote app, which is used for all communications back to the app instance.

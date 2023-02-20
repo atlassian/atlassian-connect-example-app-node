@@ -12,7 +12,7 @@
 <h3>Node app:</h3>
 <hr>
 <br>
-<div>
+<div id="indexPage">
     {{body}}
 </div>
 <br>
