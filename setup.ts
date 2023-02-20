@@ -1,8 +1,8 @@
-import fs from 'fs';
-import path from 'path';
+import * as fs from 'fs';
+import * as path from 'path';
 
 const envFileName = '.env';
-const envExampleFileName = '.env.example';
+const envExampleFileName = `${envFileName}.example`;
 const envFilePath = path.resolve(__dirname, envFileName);
 const envExampleFilePath = path.resolve(__dirname, envExampleFileName);
 

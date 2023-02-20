@@ -1,5 +1,5 @@
 import express from 'express';
-import routes from './routes';
+import routes from './routes/router';
 import mustache from 'mustache-express';
 
 const serverApp = express();

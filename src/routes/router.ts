@@ -5,7 +5,7 @@ import { logsRouter } from './logs';
 import { publicRouter } from './public';
 import { webhooksRouter } from './webhooks';
 import { connectAppDescriptor } from '../config';
-import { jwtTokenMiddleware } from '../middlewares/jwtMiddleware';
+import { jwtTokenMiddleware } from '../middlewares/jwt-middleware';
 
 const routes = Router();
 

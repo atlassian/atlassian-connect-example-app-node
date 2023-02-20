@@ -21,29 +21,6 @@
     "esModuleInterop": true,
     "outDir": "build",
     "baseUrl": ".",
-    "paths": {
-      "~/*": [
-        "./*"
-      ],
-      "routes/*": [
-        "src/routes/*"
-      ],
-      "middleware/*": [
-        "src/middleware/*"
-      ],
-      "utils/*": [
-        "src/util/*"
-      ],
-      "config/*": [
-        "src/config/*"
-      ],
-      "services/*": [
-        "src/services/*"
-      ],
-      "test/*": [
-        "test/*"
-      ]
-    }
   },
   "include": [
     "src/**/*",
