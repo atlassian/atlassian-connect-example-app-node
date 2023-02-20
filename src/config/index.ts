@@ -53,6 +53,7 @@ export const connectAppDescriptor = {
 
     /**
      * Sets the scopes requested by the app
+     * https://developer.atlassian.com/cloud/jira/platform/scopes-for-connect-apps/
      */
     scopes: ["READ"],
 
