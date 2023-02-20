@@ -38,11 +38,13 @@ class Database {
 
         // Read data from JSON file, initialize contents if missing
         this.initialized = this.db.read().then(async () => {
-            this.db.data = this.db.data || {
-                tenants: [],
-                logs: []
+            if(!this.db.data) {
+                this.db.data = {
+                    tenants: [],
+                    logs: []
+                }
+                await this.db.write();
             }
-            await this.db.write();
         })
     }
 
