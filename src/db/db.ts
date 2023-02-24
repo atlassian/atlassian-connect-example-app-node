@@ -1,6 +1,6 @@
 import path from 'path';
 import { chain, ExpChain, remove } from "lodash"
-import {JSONFile, Low} from "@commonify/lowdb";
+import { JSONFile, Low } from "@commonify/lowdb";
 
 export interface Tenant {
     id: string;
