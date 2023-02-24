@@ -11,7 +11,7 @@ export const jwtTokenMiddleware = async (req, res, next) => {
     }
 
     const host = req.query.xdm_e;
-    const tenant = await database.findTenant({host});
+    const tenant = await database.findTenant({ host });
 
     if (tenant?.sharedSecret) {
         const decodedJwtToken = decodeJwtToken(req.query.jwt, tenant.sharedSecret);

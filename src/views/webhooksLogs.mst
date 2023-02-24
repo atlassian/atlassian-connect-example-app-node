@@ -24,7 +24,7 @@
 <br>
 <div class="logs-container">
     {{#logs}}
-        <pre>{{.}}</pre>
+        <pre>{{message}} -----> {{data}}</pre>
     {{/logs}}
     {{^logs}}
         <pre>No logs yet!</pre>

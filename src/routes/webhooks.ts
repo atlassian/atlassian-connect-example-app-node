@@ -1,35 +1,48 @@
 import { Router } from 'express';
+import { database } from '../db/db';
+import { v4 as uuid } from 'uuid';
 
 export const webhooksRouter = Router();
 
-webhooksRouter.post('/jira/issue-created', async (_req, res) => {
+webhooksRouter.post('/jira/issue-created', async (req, res) => {
     // Mapping the host set during the installation with the url coming in from the webhooks
-    // TODO: add logs
-    /*const host = new URL(req.body.user.self).origin;
-    const updatedData = await updateToDb(
-        { host },
-        { $push: { logs: `${new Date().toISOString()} : Issue created ---> ${JSON.stringify(req.body)}` } }
-    );*/
+    const host = new URL(req.body.user.self).origin;
+    const tenant = await database.findTenant({ host });
+    await database.addLogs({
+        id: uuid(),
+        tenantId: tenant.id,
+        message: new Date().toISOString() + ' Issue created!',
+        data: req.body
+    });
+
     res.sendStatus(200);
 });
 
-webhooksRouter.post('/jira/issue-updated', async (_req, res) => {
+webhooksRouter.post('/jira/issue-updated', async (req, res) => {
     // Mapping the host set during the installation with the url coming in from the webhooks
-    /*const host = new URL(req.body.user.self).origin;
-    const updatedData = await updateToDb(
-        { host },
-        { $push: { logs: `${new Date().toISOString()} : Issue updated ---> ${JSON.stringify(req.body)}` } }
-    );*/
+    const host = new URL(req.body.user.self).origin;
+    const tenant = await database.findTenant({ host });
+    await database.addLogs({
+        id: uuid(),
+        tenantId: tenant.id,
+        message: new Date().toISOString() + ' Issue Updated!',
+        data: req.body
+    });
+
     res.sendStatus(200);
 });
 
-webhooksRouter.post('/jira/issue-deleted', async (_req, res) => {
+webhooksRouter.post('/jira/issue-deleted', async (req, res) => {
     // Mapping the host set during the installation with the url coming in from the webhooks
-    /*const host = new URL(req.body.user.self).origin;
-    const updatedData = await updateToDb(
-        { host },
-        { $push: { logs: `${new Date().toISOString()} : Issue deleted ---> ${JSON.stringify(req.body)}` } }
-    );*/
+    const host = new URL(req.body.user.self).origin;
+    const tenant = await database.findTenant({ host });
+    await database.addLogs({
+        id: uuid(),
+        tenantId: tenant.id,
+        message: new Date().toISOString() + ' Issue Deleted!',
+        data: req.body
+    });
+
     res.sendStatus(200);
 });
 

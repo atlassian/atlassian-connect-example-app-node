@@ -5,10 +5,11 @@ export const logsRouter = Router();
 
 logsRouter.get('/webhooks', async (_req, res) => {
     const { clientKey } = res.locals;
-    const logs = await database.findLogsForTenant(await database.findTenant({ clientKey }));
+    const tenant = await database.findTenant({ clientKey });
+    const logs = await database.findLogsForTenant(tenant.host);
 
     res.render('webhooksLogs.mst', {
         index: 'Webhooks Page',
-        logs: logs.reverse()
+        logs: logs?.reverse()
     });
 });

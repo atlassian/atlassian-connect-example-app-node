@@ -1,5 +1,5 @@
 import path from 'path';
-import {chain, ExpChain} from "lodash"
+import { chain, ExpChain, remove } from "lodash"
 import {JSONFile, Low} from "@commonify/lowdb";
 
 export interface Tenant {
@@ -53,9 +53,39 @@ class Database {
         return this.db.chain.get("tenants").find(props).value();
     }
 
-    public async findLogsForTenant(tenant: Tenant) {
+    public async addTenant(props: Tenant) {
         await this.initialized;
-        return this.db.chain.get("logs").filter({tenantId: tenant.id}).value();
+        // Considering hosts to be unique
+        const checkIfAlreadyExists = await this.findTenant({ host: props.host });
+        if (!checkIfAlreadyExists) {
+            this.db.data?.tenants.push(props);
+            await this.db.write();
+        }
+    }
+
+    public async removeTenant(host: string) {
+        await this.initialized;
+        remove(this.db.data?.tenants || [], tenant => tenant.host === host );
+        await this.db.write();
+    }
+
+    public async findLogsForTenant(host: string) {
+        await this.initialized;
+        const tenant = await this.findTenant({ host });
+        return tenant ? this.db.chain.get("logs").filter({tenantId: tenant.id}).value() : [];
+    }
+
+    public async addLogs(props: Log) {
+        await this.initialized;
+        this.db.data?.logs.push(props);
+        await this.db.write();
+    }
+
+    public async removeLogsForTenant(host: string) {
+        await this.initialized;
+        const tenant = await this.findTenant({ host });
+        tenant && remove(this.db.data?.logs || [], log => log.tenantId === tenant.id);
+        await this.db.write();
     }
 }
 
