@@ -10,7 +10,11 @@
     "build": "tsc --project .",
     "postinstall": "ts-node setup.ts",
     "prestart": "ts-node prestart.ts",
-    "start": "tsnd src/server.ts"
+    "start": "tsnd src/server.ts",
+    "test:e2e": "yarn test:e2e:install && yarn test:e2e:start",
+    "test:e2e:install": "playwright install",
+    "test:e2e:start": "playwright test",
+    "test:e2e:debug": "PWDEBUG=1 yarn test:e2e --headed"
   },
   "dependencies": {
     "@commonify/lowdb": "^3.0.0",
@@ -25,6 +29,7 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.30.0",
     "@types/express": "^4.17.16",
     "@types/node": "^18.11.18",
     "nodemon": "^2.0.20",

@@ -16,3 +16,7 @@ node_modules/
 .idea
 db.json
 build/
+
+/playwright-report/
+/playwright/.cache/
+/test/e2e/test-results/
