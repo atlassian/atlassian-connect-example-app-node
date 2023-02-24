@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import {database} from "../db/db";
+import { database } from '../db/db';
 
 export const logsRouter = Router();
 
