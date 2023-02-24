@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
 import { JiraTestDataRoles, testData } from './constants';
-import { APP_KEY } from '~/src/config';
+import { APP_KEY } from '../../../src/config';
 
 
 const data = testData.jira;
