@@ -10,6 +10,9 @@ logsRouter.get('/webhooks', async (_req, res) => {
 
     res.render('webhooksLogs.mst', {
         index: 'Webhooks Page',
-        logs: logs?.reverse()
+        logs: logs?.reverse().map(log => {
+            log.data = JSON.stringify(log.data);
+            return log;
+        })
     });
 });

@@ -11,7 +11,7 @@ webhooksRouter.post('/jira/issue-created', async (req, res) => {
     await database.addLogs({
         id: uuid(),
         tenantId: tenant.id,
-        message: new Date().toISOString() + ' Issue created!',
+        message: new Date().toISOString() + ' Issue Created!',
         data: req.body
     });
 
