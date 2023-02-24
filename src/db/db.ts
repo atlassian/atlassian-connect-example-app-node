@@ -65,8 +65,11 @@ class Database {
 
     public async removeTenant(host: string) {
         await this.initialized;
-        remove(this.db.data?.tenants || [], tenant => tenant.host === host );
-        await this.db.write();
+        const tenant = await this.findTenant({ host });
+        if (tenant) {
+            remove(this.db.data?.tenants || [], tenant => tenant.host === host );
+            await this.db.write();
+        }
     }
 
     public async findLogsForTenant(host: string) {
@@ -84,8 +87,10 @@ class Database {
     public async removeLogsForTenant(host: string) {
         await this.initialized;
         const tenant = await this.findTenant({ host });
-        tenant && remove(this.db.data?.logs || [], log => log.tenantId === tenant.id);
-        await this.db.write();
+        if (tenant) {
+            remove(this.db.data?.logs || [], log => log.tenantId === tenant.id);
+            await this.db.write();
+        }
     }
 }
 
