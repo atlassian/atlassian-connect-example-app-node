@@ -9,7 +9,7 @@ import { getJWTRequest } from '../utils/utils';
  * And sets the `clientKey` in `res.locals`
  * The tenant for each instance of the app is recognized based on this `clientKey`
  *
- * SRC: https://developer.atlassian.com/cloud/jira/platform/understanding-jwt-for-connect-apps/#decoding-and-verifying-a-jwt-token
+ * source: https://developer.atlassian.com/cloud/jira/platform/understanding-jwt-for-connect-apps/#decoding-and-verifying-a-jwt-token
  *
  */
 export const jwtTokenMiddleware = async (req, res, next) => {
