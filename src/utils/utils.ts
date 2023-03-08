@@ -1,8 +1,8 @@
-import { decodeSymmetric, getAlgorithm } from 'atlassian-jwt';
+import { Request as ExpressRequest } from 'express';
+import url from 'url';
 
-/**
- * Decoding the JWT token passed from Jira
- */
-export const decodeJwtToken = (encodedToken: string, sharedSecret: string) => {
-    return decodeSymmetric(encodedToken, sharedSecret, getAlgorithm(encodedToken));
-};
+export const getJWTRequest = (req: ExpressRequest) => ({
+    ...url.parse(req.originalUrl || req.url, true),
+    method: req.method,
+    body: req.body
+});
