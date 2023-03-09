@@ -1,16 +1,24 @@
-import { config } from 'dotenv';
-import path from 'path';
+import {config} from 'dotenv';
 
 export type EnvVars = {
     APP_URL: string;
+    APP_KEY: string;
     NGROK_AUTHTOKEN: string;
 };
 
-config({ path: path.resolve(__dirname, '../..', '.env') });
+const variables = config().parsed as Partial<EnvVars>;
 
-export const envVars: EnvVars = new Proxy<object>({}, {
-    get(_target: object, prop: keyof EnvVars) {
-        // get from process.env directly since the whole env object might be replaced
-        return process.env[prop];
-    }
-}) as EnvVars;
+if (!variables?.APP_URL) {
+    console.error("Missing APP_URL environment variable, exiting...");
+    process.exit(1);
+}
+
+if (!variables?.NGROK_AUTHTOKEN) {
+    console.error("Missing NGROK_AUTHTOKEN environment variable, exiting...");
+    process.exit(1);
+}
+
+export const envVars: EnvVars = {
+    APP_KEY: 'com.atlassian.sample-app-node',
+    ...variables
+} as EnvVars;
