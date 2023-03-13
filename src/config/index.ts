@@ -86,7 +86,7 @@ export const connectAppDescriptor = {
          */
         postInstallPage: {
             url: '/',
-            key: 'acn-index',
+            key: 'acn-introduction',
             name: {
                 value: 'Index'
             }
@@ -156,7 +156,31 @@ export const connectAppDescriptor = {
                 name: {
                     'value': 'Logs for webhooks'
                 }
-            }
+            },
+            {
+                url: '/connect-library',
+                key: 'acn-js-library',
+                location: 'none',
+                name: {
+                    'value': 'Connect JS library'
+                }
+            },
+            {
+                url: '/auth',
+                key: 'acn-authentication',
+                location: 'none',
+                name: {
+                    'value': 'iFrame jwt authentication'
+                }
+            },
+            {
+                url: '/modules',
+                key: 'acn-modules',
+                location: 'none',
+                name: {
+                    'value': 'Creating modules with Connect'
+                }
+            },
         ]
     }
 };

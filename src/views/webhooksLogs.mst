@@ -41,7 +41,7 @@
      *  source: https://developer.atlassian.com/cloud/jira/software/jsapi/navigator/
      */
     document.getElementById('homePage').addEventListener('click', () => {
-        AP.navigator.go('addonmodule', { moduleKey: 'acn-index' });
+        AP.navigator.go('addonmodule', { moduleKey: 'acn-introduction' });
     });
     document.getElementById('refresh').addEventListener('click', () => {
         AP.navigator.reload();
