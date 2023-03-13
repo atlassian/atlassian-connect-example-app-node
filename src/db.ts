@@ -2,9 +2,9 @@ import path from 'path';
 import { chain, ExpChain, remove } from "lodash"
 import { JSONFile, Low } from "@commonify/lowdb";
 
-export interface Tenant {
+export interface JiraTenant {
     id: string;
-    host: string;
+    url: string;
     sharedSecret: string;
     clientKey: string;
 }
@@ -17,7 +17,7 @@ export interface Log {
 }
 
 interface Data {
-    tenants: Tenant[];
+    jiraTenants: JiraTenant[];
     logs: Log[];
 }
 
@@ -40,7 +40,7 @@ class Database {
         this.initialized = this.db.read().then(async () => {
             if(!this.db.data) {
                 this.db.data = {
-                    tenants: [],
+                    jiraTenants: [],
                     logs: []
                 }
                 await this.db.write();
@@ -48,33 +48,33 @@ class Database {
         })
     }
 
-    public async findTenant(props: Partial<Tenant>) {
+    public async findJiraTenant(props: Partial<JiraTenant>) {
         await this.initialized;
-        return this.db.chain.get("tenants").find(props).value();
+        return this.db.chain.get("jiraTenants").find(props).value();
     }
 
-    public async addTenant(props: Tenant) {
+    public async addJiraTenant(props: JiraTenant) {
         await this.initialized;
         // Considering hosts to be unique
-        const checkIfAlreadyExists = await this.findTenant({ host: props.host });
+        const checkIfAlreadyExists = await this.findJiraTenant({ url: props.url });
         if (!checkIfAlreadyExists) {
-            this.db.data?.tenants.push(props);
+            this.db.data?.jiraTenants.push(props);
             await this.db.write();
         }
     }
 
-    public async removeTenant(host: string) {
+    public async removeJiraTenant(host: string) {
         await this.initialized;
-        const tenant = await this.findTenant({ host });
+        const tenant = await this.findJiraTenant({ url: host });
         if (tenant) {
-            remove(this.db.data?.tenants || [], tenant => tenant.host === host );
+            remove(this.db.data?.jiraTenants || [], tenant => tenant.url === host );
             await this.db.write();
         }
     }
 
-    public async findLogsForTenant(host: string) {
+    public async findLogsForJiraTenant(host: string) {
         await this.initialized;
-        const tenant = await this.findTenant({ host });
+        const tenant = await this.findJiraTenant({ url: host });
         return tenant ? this.db.chain.get("logs").filter({tenantId: tenant.id}).value() : [];
     }
 
@@ -84,9 +84,9 @@ class Database {
         await this.db.write();
     }
 
-    public async removeLogsForTenant(host: string) {
+    public async removeLogsForJiraTenant(host: string) {
         await this.initialized;
-        const tenant = await this.findTenant({ host });
+        const tenant = await this.findJiraTenant({ url: host });
         if (tenant) {
             remove(this.db.data?.logs || [], log => log.tenantId === tenant.id);
             await this.db.write();

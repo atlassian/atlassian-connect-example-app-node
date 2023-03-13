@@ -4,7 +4,7 @@ import { eventsRouter } from './events';
 import { logsRouter } from './logs';
 import { publicRouter } from './public';
 import { webhooksRouter } from './webhooks';
-import { jwtTokenMiddleware } from '../middlewares/jwt-middleware';
+import { connectIframeJWTMiddleware } from '../middlewares/connect-iframe-jwt-middleware';
 
 export const RootRouter = Router();
 
@@ -30,4 +30,4 @@ RootRouter.get('/config', async (_req, res) => {
     });
 });
 
-RootRouter.use('/logs', jwtTokenMiddleware, logsRouter);
+RootRouter.use('/logs', connectIframeJWTMiddleware, logsRouter);

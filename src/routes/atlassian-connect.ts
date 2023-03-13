@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import {envVars} from "../config/env";
+import {envVars} from "../env";
 
 export const connectDescriptorGet = async (_: Request, res: Response): Promise<void> => {
     res.status(200).json(connectAppDescriptor);
