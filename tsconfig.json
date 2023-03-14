@@ -5,6 +5,7 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
+		"allowJs": true,
     "importHelpers": true,
     "alwaysStrict": true,
     "strictNullChecks": true,

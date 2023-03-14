@@ -1,6 +1,6 @@
-import { expect, Page, test } from '@playwright/test';
-import { jiraAppInstall, jiraAppUninstall, jiraLogin } from '../utils/jira';
-import { ngrokBypass } from '../utils/ngrok';
+import { expect, Page, test } from "@playwright/test";
+import { jiraAppInstall, jiraAppUninstall, jiraLogin } from "../utils/jira";
+import { ngrokBypass } from "../utils/ngrok";
 
 test.describe("App Installation", () => {
 	test.describe("jira", () => {

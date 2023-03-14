@@ -1,7 +1,6 @@
 import { Page } from "@playwright/test";
-import { JiraTestDataRoles, testData } from './constants';
-import { APP_KEY } from '../../../src/config';
-
+import { JiraTestDataRoles, testData } from "./constants";
+import { envVars } from "../../../src/env";
 
 const data = testData.jira;
 
@@ -53,7 +52,7 @@ export const jiraAppUninstall = async (page: Page): Promise<Page> => {
 
 const removeApp = async (page: Page): Promise<boolean> => {
 	await page.waitForSelector("#upm-manage-plugins-user-installed");
-	const pluginRow = page.locator(`.upm-plugin[data-key="${APP_KEY}"]`);
+	const pluginRow = page.locator(`.upm-plugin[data-key="${envVars.APP_KEY}"]`);
 	if (await pluginRow.isVisible()) {
 		await pluginRow.click();
 		const uninstallButton = await pluginRow.locator(`a[data-action="UNINSTALL"]`);
