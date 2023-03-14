@@ -1,4 +1,4 @@
-import { envVars, EnvVars } from '../../../src/env';
+import { envVars, EnvVars } from "../../../src/env";
 
 export interface E2EEnvVars extends EnvVars {
 	ATLASSIAN_URL: string;

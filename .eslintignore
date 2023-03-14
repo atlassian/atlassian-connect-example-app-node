@@ -1,0 +1,4 @@
+/**/*.js
+prestart.ts
+setup.ts
+playwright.config.ts
