@@ -1,5 +1,5 @@
-import { Page } from '@playwright/test';
-import { testData } from './constants';
+import { Page } from "@playwright/test";
+import { testData } from "./constants";
 
 export const ngrokBypass = async (page: Page): Promise<Page> => {
 	await page.goto(`${testData.appUrl}`);

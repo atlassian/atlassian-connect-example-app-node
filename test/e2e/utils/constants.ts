@@ -1,6 +1,6 @@
-import { e2eEnvVars } from './env-e2e';
+import { e2eEnvVars } from "./env-e2e";
 
-export const STATE_PATH = './test/e2e/test-results/states';
+export const STATE_PATH = "./test/e2e/test-results/states";
 export const testData: TestData = {
 	stateDirectoryPath: STATE_PATH,
 	state: `${STATE_PATH}/default.json`,
@@ -13,7 +13,7 @@ export const testData: TestData = {
 			logout: `${e2eEnvVars.ATLASSIAN_URL}/logout`,
 			yourWork: `${e2eEnvVars.ATLASSIAN_URL}/jira/your-work`,
 			manageApps: `${e2eEnvVars.ATLASSIAN_URL}/plugins/servlet/upm`,
-			connectJson: `${e2eEnvVars.APP_URL}/atlassian-connect.json`,
+			connectJson: `${e2eEnvVars.APP_URL}/atlassian-connect.json`
 		},
 		roles: {
 			admin: {

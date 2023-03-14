@@ -1,6 +1,6 @@
-import { chromium } from '@playwright/test';
-import { ngrokBypass } from './utils/ngrok';
-import { jiraAppUninstall, jiraLogin } from './utils/jira';
+import { chromium } from "@playwright/test";
+import { ngrokBypass } from "./utils/ngrok";
+import { jiraAppUninstall, jiraLogin } from "./utils/jira";
 
 export default async function teardown() {
 	const browser = await chromium.launch();

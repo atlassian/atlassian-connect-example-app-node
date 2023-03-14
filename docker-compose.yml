@@ -15,4 +15,5 @@ services:
     build:
       context: .
     ports:
-      - "3000:3000" # main port
+      - "3000:3000" # server port
+      - "9229:9229" # debug port
