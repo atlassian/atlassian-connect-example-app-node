@@ -9,11 +9,11 @@ export interface JiraTenant {
     clientKey: string;
 }
 
-export interface Log {
+export interface Log<T = any> {
     id: string;
     tenantId: string;
     message: string;
-    data?: any;
+    data?: T;
 }
 
 interface Data {

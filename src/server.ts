@@ -1,4 +1,4 @@
-import express from "express";
+import express, { json } from "express";
 import mustache from "mustache-express";
 import { RootRouter } from "./routes/router";
 
@@ -12,7 +12,7 @@ app.set("view engine", "mst");
 app.set("views", __dirname + "/views");
 
 // Calling the express.json() method for parsing
-app.use(express.json());
+app.use(json());
 
 // Setting the routes
 app.use(RootRouter);

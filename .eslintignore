@@ -1,4 +1,4 @@
 /**/*.js
 prestart.ts
-setup.ts
+postinstall.ts
 playwright.config.ts
