@@ -10,7 +10,7 @@ export const APP_KEY = 'com.atlassian.sample-app-node';
 /**
  * General schema can be seen here: https://bitbucket.org/atlassian/connect-schemas/raw/master/jira-global-schema.json
  */
-export const connectAppDescriptor = {
+export const connectAppDescriptor: ConnectJsonValue = {
 
     /**
      * Name of the connect app

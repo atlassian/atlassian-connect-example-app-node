@@ -11,18 +11,10 @@ const routes = Router();
 
 routes.get('/', (_req, res) => {
     res.render('index.mst', {
-        index: 'Index Page',
-        body: 'You in the home page!'
+        index: 'Introduction',
+        body: 'Welcome to the Node.js Sample App'
     });
 });
-
-routes.get('/atlassian-connect.json', connectDescriptorGet);
-
-routes.use('/events', eventsRouter);
-
-routes.use('/public', publicRouter);
-
-routes.use('/webhooks', webhooksRouter);
 
 routes.get('/config', async (_req, res) => {
     res.render('config.mst', {
@@ -31,6 +23,32 @@ routes.get('/config', async (_req, res) => {
     });
 });
 
+routes.use('/webhooks', webhooksRouter);
+
 routes.use('/logs', jwtTokenMiddleware, logsRouter);
+
+routes.get('/connect-library', async (_req, res) => {
+    res.render('connect.mst', {
+        index: 'Connect JS Library'
+    });
+});
+
+routes.get('/auth', async (_req, res) => {
+    res.render('auth.mst', {
+        index: 'iFrame JWT Authentication'
+    });
+});
+
+routes.get('/modules', async (_req, res) => {
+    res.render('modules.mst', {
+        index: 'Connect Modules'
+    });
+});
+
+routes.get('/atlassian-connect.json', connectDescriptorGet);
+
+routes.use('/events', eventsRouter);
+
+routes.use('/public', publicRouter);
 
 export default routes;
