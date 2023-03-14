@@ -25,8 +25,8 @@ RootRouter.use(connectIframeJWTMiddleware);
 
 RootRouter.get("/", (_req, res) => {
 	res.render("index.mst", {
-		index: "Index Page",
-		body: "You in the home page!"
+		index: "Introduction",
+		body: "Welcome to the Node.js Sample App!"
 	});
 });
 
@@ -38,3 +38,21 @@ RootRouter.get("/config", async (_req, res) => {
 });
 
 RootRouter.use("/logs", logsRouter);
+
+RootRouter.get("/connect-library", async (_req, res) => {
+	res.render("connect.mst", {
+		index: "Connect JS library"
+	});
+});
+
+RootRouter.get("/auth", async (_req, res) => {
+	res.render("auth.mst", {
+		index: "iFrame jwt authentication"
+	});
+});
+
+RootRouter.get("/modules", async (_req, res) => {
+	res.render("modules.mst", {
+		index: "Creating modules with Connect"
+	});
+});

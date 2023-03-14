@@ -1,4 +1,5 @@
-import {envVars} from './env';
+import { envVars } from "../env";
+
 
 type ConnectJsonPrimitive = string | number | boolean | null
 type ConnectJsonObject = { [k: string]: ConnectJsonValue }
@@ -35,7 +36,7 @@ export const connectAppDescriptor: ConnectJsonValue = {
     baseUrl: envVars.APP_URL,
 
     /**
-     * The vendor who is offering this connect app.
+     * The vendor who is offering this Connect app.
      */
     vendor: {
         name: 'Node connect app sample',
