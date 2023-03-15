@@ -1,0 +1,15 @@
+{{@extendsFile('./layout.squirrelly')}}
+    {{#title}}
+    Connect JSON
+    {{#content}}
+    <br/>
+    <br/>
+    <button class="aui-button" data-connect-module-key="acn-introduction">Home</button>
+    <br/>
+    <br/>
+    <h3>Atlassian Connect Config:</h3>
+    <hr>
+    <pre class="config-container">{{ it.config }}</pre>
+    <br/>
+    <br/>
+{{/extendsFile}}

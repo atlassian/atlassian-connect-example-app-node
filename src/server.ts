@@ -1,15 +1,20 @@
 import express, { json } from "express";
-import mustache from "mustache-express";
 import { RootRouter } from "./routes/router";
 
 const app = express();
 
 // Setting the template engine
-app.engine("mst", mustache());
-app.set("view engine", "mst");
-
-// Setting the views
+app.set("view engine", "squirrelly");
 app.set("views", __dirname + "/views");
+
+// Remove caching
+app.set("view cache", false);
+app.set("etag", false);
+
+app.use((_req, res, next) => {
+	res.set("Cache-Control", "no-store");
+	next();
+});
 
 // Calling the express.json() method for parsing
 app.use(json());

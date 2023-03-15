@@ -1,6 +1,7 @@
 import { createQueryStringHash, decodeSymmetric, getAlgorithm } from "atlassian-jwt";
 import { database } from "../db";
 import { NextFunction, Request, Response } from "express";
+import { fromExpressRequest } from "atlassian-jwt/dist/lib/jwt";
 
 /**
  * This middleware decodes the JWT token from Jira, verifies it
@@ -18,7 +19,7 @@ export const connectIframeJWTMiddleware = async (req: Request, res: Response, ne
 
 	// if JWT is missing, return a 401
 	if (!jwt) {
-		res.sendStatus(401);
+		res.status(401).send("Missing JWT token");
 		return;
 	}
 
@@ -29,7 +30,7 @@ export const connectIframeJWTMiddleware = async (req: Request, res: Response, ne
 
 	// If tenant doesn't exist anymore, return a 404
 	if (!jiraTenant) {
-		res.sendStatus(404);
+		res.status(404).send("Jira Tenant doesn't exist");
 		return;
 	}
 
@@ -37,8 +38,7 @@ export const connectIframeJWTMiddleware = async (req: Request, res: Response, ne
 		// Try to verify the jwt token
 		token = decodeSymmetric(jwt, jiraTenant.sharedSecret, getAlgorithm(jwt));
 		// Verify query string hash
-		const expectedHash = createQueryStringHash(req, false);
-		if (token.qsh !== expectedHash) {
+		if (token.qsh !== "context-qsh" && token.qsh !== createQueryStringHash(fromExpressRequest(req), false)) {
 			throw "qsh doesn't match";
 		}
 		// If all verifications pass, save the jiraTenant to local to be used later
@@ -46,6 +46,6 @@ export const connectIframeJWTMiddleware = async (req: Request, res: Response, ne
 		next();
 	} catch (e) {
 		// If verification doesn't work, show a 401 error
-		res.sendStatus(401);
+		res.status(401).send(`JWT verification failed: ${e}`);
 	}
 };
