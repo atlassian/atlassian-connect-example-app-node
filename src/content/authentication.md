@@ -121,8 +121,8 @@ which also provides a comprehensive list of claims supported by Atlassian produc
 
 #### Atlassian JWT libraries
 
-In this sample app we use the [atlassian-jwt](https://www.npmjs.com/package/atlassian-jwt) library to create a middleware 
-called `connectIframeJWTMiddleware` which decodes the JWT token from Jira, verifies it and sets the `clientKey` in `res.locals`.
+In this sample app, we use the [atlassian-jwt](https://www.npmjs.com/package/atlassian-jwt) library to create a middleware 
+called `connectIframeJWTMiddleware`, which decodes the JWT token from Jira, verifies it and sets the `clientKey` in `res.locals`.
 The tenant (Jira site) for each instance of the app is recognized based on this `clientKey`. Step by step, 
 `connectIframeJWTMiddleware` is responsible for:
 - injecting the Jira instance URL into the [iframe](./modules.md/#iframe) url
@@ -136,4 +136,4 @@ The tenant (Jira site) for each instance of the app is recognized based on this 
 
 When it comes to storing data for your authenticated Connect add-on, you have a couple of options:
 - use the [add-on properties REST API](https://developer.atlassian.com/cloud/confluence/app-properties-api/)
-- [storing data with entity properties](https://developer.atlassian.com/cloud/jira/platform/storing-data-with-entity-properties/)
+- storing data with [entity properties](https://developer.atlassian.com/cloud/jira/platform/storing-data-with-entity-properties/)

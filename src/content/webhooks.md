@@ -19,4 +19,4 @@ Webhooks can be manually created in
 [webhook module](https://developer.atlassian.com/cloud/jira/platform/modules/webhook/) in the app description.
 
 For more information about webhooks, and for a full list of available webhooks, please refer to our
-[documentation](https://developer.atlassian.com/cloud/jira/platform/webhooks/#registering-a-webhook-using-the-jira-rest-api--other-integrations-)
+[documentation](https://developer.atlassian.com/cloud/jira/platform/webhooks/#registering-a-webhook-using-the-jira-rest-api--other-integrations-).
