@@ -14,12 +14,12 @@ export const APP_KEY = 'com.atlassian.sample-app-node';
 export const connectAppDescriptor: ConnectJsonValue = {
 
     /**
-     * Name of the connect app
+     * Name of the Connect app
      */
     name: 'Sample Connect App Node',
 
     /**
-     * Description for the connect app
+     * Description for the Connect app
      */
     description: 'Atlassian Connect app - Node',
 
@@ -39,7 +39,7 @@ export const connectAppDescriptor: ConnectJsonValue = {
      * The vendor who is offering this Connect app.
      */
     vendor: {
-        name: 'Node connect app sample',
+        name: 'Node Connect app sample',
         url: 'https://github.com/atlassian/atlassian-connect-sample-app-node/'
     },
 
