@@ -15,7 +15,7 @@ were altered in transit (integrity).
 1. Declare that the app uses JWT as the authentication mechanism in the app descriptor e.g.
 ```
  authentication: {
-        type: 'jwt'
+   type: 'jwt'
  },
 ```
 2. Implement an installation callback endpoint, and add a reference to it in the app descriptor.

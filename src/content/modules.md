@@ -8,16 +8,16 @@ To use a Connect module you can either declare it in your app descriptor e.g.
 
 ```
 "modules": {
-          "generalPages": [
-              {
-                  "key": "hello-world",
-                  "url": "/hello-world-page",
-                  "name": {
-                      "value": "Hello World!"
-                  }
+      "generalPages": [
+          {
+              "key": "hello-world",
+              "url": "/hello-world-page",
+              "name": {
+                  "value": "Hello World!"
               }
-          ]
-      }
+          }
+      ]
+}
 ```
 
 or, for some modules, you can register them dynamically using the 

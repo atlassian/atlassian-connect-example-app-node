@@ -22,4 +22,4 @@ event provided by default. All other endpoints need to be implemented if needed 
 or upgrade. This event will not be triggered for any other type of installed lifecycle events.
 - `disabled`: the app is disabled before performing uninstallation
 
-For more information on lifecycle events, please refer to our [documentation](https://developer.atlassian.com/cloud/jira/platform/connect-app-descriptor/#lifecycle)
+For more information on lifecycle events, please refer to our [documentation](https://developer.atlassian.com/cloud/jira/platform/connect-app-descriptor/#lifecycle).

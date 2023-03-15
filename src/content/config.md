@@ -38,5 +38,5 @@ more detail in **Lifecycle Events**
     - `name`: a human-readable name for the page
 
 Please refer to our [documentation](https://developer.atlassian.com/cloud/jira/platform/connect-app-descriptor/#authentication) 
-for more Connect ap description information.
+for more Connect app description information.
 

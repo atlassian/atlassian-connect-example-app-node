@@ -9,8 +9,15 @@
 <body>
 <br/>
 <br/>
-<h3>{{body}}</h3>
-
+<h3>Node app:</h3>
+<hr>
+<br>
+<div id="indexPage">
+    {{body}}
+</div>
+<br>
+<hr>
+<br>
 <div>
     Check out the links:
     <ul>
@@ -18,16 +25,7 @@
             <a class="aui-button aui-button-link" id="configPage">Atlassian Connect App config</a>
         </li>
         <li>
-            <a class="aui-button aui-button-link" id="connectJsLibrary">Connect JS Library</a>
-        </li>
-        <li>
-            <a class="aui-button aui-button-link" id="auth">iFrame JWT Authentication</a>
-        </li>
-        <li>
             <a class="aui-button aui-button-link" id="webhookLogsPage">Jira Webhook Logs</a>
-        </li>
-        <li>
-            <a class="aui-button aui-button-link" id="modules">Connect Modules</a>
         </li>
     </ul>
 </div>
@@ -44,20 +42,7 @@
     document.getElementById('configPage').addEventListener('click', () => {
         AP.navigator.go('addonmodule', { moduleKey: 'acn-config' });
     });
-
-    document.getElementById('connectJsLibrary').addEventListener('click', () => {
-        AP.navigator.go('addonmodule', { moduleKey: 'acn-js-library' });
-    });
-
-    document.getElementById('auth').addEventListener('click', () => {
-        AP.navigator.go('addonmodule', { moduleKey: 'acn-authentication' });
-    });
-
     document.getElementById('webhookLogsPage').addEventListener('click', () => {
-        AP.navigator.go('addonmodule', { moduleKey: 'acn-modules' });
-    });
-
-    document.getElementById('modules').addEventListener('click', () => {
         AP.navigator.go('addonmodule', { moduleKey: 'acn-logs-webhooks' });
     });
 </script>
