@@ -31,8 +31,8 @@ When an administrator installs the app in an Atlassian cloud instance, Connect i
 the Atlassian application and the app to exchange keys stored on both sides for future API calls. 
 This invokes the endpoint, passing a security context (this security context needs to be stored for future use). Some of what's 
 contained in this security context include: 
-- a **key** identifying the app
-- a **shared secret** (used to create and validate JWT tokens). The shared secret can be up to 128 characters in length.
+- a `clientKey` for identifying the app
+- a `sharedSecret` (used to create and validate JWT tokens). The shared secret can be up to 128 characters in length.
 
 ![installation handshake diagram](./images/connect-installation-handshake.png)
 
