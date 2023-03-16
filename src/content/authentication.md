@@ -21,6 +21,10 @@ were altered in transit (integrity).
 2. Implement an installation callback endpoint, and add a reference to it in the app descriptor.
 3. Use the security context to validate incoming requests (e.g. Webhooks), and sign outgoing requests (e.g. REST API calls to Jira).
 
+> **authentication: none**
+> If you have no security on your endpoints you have the option to set the authentication type to 'none' in your app descriptor. However, we strongly recommend you do not do this and instead set the type to 'jwt' as referenced above.
+
+
 #### Installation handshake
 
 When an administrator installs the app in an Atlassian cloud instance, Connect initiates an "installation handshake" -  a way for 
@@ -31,6 +35,8 @@ contained in this security context include:
 - a **shared secret** (used to create and validate JWT tokens). The shared secret can be up to 128 characters in length.
 
 ![installation handshake diagram](./images/connect-installation-handshake.png)
+
+> **_NOTE:_**  The installation handshake only occurs when you are using the optional [lifecycle event](https://developer.atlassian.com/platform/forge/events-reference/life-cycle/) `installed`.
 
 #### Signing of the Lifecycle Callbacks
 
