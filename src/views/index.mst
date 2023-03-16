@@ -4,46 +4,49 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aui/9.5.1/aui/aui-prototyping.min.css" />
     <link rel="stylesheet" href="/public/css/main.css">
-    <title>{{index}}</title>
+    <title>Introduction</title>
 </head>
-<body>
-<br/>
-<br/>
-<h3>Node app:</h3>
-<hr>
-<br>
-<div id="indexPage">
-    {{body}}
-</div>
-<br>
-<hr>
-<br>
-<div>
-    Check out the links:
-    <ul>
-        <li>
-            <a class="aui-button aui-button-link" id="configPage">Atlassian Connect App config</a>
-        </li>
-        <li>
-            <a class="aui-button aui-button-link" id="webhookLogsPage">Jira Webhook Logs</a>
-        </li>
-    </ul>
-</div>
-<br/>
-<br/>
-</body>
-<!-- This script is needed for all the views in the connect app -->
-<script src="https://connect-cdn.atl-paas.net/all.js" async></script>
-<script>
-    /**
-     *  Page navigation is handled by AP.navigator
-     *  source: https://developer.atlassian.com/cloud/jira/software/jsapi/navigator/
-     */
-    document.getElementById('configPage').addEventListener('click', () => {
-        AP.navigator.go('addonmodule', { moduleKey: 'acn-config' });
-    });
-    document.getElementById('webhookLogsPage').addEventListener('click', () => {
-        AP.navigator.go('addonmodule', { moduleKey: 'acn-logs-webhooks' });
-    });
-</script>
+    <body data-content={content}>
+        <div id="introductionPageContent" >{{content}}</div>
+
+        <!-- This script is needed for all the views in the connect app -->
+        <script src="https://connect-cdn.atl-paas.net/all.js" async></script>
+        <script>
+            /**
+             *  Page navigation is handled by AP.navigator
+             *  source: https://developer.atlassian.com/cloud/jira/software/jsapi/navigator/
+             */
+            document.getElementById('configPage').addEventListener('click', () => {
+                AP.navigator.go('addonmodule', { moduleKey: 'acn-config' });
+            });
+            document.getElementById('webhookLogsPage').addEventListener('click', () => {
+                AP.navigator.go('addonmodule', { moduleKey: 'acn-logs-webhooks' });
+            });
+        </script>
+
+        <script>
+            const htmlString = `
+                <main>
+                    <h1>Convert a String to HTML</h1>
+                    <p>Learn how to convert a string to HTML using JavaScript.</p>
+                </main>
+            `;
+
+            const content = document.getElementById('introductionPageContent');
+
+            const convertStringToHTML = htmlString => {
+                const parser = new DOMParser();
+                const html = parser.parseFromString(htmlString, 'text/html');
+
+                return html.body;
+            }
+
+            const convertedContent = convertStringToHTML(content.innerText);
+            content.innerText = '';
+            content.appendChild(convertedContent);
+            document.body.appendChild(convertedContent);
+
+
+        </script>
+    </body>
 </html>
