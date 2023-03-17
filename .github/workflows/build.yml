@@ -30,6 +30,15 @@ jobs:
       - run: yarn lint
       - run: yarn build
 
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build Docker image
+        uses: docker/build-push-action@v2.7.0
+        with:
+          file: Dockerfile
+
   e2e-test:
     runs-on: ubuntu-latest
     timeout-minutes: 60

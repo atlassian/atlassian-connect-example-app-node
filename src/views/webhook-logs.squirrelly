@@ -1,0 +1,31 @@
+{{@extendsFile('./layout.squirrelly')}}
+    {{#title}}
+    Webhook logs
+    {{#content}}
+        <br/>
+        <br/>
+        <button class="aui-button" data-connect-module-key="acn-introduction">Home</button>
+        <br/>
+        <br/>
+        <div class="flexed">
+            <div>Checkout the logs:</div>
+            <div>
+                <a class="aui-button" onclick="AP.navigator.reload();">
+                    <span class="aui-icon aui-icon-small aui-iconfont-refresh">Refresh</span>
+                    <span>Refresh</span>
+                </a>
+            </div>
+        </div>
+        <br>
+        <div class="logs-container">
+            {{@if(it.logs)}}
+                {{@each(it.logs) => log}}
+                <pre>{{log.message}} -----> {{log.data}}</pre>
+                {{/each}}
+            {{#else}}
+                <pre>No logs yet!</pre>
+            {{/if}}
+        </div>
+        <br/>
+        <br/>
+{{/extendsFile}}

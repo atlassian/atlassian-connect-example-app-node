@@ -1,0 +1,24 @@
+{{@extendsFile('./layout.squirrelly')}}
+    {{#content}}
+    <title>Introduction</>
+    <h3>Node app:</h3>
+    <hr>
+    <br>
+    <div>
+        Welcome, to the world of tomorrow! dfkjndjkfgnd
+    </div>
+    <br>
+    <hr>
+    <br>
+    <div>
+        Check out the links:
+        <ul>
+            <li>
+                <a class="aui-button aui-button-link" data-connect-module-key="acn-config">Atlassian Connect App config</a>
+            </li>
+            <li>
+                <a class="aui-button aui-button-link" data-connect-module-key="acn-logs-webhooks">Jira Webhook Logs</a>
+            </li>
+        </ul>
+    </div>
+{{/extendsFile}}

@@ -5,7 +5,6 @@ export const connectDescriptorGet = async (_: Request, res: Response): Promise<v
 	res.status(200).json(connectAppDescriptor);
 };
 
-
 /**
  * General schema can be seen here: https://bitbucket.org/atlassian/connect-schemas/raw/master/jira-global-schema.json
  */
@@ -14,12 +13,12 @@ export const connectAppDescriptor = {
 	/**
 	 * Name of the connect app
 	 */
-	name: "Sample Connect App Node",
+	name: "Atlassian Connect Sample Node App",
 
 	/**
 	 * Description for the connect app
 	 */
-	description: "Atlassian Connect app - Node",
+	description: "Atlassian Connect Sample Node App",
 
 	/**
 	 *  A unique key to identify your connect app. This key must be <= 64 characters.
@@ -56,7 +55,7 @@ export const connectAppDescriptor = {
 	 * Sets the scopes requested by the app
 	 * https://developer.atlassian.com/cloud/jira/platform/scopes-for-connect-apps/
 	 */
-	scopes: ["READ"],
+	scopes: ["READ", "WRITE"],
 
 	/**
 	 * The API version is an OPTIONAL integer. If omitted we will infer an API version of 1.
