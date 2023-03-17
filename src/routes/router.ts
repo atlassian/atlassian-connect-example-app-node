@@ -1,5 +1,6 @@
 import path from "path";
 import * as fs from "fs";
+import { Request, Response } from "express";
 import sanitizeHtml from "sanitize-html";
 import { Router, static as Static } from "express";
 import { marked } from "marked";
@@ -27,17 +28,17 @@ RootRouter.use("/webhooks", webhooksRouter);
 
 const renderer = new marked.Renderer();
 
-renderer.link = (href, _, text): string => {
+renderer.link = (href: string, _, text: string): string => {
 	if (href?.includes("https" || href?.includes("http"))) {
-		return `<a target="_blank" href="'+ href +'">' + text + '</a>`;
+		return `<a target="_blank" href=${href}>${text}</a>`;
 	} else {
 		const page = href?.substring(1);
-		return `<span class="link-span" id=${page} data-connect-module-key=${page}>` + text + '</span>';
+		return `<span class="link-span" id=${page} data-connect-module-key=${page}>${text}</span>`;
 	}
 };
 
-const getMarkdownAndConvertToHtml = (fileName: string) => {
-	const filePath = path.join(__dirname, "..", "content", fileName)
+const getMarkdownAndConvertToHtml = (fileName: string): string => {
+	const filePath = path.join(__dirname, "..", "content", fileName);
 	const contents = fs.readFileSync(filePath);
 	const markdownToHtml = marked(contents.toString(), { renderer: renderer });
 	return sanitizeHtml(markdownToHtml, {
@@ -50,20 +51,20 @@ const getMarkdownAndConvertToHtml = (fileName: string) => {
 
 // Below are the Connect Module routes which need to pass the JWT check to continue
 // RootRouter.use(connectIframeJWTMiddleware);
-RootRouter.get("/", (_req, res) => {
+RootRouter.get("/", (_req: Request, res: Response): void => {
 	res.render("introduction", {
 		pageContent: getMarkdownAndConvertToHtml("introduction.md")
 	});
 });
 
-RootRouter.get("/config", async (_req, res) => {
+RootRouter.get("/config", async (_req: Request, res: Response): Promise<void> => {
 	res.render("config", {
 		config: JSON.stringify(connectAppDescriptor, undefined, 2),
 		pageContent: getMarkdownAndConvertToHtml("config.md")
 	});
 });
 
-RootRouter.get("/logs/webhooks", async (_req, res) => {
+RootRouter.get("/logs/webhooks", async (_req: Request, res: Response): Promise<void> => {
 	const clientKey = res.locals.jiraTenant?.clientKey;
 	if (!clientKey) {
 		res.status(404).send("Missing clientKey");
