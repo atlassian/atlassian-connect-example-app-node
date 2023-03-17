@@ -1,8 +1,8 @@
+import path from "path";
 import { Router, static as Static } from "express";
 import { connectAppDescriptor, connectDescriptorGet } from "./atlassian-connect";
 import { eventsRouter } from "./events";
 import { webhooksRouter } from "./webhooks";
-import path from "path";
 import { database } from "../db";
 
 export const RootRouter = Router();
