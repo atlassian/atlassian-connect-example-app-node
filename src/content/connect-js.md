@@ -12,6 +12,8 @@ applies to this sandboxed environment, meaning that there are several limitation
 To overcome this, Atlassian built the Atlassian Connect JavaScript API which enables JavaScript code in a Connect app's
 iframe to interact with the underlying platform APIs.
 
+> **_iframes and 3rd party cookies:_** 3rd party cookies are blocked in TODO - add browsers here.
+
 #### How to use the Connect JS API
 
 You'll need to include the following in any JS file you wish to have access to the API:

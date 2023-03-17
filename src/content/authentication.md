@@ -10,6 +10,8 @@ The use of JWT tokens guarantees that:
 - None of the query parameters of the HTTP request, nor the path (excluding the context path), nor the HTTP method, 
 were altered in transit (integrity).
 
+- **_JWT requires installed lifecycle event:_** For veritification of the JWT token to work, you need to have included the lifecycle event `installed` in your app descriptor.
+
 #### How to leverage Atlassian Connect's authentication feature:
 
 1. Declare that the app uses JWT as the authentication mechanism in the app descriptor e.g.
@@ -81,25 +83,27 @@ For example:
 **Installation data**
 When the app is installed, the Atlassian application invokes a callback endpoint exposed by the app. The request 
 contains a payload with important tenant information that you will need to store in your app in order to sign 
-and verify future requests.
+and verify future requests e.g.
+
+```
+{
+  "key": "installed-addon-key",
+  "clientKey": "unique-client-identifier",
+  "sharedSecret": "a-secret-key-not-to-be-lost",
+  "serverVersion": "server-version",
+  "pluginsVersion": "version-of-connect",
+  "baseUrl": "https://example.atlassian.net",
+  "displayUrl": "https://docs.example.com",
+  "productType": "jira",
+  "description": "Atlassian Jira at https://example.atlassian.net",
+  "serviceEntitlementNumber": "SEN-number",
+  "eventType": "installed"
+}
+```
 
 **Understanding JWT**
 Knowledge of JWT is a prerequisite. Check out the [Understanding JWT](https://developer.atlassian.com/cloud/bitbucket/understanding-jwt-for-apps/) 
 for apps page if you are unfamiliar with JWT.
-
-**Making a service call**
-
-The JWT protocol describes the format and verification of individual JWT tokens. Atlassian Connect for Bitbucket only 
-supports authorization headers as the method of transport. When communicating server-to-server with the Bitbucket, your 
-app must include a JWT token when accessing protected resources. This covers most of the REST APIs. Construct a token 
-that identifies your app, identifies the query, specifies the token's expiry time and allows the receiver to verify that 
-this token was genuinely constructed by your app.
-
-Example:
-```
-POST https://api.bitbucket.org/2.0/repositories/teamsinspace/documentation-tests/pullrequests
-"Authorization" header value: "JWT <insert jwt-token here>"
-```
 
 For more details on how to create a jwt token, see [Creating a JWT Token](https://developer.atlassian.com/cloud/bitbucket/understanding-jwt-for-apps/#creating-a-jwt-token).
 
@@ -138,8 +142,10 @@ The tenant (Jira site) for each instance of the app is recognized based on this 
 - verify the query string hash
 - save the jiraTenant to `res.locals` to be used later if all verifications pass
 
-#### Storage
+#### Customer Specific Storage
 
 When it comes to storing data for your authenticated Connect add-on, you have a couple of options:
 - use the [add-on properties REST API](https://developer.atlassian.com/cloud/confluence/app-properties-api/)
-- storing data with [entity properties](https://developer.atlassian.com/cloud/jira/platform/storing-data-with-entity-properties/)
+- storing data with entity properties
+  - [Jira](https://developer.atlassian.com/cloud/jira/platform/storing-data-with-entity-properties/)
+  - [Confluence](https://developer.atlassian.com/cloud/confluence/confluence-entity-properties/)
