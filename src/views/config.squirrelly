@@ -7,8 +7,8 @@
     <button class="aui-button" data-connect-module-key="acn-introduction">Home</button>
     <br/>
     <br/>
-    <h3>Atlassian Connect Config:</h3>
-    <hr>
+    <div id="atlassianConnectJson" data-page-content="{{ it.pageContent.toString() }}""></div>
+    <br/>
     <pre class="config-container">{{ it.config }}</pre>
     <br/>
     <br/>

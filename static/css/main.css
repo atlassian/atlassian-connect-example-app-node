@@ -3,9 +3,16 @@ body {
 }
 
 .ac-content {
-    padding: 40px;
+    padding: 6em;
+    font-size: 14px;
+    line-height: 1.7;
 }
-/*
+
+.link-span:first-of-type {
+    color: #0052CC;
+    cursor: pointer;
+}
+
 .flexed {
     display: flex;
     justify-content: space-between;
@@ -24,4 +31,4 @@ body {
     color: #fff;
     border-radius: 4px;
     padding: 6px 12px;
-}*/
+}

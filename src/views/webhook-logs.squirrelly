@@ -7,8 +7,8 @@
         <button class="aui-button" data-connect-module-key="acn-introduction">Home</button>
         <br/>
         <br/>
+        <div id="webhooks" data-page-content="{{ it.pageContent.toString() }}""></div>
         <div class="flexed">
-            <div>Checkout the logs:</div>
             <div>
                 <a class="aui-button" onclick="AP.navigator.reload();">
                     <span class="aui-icon aui-icon-small aui-iconfont-refresh">Refresh</span>

@@ -1,4 +1,4 @@
-### Connect Modules for Jira
+# Connect Modules for Jira
 
 As mentioned in our **Introduction**, modules can be used to extend the functionality of the Jira/Confluence platform or a Jira/Confluence 
 application. They are commonly used to extend the user interface by adding links, panels, or pages, or to extend 
@@ -23,9 +23,9 @@ To use a Connect module you can either declare it in your app descriptor e.g.
 or, for some modules, you can register them dynamically using the 
 [REST API](https://developer.atlassian.com/cloud/jira/platform/dynamic-modules).
 
-#### iframes
+## iframes
 
-For each module created, Atlassian Connect creates an iframe and passes information to the app using query parameters in 
+Atlassian Connect creates an iframe, which it reuses across modules, and passes information to the app using query parameters in
 the iframe URL. Here is a simplified example of this:
 
 ```
@@ -36,7 +36,7 @@ the iframe URL. Here is a simplified example of this:
 
 Please refer to our documentation for information about [Opting in to cacheable iframes](https://developer.atlassian.com/cloud/confluence/cacheable-app-iframes-for-connect-apps/#opting-in-to-cacheable-iframes).
 
-#### Jira modules
+## Jira modules
 
 For Jira, there are 2 types of modules: 
 - **basic iFrames** these include [location-based modules](https://developer.atlassian.com/cloud/jira/platform/about-connect-modules-for-jira/#location-based-modules), 
@@ -47,15 +47,15 @@ these allow you to extend specific Jira features such as the issue tab panel and
 items.
 
 Please refer to our documentation for more information on [Jira modules](https://developer.atlassian.com/cloud/jira/platform/about-connect-modules-for-jira/.
-
-#### Connect modules
+Connect modules
+## 
 
 Connect modules allow Connect apps to extend the Confluence user interface, create custom Macros or content, handle event 
 listening (webhooks), and even run scripts or other code. For more information, please refer to our 
 [Confluence modules](https://developer.atlassian.com/cloud/confluence/about-connect-modules-for-confluence/#add-modules-to-your-connect-app) 
 documentation.
 
-#### A Module Example
+## A Module Example
 
 One module that you may find valuable is the [Security Information module](https://developer.atlassian.com/cloud/jira/platform/modules/security-information/).
 This module makes it possible to turn unplanned vulnerabilities into planned and tracked work.

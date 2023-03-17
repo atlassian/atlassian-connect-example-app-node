@@ -7,6 +7,7 @@ import { webhooksRouter } from "./webhooks";
 import { connectIframeJWTMiddleware } from "../middlewares/connect-iframe-jwt-middleware";
 import * as fs from "fs";
 import { database } from "../db";
+import sanitizeHtml from "sanitize-html";
 
 export const RootRouter = Router();
 
@@ -28,22 +29,39 @@ RootRouter.use("/webhooks", webhooksRouter);
 // Below are the Connect Module routes which need to pass the JWT check to continue
 RootRouter.use(connectIframeJWTMiddleware);
 
-marked.setOptions({
-	renderer: new marked.Renderer()
-});
+const renderer = new marked.Renderer();
+
+renderer.link = ( href, _, text ): string => {
+	if (href?.includes("https" || href?.includes("http"))) {
+		return '<a target="_blank" href="'+ href +'">' + text + '</a>';
+	} else {
+		const page = href?.substring(1);
+		return `<span class="link-span" id=${page} data-connect-module-key=${page}>` + text + '</span>';
+	}
+}
+
+const getMarkdownAndConvertToHtml = (fileName: string) => {
+	const filePath = path.join(__dirname, '..', 'content', fileName)
+	const contents = fs.readFileSync(filePath);
+	const markdownToHtml = marked(contents.toString(), { renderer: renderer });
+	return sanitizeHtml(markdownToHtml, {
+		allowedAttributes: {
+			span: [ 'class', 'id', 'data-connect-module-key' ],
+			a: [ 'href', 'target' ]
+		},
+	});
+}
 
 RootRouter.get("/", (_req, res) => {
-	const introductionPath = path.join(__dirname, '..', 'content', 'introduction.md')
-	const contents = fs.readFileSync(introductionPath);
-
 	res.render("introduction", {
-		pageContent: marked(contents.toString())
+		pageContent: getMarkdownAndConvertToHtml("introduction.md")
 	});
 });
 
 RootRouter.get("/config", async (_req, res) => {
 	res.render("config", {
-		config: JSON.stringify(connectAppDescriptor, undefined, 2)
+		config: JSON.stringify(connectAppDescriptor, undefined, 2),
+		pageContent: getMarkdownAndConvertToHtml("config.md")
 	});
 });
 
@@ -57,6 +75,7 @@ RootRouter.get("/logs/webhooks", async (_req, res) => {
 			const clonedLog = { ...log };
 			clonedLog.data = JSON.stringify(log.data);
 			return clonedLog;
-		})
+		}),
+		pageContent: getMarkdownAndConvertToHtml("webhooks.md")
 	});
 });
