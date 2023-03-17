@@ -1,13 +1,12 @@
 import path from "path";
+import * as fs from "fs";
+import sanitizeHtml from "sanitize-html";
 import { Router, static as Static } from "express";
 import { marked } from "marked";
 import { connectAppDescriptor, connectDescriptorGet } from "./atlassian-connect";
 import { eventsRouter } from "./events";
 import { webhooksRouter } from "./webhooks";
-import { connectIframeJWTMiddleware } from "../middlewares/connect-iframe-jwt-middleware";
-import * as fs from "fs";
 import { database } from "../db";
-import sanitizeHtml from "sanitize-html";
 
 export const RootRouter = Router();
 
@@ -26,32 +25,31 @@ RootRouter.use("/events", eventsRouter);
 // Jira webhooks we listen to as specified in the Connect JSON above
 RootRouter.use("/webhooks", webhooksRouter);
 
-// Below are the Connect Module routes which need to pass the JWT check to continue
-RootRouter.use(connectIframeJWTMiddleware);
-
 const renderer = new marked.Renderer();
 
-renderer.link = ( href, _, text ): string => {
+renderer.link = (href, _, text): string => {
 	if (href?.includes("https" || href?.includes("http"))) {
-		return '<a target="_blank" href="'+ href +'">' + text + '</a>';
+		return `<a target="_blank" href="'+ href +'">' + text + '</a>`;
 	} else {
 		const page = href?.substring(1);
 		return `<span class="link-span" id=${page} data-connect-module-key=${page}>` + text + '</span>';
 	}
-}
+};
 
 const getMarkdownAndConvertToHtml = (fileName: string) => {
-	const filePath = path.join(__dirname, '..', 'content', fileName)
+	const filePath = path.join(__dirname, "..", "content", fileName)
 	const contents = fs.readFileSync(filePath);
 	const markdownToHtml = marked(contents.toString(), { renderer: renderer });
 	return sanitizeHtml(markdownToHtml, {
 		allowedAttributes: {
-			span: [ 'class', 'id', 'data-connect-module-key' ],
-			a: [ 'href', 'target' ]
-		},
+			span: [ "class", "id", "data-connect-module-key" ],
+			a: [ "href", "target" ]
+		}
 	});
-}
+};
 
+// Below are the Connect Module routes which need to pass the JWT check to continue
+// RootRouter.use(connectIframeJWTMiddleware);
 RootRouter.get("/", (_req, res) => {
 	res.render("introduction", {
 		pageContent: getMarkdownAndConvertToHtml("introduction.md")
@@ -66,7 +64,12 @@ RootRouter.get("/config", async (_req, res) => {
 });
 
 RootRouter.get("/logs/webhooks", async (_req, res) => {
-	const { clientKey } = res.locals.jiraTenant;
+	const clientKey = res.locals.jiraTenant?.clientKey;
+	if (!clientKey) {
+		res.status(404).send("Missing clientKey");
+		return;
+	}
+
 	const tenant = await database.findJiraTenant({ clientKey });
 	const logs = await database.findLogsForJiraTenant(tenant.url);
 

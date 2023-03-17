@@ -3,59 +3,38 @@ const setPageContent = (elementId) => {
 	const pageContent = pageContainer.getAttribute("data-page-content")
 	pageContainer.innerHTML = pageContent;
 }
+
+const getPageElement = (id) => {
+	const pageContainer = document.getElementById(id);
+	if (pageContainer !== null) {
+		setPageContent(id);
+	}
+}
+
 document.addEventListener("DOMContentLoaded", () => {
 	// Introduction page
-	const introPageContainer = document.getElementById("introductionPageContent");
-	if (introPageContainer !== null) {
-		setPageContent("introductionPageContent");
-	}
+	getPageElement("introductionPageContent");
 
 	// Atlassian Connect JSON
-	const configPage = document.getElementById(("atlassianConnectJson"));
-	if (configPage !== null) {
-		setPageContent("atlassianConnectJson");
-	}
+	getPageElement("atlassianConnectJson");
 
 	// Lifecycle Events
-	const lifecycleEventsPage = document.getElementById(("lifecycleEvents"));
-	if (lifecycleEventsPage !== null) {
-		setPageContent("lifecycleEvents");
-	}
+	getPageElement("lifecycleEvents");
 
 	// Webhooks
-	const webhooksPage = document.getElementById(("webhooks"));
-	if (webhooksPage !== null) {
-		setPageContent("webhooks");
-	}
+	getPageElement("webhooks");
 
 	// Connect Modules for Jira
-	const modulesPage = document.getElementById(("connectModulesForJira"));
-	if (modulesPage !== null) {
-		setPageContent("connectModulesForJira");
-	}
+	getPageElement("connectModulesForJira");
 
 	// Auth with JWT and Storage
-	const authPage = document.getElementById(("authWithJwtAndStorage"));
-	if (authPage !== null) {
-		setPageContent("authWithJwtAndStorage");
-	}
-
-	const apiRequestsPage = document.getElementById(("atlassianConnectJson"));
-	if (apiRequestsPage !== null) {
-		setPageContent("atlassianConnectJson");
-	}
+	getPageElement("authWithJwtAndStorage");
 
 	// Making API requests
-	const connectLibraryPage = document.getElementById(("makingApiRequests"));
-	if (connectLibraryPage !== null) {
-		setPageContent("makingApiRequests");
-	}
+	getPageElement("makingApiRequests");
 
 	// Marketplace
-	const marketPlacePage = document.getElementById(("marketplace"));
-	if (marketPlacePage !== null) {
-		setPageContent("marketplace");
-	}
+	getPageElement("marketplace");
 
 	/**
 	 *  Page navigation is handled by AP.navigator
