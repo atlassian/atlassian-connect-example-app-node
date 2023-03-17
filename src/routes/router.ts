@@ -2,7 +2,6 @@ import { Router, static as Static } from "express";
 import { connectAppDescriptor, connectDescriptorGet } from "./atlassian-connect";
 import { eventsRouter } from "./events";
 import { webhooksRouter } from "./webhooks";
-import { connectIframeJWTMiddleware } from "../middlewares/connect-iframe-jwt-middleware";
 import path from "path";
 import { database } from "../db";
 
@@ -24,7 +23,7 @@ RootRouter.use("/events", eventsRouter);
 RootRouter.use("/webhooks", webhooksRouter);
 
 // Below are the Connect Module routes which need to pass the JWT check to continue
-RootRouter.use(connectIframeJWTMiddleware);
+// RootRouter.use(connectIframeJWTMiddleware);
 
 RootRouter.get("/", (_req, res) => {
 	res.render("introduction");
@@ -37,7 +36,11 @@ RootRouter.get("/config", async (_req, res) => {
 });
 
 RootRouter.get("/logs/webhooks", async (_req, res) => {
-	const { clientKey } = res.locals.jiraTenant;
+	const clientKey = res.locals.jiraTenant?.clientKey;
+	if (!clientKey) {
+		res.status(404).send("Missing clientKey");
+		return;
+	}
 	const tenant = await database.findJiraTenant({ clientKey });
 	const logs = await database.findLogsForJiraTenant(tenant.url);
 
