@@ -23,3 +23,14 @@ or upgrade. This event will not be triggered for any other type of installed lif
 - `disabled`: the app is disabled before performing uninstallation.
 
 For more information on lifecycle events, please refer to our [documentation](https://developer.atlassian.com/cloud/jira/platform/connect-app-descriptor/#lifecycle).
+
+#### Validating installation lifecycle requests
+An installation secret will be exchanged every time your app is installed or updated. To secure this key exchange 
+process, the `install` and `uninstall` lifecycle events include JWT tokens in the Authorization header. This JWT token 
+will be signed with a private key using the RS256(RSA-SHA256) algorithm.
+
+To retrieve the publicKey, make a request to the CDN with the kid parameter supplied in the JWT token header. For 
+example, `https://connect-install-keys.atlassian.com/kid`
+
+The best way to see how JWT tokens work with your lifecycle events is to use the [Connect inspector](http://go.atlassian.com/connect-inspector) 
+to create a temporary app, install it in your cloud development environment and watch the lifecycle events.

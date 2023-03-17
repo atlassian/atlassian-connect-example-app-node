@@ -25,7 +25,7 @@ or, for some modules, you can register them dynamically using the
 
 #### iframes
 
-For each module created, Atlassian Connect creates an iframe and passes information to the app using query parameters in 
+Atlassian Connect creates an iframe, which it reuses across modules, and passes information to the app using query parameters in 
 the iframe URL. Here is a simplified example of this:
 
 ```
