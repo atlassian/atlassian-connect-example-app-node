@@ -1,10 +1,10 @@
+import path from "path";
 import { Router, static as Static } from "express";
 import { connectAppDescriptor, connectDescriptorGet } from "./atlassian-connect";
 import { eventsRouter } from "./events";
 import { logsRouter } from "./logs";
 import { webhooksRouter } from "./webhooks";
 import { connectIframeJWTMiddleware } from "../middlewares/connect-iframe-jwt-middleware";
-import path from "path";
 
 export const RootRouter = Router();
 
@@ -25,8 +25,8 @@ RootRouter.use(connectIframeJWTMiddleware);
 
 RootRouter.get("/", (_req, res) => {
 	res.render("index.mst", {
-		index: "Index Page",
-		body: "You in the home page!"
+		index: "Introduction",
+		body: "Welcome to the Node.js Sample App!"
 	});
 });
 
