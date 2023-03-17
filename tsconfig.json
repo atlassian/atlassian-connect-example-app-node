@@ -20,6 +20,7 @@
     "noImplicitAny": false,
     "noImplicitThis": false,
     "esModuleInterop": true,
+		"jsx": "react",
     "outDir": "build",
     "baseUrl": ".",
   },

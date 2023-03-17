@@ -2,11 +2,13 @@ import path from "path";
 import { Router, static as Static } from "express";
 import { connectAppDescriptor, connectDescriptorGet } from "./atlassian-connect";
 import { eventsRouter } from "./events";
-import { logsRouter } from "./logs";
 import { webhooksRouter } from "./webhooks";
-import { connectIframeJWTMiddleware } from "../middlewares/connect-iframe-jwt-middleware";
+import { database } from "../db";
 
 export const RootRouter = Router();
+
+// Healthcheck route to make sure the server works
+RootRouter.get("/healthcheck", (_req, res) => res.status(200).send("Works!"));
 
 // This is the Connect JSON app descriptor
 RootRouter.get("/atlassian-connect.json", connectDescriptorGet);
@@ -21,20 +23,32 @@ RootRouter.use("/events", eventsRouter);
 RootRouter.use("/webhooks", webhooksRouter);
 
 // Below are the Connect Module routes which need to pass the JWT check to continue
-RootRouter.use(connectIframeJWTMiddleware);
+// RootRouter.use(connectIframeJWTMiddleware);
 
 RootRouter.get("/", (_req, res) => {
-	res.render("index.mst", {
-		index: "Introduction",
-		body: "Welcome to the Node.js Sample App!"
-	});
+	res.render("introduction");
 });
 
 RootRouter.get("/config", async (_req, res) => {
-	res.render("config.mst", {
-		index: "Connect app descriptor",
+	res.render("config", {
 		config: JSON.stringify(connectAppDescriptor, undefined, 2)
 	});
 });
 
-RootRouter.use("/logs", logsRouter);
+RootRouter.get("/logs/webhooks", async (_req, res) => {
+	const clientKey = res.locals.jiraTenant?.clientKey;
+	if (!clientKey) {
+		res.status(404).send("Missing clientKey");
+		return;
+	}
+	const tenant = await database.findJiraTenant({ clientKey });
+	const logs = await database.findLogsForJiraTenant(tenant.url);
+
+	res.render("webhook-logs", {
+		logs: logs?.reverse().map(log => {
+			const clonedLog = { ...log };
+			clonedLog.data = JSON.stringify(log.data);
+			return clonedLog;
+		})
+	});
+});
