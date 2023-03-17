@@ -1,4 +1,10 @@
+body {
+    background: #fff;
+}
 
+.ac-content {
+    padding: 40px;
+}
 /*
 .flexed {
     display: flex;

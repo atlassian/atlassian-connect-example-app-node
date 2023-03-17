@@ -28,9 +28,10 @@ RootRouter.use("/webhooks", webhooksRouter);
 // Below are the Connect Module routes which need to pass the JWT check to continue
 RootRouter.use(connectIframeJWTMiddleware);
 
-// marked.setOptions({
-// 	renderer: new marked.Renderer()
-// });
+marked.setOptions({
+	renderer: new marked.Renderer()
+});
+
 RootRouter.get("/", (_req, res) => {
 	const introductionPath = path.join(__dirname, '..', 'content', 'introduction.md')
 	const contents = fs.readFileSync(introductionPath);

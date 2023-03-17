@@ -2,7 +2,5 @@
     {{#title}}
     <title>Introduction</>
     {{#content}}
-    <div>
-       {{ it.pageContent }}
-    </div>
+    <div id="introductionPageContent" data-page-content="{{ it.pageContent.toString() }}"></div>
 {{/extendsFile}}

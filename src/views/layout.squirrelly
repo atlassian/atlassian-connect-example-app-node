@@ -4,19 +4,10 @@
     <title>{{ it.title }}</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://unpkg.com/@atlaskit/css-reset/dist/bundle.css" media="all">
+    <link rel="stylesheet" href="/public/css/main.css" media="all">
     <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aui/9.5.1/aui/aui-prototyping.min.css" />-->
     <!-- This script is needed for all the views in the connect app -->
     <script src="https://connect-cdn.atl-paas.net/all.js" data-options="sizeToParent:true" async></script>
-
-    <style>
-        body {
-            background: #fff;
-        }
-
-        .ac-content {
-            padding: 2em;
-        }
-    </style>
 </head>
 <body>
 <section class="ac-content">
@@ -33,6 +24,6 @@
                             AP.navigator.go('addonmodule', { moduleKey: el.getAttribute('data-connect-module-key') }))
             );
 </script>
-<script src="/public/js/index.js" nonce="{{nonce}}"></script>
+<script src="/public/js/index.js"></script>
 </body>
 </html>
