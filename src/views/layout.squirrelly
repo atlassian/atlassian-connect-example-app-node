@@ -33,5 +33,6 @@
                             AP.navigator.go('addonmodule', { moduleKey: el.getAttribute('data-connect-module-key') }))
             );
 </script>
+<script src="/public/js/index.js" nonce="{{nonce}}"></script>
 </body>
 </html>

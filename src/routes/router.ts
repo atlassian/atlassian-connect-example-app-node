@@ -1,11 +1,11 @@
 import path from "path";
 import { Router, static as Static } from "express";
-// import { marked } from "marked";
+import { marked } from "marked";
 import { connectAppDescriptor, connectDescriptorGet } from "./atlassian-connect";
 import { eventsRouter } from "./events";
 import { webhooksRouter } from "./webhooks";
 import { connectIframeJWTMiddleware } from "../middlewares/connect-iframe-jwt-middleware";
-// import * as fs from "fs";
+import * as fs from "fs";
 import { database } from "../db";
 
 export const RootRouter = Router();
@@ -32,16 +32,12 @@ RootRouter.use(connectIframeJWTMiddleware);
 // 	renderer: new marked.Renderer()
 // });
 RootRouter.get("/", (_req, res) => {
-	// const introductionPath = path.join(__dirname, '..', 'content', 'introduction.md')
-	// const contents = fs.readFileSync(introductionPath);
+	const introductionPath = path.join(__dirname, '..', 'content', 'introduction.md')
+	const contents = fs.readFileSync(introductionPath);
 
 	res.render("introduction", {
-		title: "Introduction"
+		pageContent: marked(contents.toString())
 	});
-
-	// res.render("introduction", {
-	// 	content: marked(contents.toString())
-	// });
 });
 
 RootRouter.get("/config", async (_req, res) => {
