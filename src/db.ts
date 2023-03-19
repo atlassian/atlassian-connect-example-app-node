@@ -61,7 +61,7 @@ class ConnectAppDatabase extends LowWithLodash<ConnectAppData> {
 	@initialized()
 	public async addJiraTenant(props: JiraTenant) {
 		// Considering hosts to be unique
-		const checkIfAlreadyExists = await this.findJiraTenant({ url: props.url });
+		const checkIfAlreadyExists = await this.findJiraTenant({ clientKey: props.clientKey });
 		if (!checkIfAlreadyExists) {
 			this.data?.jiraTenants.push(props);
 			await this.write();
@@ -69,12 +69,23 @@ class ConnectAppDatabase extends LowWithLodash<ConnectAppData> {
 	}
 
 	@initialized()
-	public async removeJiraTenant(host: string) {
-		const tenant = await this.findJiraTenant({ url: host });
-		if (tenant) {
-			remove(this.data?.jiraTenants || [], tenant => tenant.url === host);
-			await this.write();
+	public async updateJiraTenant(clientKey: string, props: Partial<JiraTenant>) {
+		const tenant = await this.findJiraTenant({ clientKey });
+		if (!tenant) {
+			throw `Cannot find tenant with clientKey: ${clientKey}`;
 		}
+		Object.keys(props).forEach(key => {
+			tenant[key] = props[key];
+		});
+		tenant.clientKey = clientKey;
+		await this.write();
+	}
+
+	@initialized()
+	public async removeJiraTenant(clientKey: string) {
+		const tenantIds = this.chain.get("jiraTenants").remove(tenant => tenant.clientKey === clientKey).map(t => t.id);
+		this.chain.get("logs").remove(log => tenantIds.includes(log.tenantId));
+		await this.write();
 	}
 
 	@initialized()
