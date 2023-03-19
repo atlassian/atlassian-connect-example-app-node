@@ -1,8 +1,7 @@
 import path from "path";
 import * as fs from "fs";
-import { Request, Response } from "express";
+import { Router, static as Static, Request, Response } from "express";
 import sanitizeHtml from "sanitize-html";
-import { Router, static as Static } from "express";
 import { marked } from "marked";
 import { connectAppDescriptor, connectDescriptorGet } from "./atlassian-connect";
 import { eventsRouter } from "./events";
@@ -30,17 +29,18 @@ const renderer = new marked.Renderer();
 
 renderer.link = (href: string, _, text: string): string => {
 	if (href?.includes("https" || href?.includes("http"))) {
-		return `<a target="_blank" href=${href}>${text}</a>`;
+		return `<a target="_blank" href="${href}">${text}</a>`;
 	} else {
 		const page = href?.substring(1);
-		return `<span class="link-span" id=${page} data-connect-module-key=${page}>${text}</span>`;
+		return `<span class="link-span" id="${page}" data-connect-module-key="${page}">${text}</span>`;
 	}
 };
 
 const getMarkdownAndConvertToHtml = (fileName: string): string => {
 	const filePath = path.join(__dirname, "..", "content", fileName);
 	const contents = fs.readFileSync(filePath);
-	const markdownToHtml = marked(contents.toString(), { renderer: renderer });
+	const markdownToHtml = marked.parse(contents.toString(), { renderer: renderer });
+
 	return sanitizeHtml(markdownToHtml, {
 		allowedAttributes: {
 			span: [ "class", "id", "data-connect-module-key" ],
