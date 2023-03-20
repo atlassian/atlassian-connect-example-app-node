@@ -39,6 +39,12 @@ RootRouter.get("/config", async (_req: Request, res: Response): Promise<void> =>
 	});
 });
 
+RootRouter.get("/connect-library", async (_req: Request, res: Response): Promise<void> => {
+	res.render("connect-library", {
+		pageContent: getMarkdownAndConvertToHtml("connect-library.md")
+	});
+});
+
 RootRouter.get("/logs/webhooks", async (_req: Request, res: Response): Promise<void> => {
 	const clientKey = res.locals.jiraTenant?.clientKey;
 	if (!clientKey) {

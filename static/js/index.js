@@ -33,7 +33,10 @@ document.addEventListener("DOMContentLoaded", () => {
 	// Making API requests
 	getPageElement("makingApiRequests");
 
-	// Marketplace
+	// Connect JS library
+	getPageElement("connectLibrary");
+
+	// Listing your app in Marketplace
 	getPageElement("marketplace");
 
 	/**
