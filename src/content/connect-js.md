@@ -1,4 +1,4 @@
-### Connect JavaScript API
+# Connect JavaScript API
 
 Connect apps extend Jira and Confluence by adding a custom iframe into the products' web pages. This iframe instance is 
 on a different domain or hostname from the parent page and so is a 
@@ -13,8 +13,6 @@ To overcome this, Atlassian built the Atlassian Connect JavaScript API which ena
 iframe to interact with the underlying platform APIs.
 
 > **_iframes and 3rd party cookies:_** Since the app is sandboxed in an iframe, and most browsers are now blocking 3rd party cookies, you shouldn't rely on cookies within your app.
-
-#### How to use the Connect JS API
 
 You'll need to include the following in any JS file you wish to have access to the API:
 

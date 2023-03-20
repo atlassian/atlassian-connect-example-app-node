@@ -1,4 +1,4 @@
-### Lifecycle Events
+# Lifecycle Events
 
 As outlined in **Atlassian Connect JSON**, lifecycle events allow an app to register callbacks for events that occur 
 in the lifecycle of an installation. These include:
@@ -12,7 +12,7 @@ in the lifecycle of an installation. These include:
 }
 ```
 
-#### A brief overview of the 4 lifecycle events
+## A brief overview of the 4 lifecycle events
 - `installed`: the installed lifecycle callback is an integral part of the installation process of an app, whereas the 
 remaining lifecycle events are essentially webhooks. This event is triggered when an app is installed or upgraded, 
 you rotate your shared secret, the baseUrl is changed (site rename), or after a site import. This is the only lifecycle
@@ -24,7 +24,7 @@ or upgrade. This event will not be triggered for any other type of installed lif
 
 For more information on lifecycle events, please refer to our [documentation](https://developer.atlassian.com/cloud/jira/platform/connect-app-descriptor/#lifecycle).
 
-#### Validating installation lifecycle requests
+## Validating installation lifecycle requests
 An installation secret will be exchanged every time your app is installed or updated. To secure this key exchange 
 process, the `install` and `uninstall` lifecycle events include JWT tokens in the Authorization header. This JWT token 
 will be signed with a private key using the RS256(RSA-SHA256) algorithm.

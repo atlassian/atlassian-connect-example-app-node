@@ -1,4 +1,4 @@
-### Atlassian Connect JSON
+# Atlassian Connect JSON
 
 When you create a Connect app you'll need to include an app descriptor JSON file. This is what you'll use to
 provide information to Atlassian about your application, also known as an add-on. In this sample app you'll find 
@@ -37,6 +37,6 @@ more detail in **Lifecycle Events**
     [Confluence](https://marketplace.atlassian.com/apps/1215092/web-fragment-finder-for-confluence?hosting=cloud&tab=overview)
     - `name`: a human-readable name for the page
 
-Please refer to our [documentation](https://developer.atlassian.com/cloud/jira/platform/connect-app-descriptor/#authentication) 
+Please see below for the app descriptor used in this example. Additionally, refer to our [documentation](https://developer.atlassian.com/cloud/jira/platform/connect-app-descriptor/#authentication) 
 for more Connect app description information.
 

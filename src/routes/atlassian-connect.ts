@@ -178,6 +178,30 @@ export const connectAppDescriptor = {
 				name: {
 					"value": "Creating modules with Connect"
 				}
+			},
+			{
+				url: "/lifecycle-events",
+				key: "acn-lifecycle-events",
+				location: "none",
+				name: {
+					"value": "Lifecycle events"
+				}
+			},
+			{
+				url: "/making-api-requests",
+				key: "acn-api-requests",
+				location: "none",
+				name: {
+					"value": "Making API requests"
+				}
+			},
+			{
+				url: "/marketplace",
+				key: "acn-marketplace",
+				location: "none",
+				name: {
+					"value": "Atlassian Marketplace"
+				}
 			}
 		]
 	}
