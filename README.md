@@ -37,6 +37,12 @@ We have added a basic end to end test for installing and uninstalling the app, u
 
 To run the end to end test, please add the values for `ATLASSIAN_URL`, `JIRA_ADMIN_USERNAME` and `JIRA_ADMIN_PASSWORD` in the `.env` file. Then simply run `yarn test:e2e` in the terminal.
 
+## Common Issues
+<h3>Q: Page stuck on loading screen after installation</h3>
+**A:** The pages hosted within Jira are all inside an iframe and the necessary data are stored within the cookies, which won't work if the third party cookies are disabled. So simply, turn on the third party cookies within your browser.
+<h3>Q: Error: JWT Verification failed: Error Signature verification failed for input</h3>
+**A:** This scenario happens when you've uninstalled the app from Jira when the app is not running. The JiraTenant wont be removed from the DB file and then next time when you run it it will still be taking the previous secretKey. Remove the db.json file and reinstalling will fix this.
+
 ## Getting help
 - TBD
 
