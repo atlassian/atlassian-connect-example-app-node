@@ -1,0 +1,6 @@
+{{@extendsFile('./layout.squirrelly')}}
+    {{#title}}
+    API Requests
+    {{#content}}
+    <div id="makingApiRequests" data-page-content="{{ it.pageContent }}"></div>
+{{/extendsFile}}

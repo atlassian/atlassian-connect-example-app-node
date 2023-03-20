@@ -1,0 +1,6 @@
+{{@extendsFile('./layout.squirrelly')}}
+    {{#title}}
+    Connect modules
+    {{#content}}
+    <div id="connectModulesForJira" data-page-content="{{ it.pageContent }}"></div>
+{{/extendsFile}}
