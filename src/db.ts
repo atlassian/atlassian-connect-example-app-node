@@ -3,22 +3,22 @@ import { chain, ExpChain, remove } from "lodash";
 import { JSONFile, Low } from "@commonify/lowdb";
 
 export interface JiraTenant {
-    id: string;
-    url: string;
-    sharedSecret: string;
-    clientKey: string;
+	id: string;
+	url: string;
+	sharedSecret: string;
+	clientKey: string;
 }
 
 export interface Log<T = any> {
-    id: string;
-    tenantId: string;
-    message: string;
-    data?: T;
+	id: string;
+	tenantId: string;
+	message: string;
+	data?: T;
 }
 
-interface Data {
-    jiraTenants: JiraTenant[];
-    logs: Log[];
+interface ConnectAppData {
+	jiraTenants: JiraTenant[];
+	logs: Log[];
 }
 
 // Extend Low class with a new `chain` field
@@ -26,72 +26,88 @@ class LowWithLodash<T> extends Low<T> {
 	chain: ExpChain<this["data"]> = chain(this).get("data");
 }
 
-class Database {
-	private readonly initialized: Promise<void>;
-	private readonly db: LowWithLodash<Data>;
+// Configure lowdb to write to JSONFile
+const dbFile = path.join(process.cwd(), "db.json");
+const adapter = new JSONFile<ConnectAppData>(dbFile);
 
+const initialized = () => {
+	return (_target: unknown, _propertyKey: string, descriptor: TypedPropertyDescriptor<(...params: any[]) => Promise<any>>) => {
+		const fn = descriptor.value;
+		descriptor.value = async function (this: ConnectAppDatabase, ...args: unknown[]) {
+			await this.read();
+			this.data = this.chain.merge(defaults).value();
+			return fn?.apply(this, args);
+		};
+	};
+};
+
+// Default data to be added to JSON db
+const defaults = {
+	jiraTenants: [],
+	logs: []
+};
+
+// This is a stand in for any kind of DB/ORM library you'd like to use to store data
+class ConnectAppDatabase extends LowWithLodash<ConnectAppData> {
 	constructor() {
-		// Configure lowdb to write to JSONFile
-		const dbFile = path.join(process.cwd(), "db.json");
-		const adapter = new JSONFile<Data>(dbFile);
-		this.db = new LowWithLodash(adapter);
-
-		// Read data from JSON file, initialize contents if missing
-		this.initialized = this.db.read().then(async () => {
-			if (!this.db.data) {
-				this.db.data = {
-					jiraTenants: [],
-					logs: []
-				};
-				await this.db.write();
-			}
-		});
+		super(adapter);
 	}
 
+	@initialized()
 	public async findJiraTenant(props: Partial<JiraTenant>) {
-		await this.initialized;
-		return this.db.chain.get("jiraTenants").find(props).value();
+		return this.chain.get("jiraTenants").find(props).value();
 	}
 
+	@initialized()
 	public async addJiraTenant(props: JiraTenant) {
-		await this.initialized;
 		// Considering hosts to be unique
-		const checkIfAlreadyExists = await this.findJiraTenant({ url: props.url });
+		const checkIfAlreadyExists = await this.findJiraTenant({ clientKey: props.clientKey });
 		if (!checkIfAlreadyExists) {
-			this.db.data?.jiraTenants.push(props);
-			await this.db.write();
+			this.data?.jiraTenants.push(props);
+			await this.write();
 		}
 	}
 
-	public async removeJiraTenant(host: string) {
-		await this.initialized;
-		const tenant = await this.findJiraTenant({ url: host });
-		if (tenant) {
-			remove(this.db.data?.jiraTenants || [], tenant => tenant.url === host);
-			await this.db.write();
+	@initialized()
+	public async updateJiraTenant(clientKey: string, props: Partial<JiraTenant>) {
+		const tenant = await this.findJiraTenant({ clientKey });
+		if (!tenant) {
+			throw `Cannot find tenant with clientKey: ${clientKey}`;
 		}
+		Object.keys(props).forEach(key => {
+			tenant[key] = props[key];
+		});
+		tenant.clientKey = clientKey;
+		await this.write();
 	}
 
+	@initialized()
+	public async removeJiraTenant(clientKey: string) {
+		const tenantIds = this.chain.get("jiraTenants").remove(tenant => tenant.clientKey === clientKey).map(t => t.id);
+		this.chain.get("logs").remove(log => tenantIds.includes(log.tenantId));
+		await this.write();
+	}
+
+	@initialized()
 	public async findLogsForJiraTenant(host: string) {
-		await this.initialized;
 		const tenant = await this.findJiraTenant({ url: host });
-		return tenant ? this.db.chain.get("logs").filter({ tenantId: tenant.id }).value() : [];
+		return tenant ? this.chain.get("logs").filter({ tenantId: tenant.id }).value() : [];
 	}
 
+	@initialized()
 	public async addLogs(props: Log) {
-		await this.initialized;
-		this.db.data?.logs.push(props);
-		await this.db.write();
+		this.data?.logs.push(props);
+		await this.write();
 	}
 
+	@initialized()
 	public async removeLogsForJiraTenant(host: string) {
-		await this.initialized;
 		const tenant = await this.findJiraTenant({ url: host });
 		if (tenant) {
-			remove(this.db.data?.logs || [], log => log.tenantId === tenant.id);
-			await this.db.write();
+			remove(this.data?.logs || [], log => log.tenantId === tenant.id);
+			await this.write();
 		}
 	}
 }
 
-export const database = new Database();
+export const database = new ConnectAppDatabase();
