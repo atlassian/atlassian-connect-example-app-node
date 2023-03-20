@@ -1,0 +1,6 @@
+{{@extendsFile('./layout.squirrelly')}}
+    {{#title}}
+    Authentication with JWT and Storage
+    {{#content}}
+    <div id="authWithJwtAndStorage" data-page-content="{{ it.pageContent }}"></div>
+{{/extendsFile}}

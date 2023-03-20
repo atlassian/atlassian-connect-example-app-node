@@ -39,9 +39,15 @@ RootRouter.get("/config", async (_req: Request, res: Response): Promise<void> =>
 	});
 });
 
+RootRouter.get("/authentication", async (_req: Request, res: Response): Promise<void> => {
+	res.render("authentication", {
+		pageContent: getMarkdownAndConvertToHtml("authentication.md")
+	});
+});
+
 RootRouter.get("/connect-library", async (_req: Request, res: Response): Promise<void> => {
-	res.render("connect-library", {
-		pageContent: getMarkdownAndConvertToHtml("connect-library.md")
+	res.render("connect-js", {
+		pageContent: getMarkdownAndConvertToHtml("connect-js.md")
 	});
 });
 
