@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+      "experimentalDecorators": true,
     "target": "ES2020",
     "module": "commonjs",
     "moduleResolution": "node",
@@ -22,7 +23,7 @@
     "esModuleInterop": true,
 		"jsx": "react",
     "outDir": "build",
-    "baseUrl": ".",
+    "baseUrl": "."
   },
   "include": [
     "src/**/*",

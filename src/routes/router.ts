@@ -7,6 +7,7 @@ import { connectAppDescriptor, connectDescriptorGet } from "./atlassian-connect"
 import { eventsRouter } from "./events";
 import { webhooksRouter } from "./webhooks";
 import { database } from "../db";
+import { connectIframeJWTMiddleware } from "../middlewares/connect-iframe-jwt-middleware";
 
 export const RootRouter = Router();
 
@@ -50,8 +51,8 @@ const getMarkdownAndConvertToHtml = (fileName: string): string => {
 	});
 };
 
-// Below are the Connect Module routes which need to pass the JWT check to continue
-// RootRouter.use(connectIframeJWTMiddleware);
+RootRouter.use(connectIframeJWTMiddleware);
+
 RootRouter.get("/", (_req: Request, res: Response): void => {
 	res.render("introduction", {
 		pageContent: getMarkdownAndConvertToHtml("introduction.md")
