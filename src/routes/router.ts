@@ -51,6 +51,30 @@ RootRouter.get("/connect-library", async (_req: Request, res: Response): Promise
 	});
 });
 
+RootRouter.get("/modules", async (_req: Request, res: Response): Promise<void> => {
+	res.render("modules", {
+		pageContent: getMarkdownAndConvertToHtml("modules.md")
+	});
+});
+
+RootRouter.get("/lifecycle-events", async (_req: Request, res: Response): Promise<void> => {
+	res.render("lifecycle-events", {
+		pageContent: getMarkdownAndConvertToHtml("lifecycle-events.md")
+	});
+});
+
+RootRouter.get("/making-api-requests", async (_req: Request, res: Response): Promise<void> => {
+	res.render("api-requests", {
+		pageContent: getMarkdownAndConvertToHtml("api-requests.md")
+	});
+});
+
+RootRouter.get("/marketplace", async (_req: Request, res: Response): Promise<void> => {
+	res.render("marketplace", {
+		pageContent: getMarkdownAndConvertToHtml("marketplace.md")
+	});
+});
+
 RootRouter.get("/logs/webhooks", async (_req: Request, res: Response): Promise<void> => {
 	const clientKey = res.locals.jiraTenant?.clientKey;
 	if (!clientKey) {
