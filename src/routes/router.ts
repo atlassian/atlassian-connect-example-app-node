@@ -1,13 +1,11 @@
 import path from "path";
-import * as fs from "fs";
 import { Router, static as Static, Request, Response } from "express";
-import sanitizeHtml from "sanitize-html";
-import { marked } from "marked";
 import { connectAppDescriptor, connectDescriptorGet } from "./atlassian-connect";
 import { eventsRouter } from "./events";
 import { webhooksRouter } from "./webhooks";
 import { database } from "../db";
 import { connectIframeJWTMiddleware } from "../middlewares/connect-iframe-jwt-middleware";
+import getMarkdownAndConvertToHtml from "../utils/markup";
 
 export const RootRouter = Router();
 
@@ -26,31 +24,6 @@ RootRouter.use("/events", eventsRouter);
 // Jira webhooks we listen to as specified in the Connect JSON above
 RootRouter.use("/webhooks", webhooksRouter);
 
-const renderer = new marked.Renderer();
-
-renderer.link = (href: string, _, text: string): string => {
-	if (href?.includes("https" || href?.includes("http"))) {
-		return `<a target="_blank" href="${href}">${text}</a>`;
-	} else {
-		const page = href?.substring(1);
-		return `<span class="link-span" id="${page}" data-connect-module-key="${page}">${text}</span>`;
-	}
-};
-
-const getMarkdownAndConvertToHtml = (fileName: string): string => {
-	const filePath = path.join(__dirname, "..", "content", fileName);
-	const contents = fs.readFileSync(filePath);
-	// TODO - see if there's a way to modify the way we are using marked.js so we can pass data directly to HTML elements
-	const markdownToHtml = marked.parse(contents.toString(), { renderer: renderer });
-
-	return sanitizeHtml(markdownToHtml, {
-		allowedAttributes: {
-			span: [ "class", "id", "data-connect-module-key" ],
-			a: [ "href", "target" ]
-		}
-	});
-};
-
 RootRouter.use(connectIframeJWTMiddleware);
 
 RootRouter.get("/", (_req: Request, res: Response): void => {
@@ -63,6 +36,42 @@ RootRouter.get("/config", async (_req: Request, res: Response): Promise<void> =>
 	res.render("config", {
 		config: JSON.stringify(connectAppDescriptor, undefined, 2),
 		pageContent: getMarkdownAndConvertToHtml("config.md")
+	});
+});
+
+RootRouter.get("/authentication", async (_req: Request, res: Response): Promise<void> => {
+	res.render("authentication", {
+		pageContent: getMarkdownAndConvertToHtml("authentication.md")
+	});
+});
+
+RootRouter.get("/connect-library", async (_req: Request, res: Response): Promise<void> => {
+	res.render("connect-js", {
+		pageContent: getMarkdownAndConvertToHtml("connect-js.md")
+	});
+});
+
+RootRouter.get("/modules", async (_req: Request, res: Response): Promise<void> => {
+	res.render("modules", {
+		pageContent: getMarkdownAndConvertToHtml("modules.md")
+	});
+});
+
+RootRouter.get("/lifecycle-events", async (_req: Request, res: Response): Promise<void> => {
+	res.render("lifecycle-events", {
+		pageContent: getMarkdownAndConvertToHtml("lifecycle-events.md")
+	});
+});
+
+RootRouter.get("/making-api-requests", async (_req: Request, res: Response): Promise<void> => {
+	res.render("api-requests", {
+		pageContent: getMarkdownAndConvertToHtml("api-requests.md")
+	});
+});
+
+RootRouter.get("/marketplace", async (_req: Request, res: Response): Promise<void> => {
+	res.render("marketplace", {
+		pageContent: getMarkdownAndConvertToHtml("marketplace.md")
 	});
 });
 

@@ -1,0 +1,6 @@
+{{@extendsFile('./layout.squirrelly')}}
+    {{#title}}
+    Lifecycle Events
+    {{#content}}
+    <div id="lifecycleEvents" data-page-content="{{ it.pageContent }}"></div>
+{{/extendsFile}}

@@ -164,7 +164,7 @@ export const connectAppDescriptor = {
 				}
 			},
 			{
-				url: "/auth",
+				url: "/authentication",
 				key: "acn-authentication",
 				location: "none",
 				name: {
