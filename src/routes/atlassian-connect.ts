@@ -121,7 +121,7 @@ export const connectAppDescriptor = {
 				key: "addon-web-section",
 				location: "admin_plugins_menu",
 				name: {
-					value: "Atlassian Connect Sample Node App"
+					value: "Connect Sample Node App"
 				}
 			}
 		],
