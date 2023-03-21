@@ -121,7 +121,7 @@ export const connectAppDescriptor = {
 				key: "addon-web-section",
 				location: "admin_plugins_menu",
 				name: {
-					value: "Overview"
+					value: "Connect Sample Node App"
 				}
 			}
 		],
@@ -219,15 +219,18 @@ export const connectAppDescriptor = {
 				}
 			},
 			/**
-			 * The postInstall page index is defined here again with a different location
-			 * The location is pointing to the key defined in the webSection module
+			 * The postInstall page is defined here again with a different key and a different location
+			 *
+			 * Key has to be unique, so used a different one for this
+			 * Location is pointing to the key defined in the webSection module
+			 *
 			 * This ensures that this page will always have Jira's left sidebar opened for this page
 			 */
 			{
 				url: "/",
-				key: "addon-web-item",
+				key: "acn-home",
 				name: {
-					value: "Connect Sample Node App"
+					value: "Home"
 				},
 				location: "admin_plugins_menu/addon-web-section"
 			}
