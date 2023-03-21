@@ -11,7 +11,6 @@ const getPageElement = (id) => {
 }
 
 const highlightCurrentMenuInSidebar = () => {
-	// TODO: Figure out why AP.navigator.getLocation is not working
 	const currentLocation = AP._data.options.key;
 
 	document.querySelector("[data-connect-module-key=" + currentLocation + "]").classList.add("selected");
