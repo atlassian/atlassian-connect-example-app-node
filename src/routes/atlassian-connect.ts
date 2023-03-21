@@ -230,7 +230,7 @@ export const connectAppDescriptor = {
 				url: "/",
 				key: "acn-home",
 				name: {
-					value: "Home"
+					value: "Introduction"
 				},
 				location: "admin_plugins_menu/addon-web-section"
 			}
