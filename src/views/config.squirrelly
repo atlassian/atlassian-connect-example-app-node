@@ -2,14 +2,10 @@
     {{#title}}
     Connect JSON
     {{#content}}
-    <br/>
-    <br/>
-    <button class="aui-button" data-connect-module-key="acn-introduction">Home</button>
-    <br/>
-    <br/>
-    <div id="atlassianConnectJson" data-page-content="{{ it.pageContent.toString() }}""></div>
-    <br/>
-    <pre class="config-container">{{ it.config }}</pre>
-    <br/>
-    <br/>
+    {{@includeFile('sidebar.squirrelly') /}}
+    <div>
+        <div id="atlassianConnectJson" data-page-content="{{ it.pageContent.toString() }}"></div>
+        <br/>
+        <pre class="config-container">{{ it.config }}</pre>
+    </div>
 {{/extendsFile}}

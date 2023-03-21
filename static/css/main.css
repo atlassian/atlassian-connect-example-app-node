@@ -3,9 +3,22 @@ body {
 }
 
 .ac-content {
-    padding: 6em;
+    display: flex;
     font-size: 14px;
     line-height: 1.7;
+    height: 100%;
+}
+
+.ac-content > div {
+    padding: 1.6em 2.2em;
+}
+
+.acn-sidebar {
+    list-style: none;
+    padding: 1.6em 1.5em;
+    width: 50%;
+    max-width: 220px;
+    border-right: 1px solid #091e4214;
 }
 
 .link-span:first-of-type {
