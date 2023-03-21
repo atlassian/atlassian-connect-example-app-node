@@ -112,6 +112,21 @@ export const connectAppDescriptor = {
 		],
 
 		/**
+		 * Defines the new sections in the application menus.
+		 *
+		 * https://developer.atlassian.com/cloud/jira/platform/modules/web-section/
+		 */
+		webSections: [
+			{
+				key: "addon-web-section",
+				location: "admin_plugins_menu",
+				name: {
+					value: "Atlassian Connect Sample Node App"
+				}
+			}
+		],
+
+		/**
 		 * The list of pages/views within the app.
 		 * https://developer.atlassian.com/cloud/jira/software/modules/page/
 		 */
@@ -202,6 +217,19 @@ export const connectAppDescriptor = {
 				name: {
 					"value": "Atlassian Marketplace"
 				}
+			},
+			/**
+			 * The postInstall page index is defined here again with a different location
+			 * The location is pointing to the key defined in the webSection module
+			 * This ensures that this page will always have Jira's left sidebar opened for this page
+			 */
+			{
+				url: "/",
+				key: "addon-web-item",
+				name: {
+					value: "Connect Sample Node App"
+				},
+				location: "admin_plugins_menu/addon-web-section"
 			}
 		]
 	}
