@@ -7,7 +7,7 @@
         {{@includeFile('./partial/back-nav.squirrelly') /}}
         <div id="webhooks" data-page-content="{{ it.pageContent.toString() }}"></div>
 
-        <div class="flexed">
+        <div class="logs-title">
             <h2>Example logs:</h2>
             <div>
                 <a class="aui-button" onclick="AP.navigator.reload();">

@@ -18,10 +18,11 @@ body {
     cursor: pointer;
 }
 
-.flexed {
+.logs-title {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 2.5em 0 1em;
 }
 
 pre {
@@ -36,7 +37,6 @@ pre {
     color: #fff;
     border-radius: 4px;
     padding: 0.3em 0.75em;
-    margin-top: 0.5em;
 }
 .logs-container > pre {
     background: #000;
