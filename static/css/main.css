@@ -13,19 +13,6 @@ body {
     padding: 1.6em 2.6em;
 }
 
-.acn-sidebar {
-    list-style: none;
-    padding: 1.6em 1.5em;
-    width: 50%;
-    max-width: 220px;
-    border-right: 1px solid #091e4214;
-}
-
-.acn-sidebar-submenu {
-    list-style: none;
-    padding-left: 1.2em;
-}
-
 .link-span:first-of-type {
     color: #0052CC;
     cursor: pointer;
@@ -50,13 +37,4 @@ body {
     border-radius: 4px;
     padding: 6px 12px;
 }
-
-.aui-button-link {
-    color: #172b4d;
-}
-
-.aui-button-link:hover, .aui-button-link.selected {
-    color: #0052cc;
-}
-
 

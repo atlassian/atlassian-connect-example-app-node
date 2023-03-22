@@ -1,0 +1,22 @@
+.acn-sidebar {
+    list-style: none;
+    padding: 1.6em 1.5em;
+    width: 50%;
+    max-width: 220px;
+    border-right: 1px solid #091e4214;
+}
+
+.acn-sidebar-submenu {
+    list-style: none;
+    padding-left: 1.2em;
+}
+
+.aui-button-link {
+    color: #172b4d;
+}
+
+.aui-button-link:hover, .aui-button-link.selected {
+    color: #0052cc;
+}
+
+
