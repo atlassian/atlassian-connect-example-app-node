@@ -17,7 +17,7 @@
             </div>
         </div>
 
-        <div class="logs-container" style="width: 900px;">
+        <div class="logs-container">
             {{@if(it.logs)}}
             {{@each(it.logs) => log}}
             <pre>{{log.message}} -----> {{log.data}}</pre>
