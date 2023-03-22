@@ -2,8 +2,9 @@
     {{#title}}
     Webhook logs
     {{#content}}
-    {{@includeFile('sidebar.squirrelly') /}}
+    {{@includeFile('./partial/sidebar.squirrelly') /}}
     <div>
+        {{@includeFile('./partial/header.squirrelly') /}}
         <div id="webhooks" data-page-content="{{ it.pageContent.toString() }}"></div>
 
         <div class="flexed">

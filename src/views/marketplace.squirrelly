@@ -2,6 +2,9 @@
     {{#title}}
     API Requests
     {{#content}}
-    {{@includeFile('sidebar.squirrelly') /}}
-    <div id="marketplace" data-page-content="{{ it.pageContent }}"></div>
+    {{@includeFile('./partial/sidebar.squirrelly') /}}
+    <div>
+        {{@includeFile('./partial/header.squirrelly') /}}
+        <div id="marketplace" data-page-content="{{ it.pageContent }}"></div>
+    </div>
 {{/extendsFile}}

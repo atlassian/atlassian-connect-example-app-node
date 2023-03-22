@@ -2,6 +2,9 @@
     {{#title}}
     Authentication with JWT and Storage
     {{#content}}
-    {{@includeFile('sidebar.squirrelly') /}}
-    <div id="authWithJwtAndStorage" data-page-content="{{ it.pageContent }}"></div>
+    {{@includeFile('./partial/sidebar.squirrelly') /}}
+    <div>
+        {{@includeFile('./partial/header.squirrelly') /}}
+        <div id="authWithJwtAndStorage" data-page-content="{{ it.pageContent }}"></div>
+    </div>
 {{/extendsFile}}
