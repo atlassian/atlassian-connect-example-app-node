@@ -2,6 +2,10 @@ import path from "path";
 import { chain, ExpChain, remove } from "lodash";
 import { JSONFile, Low } from "@commonify/lowdb";
 
+
+/**
+ * Type Definitions for the database
+ */
 export interface JiraTenant {
 	id: string;
 	url: string;
@@ -20,6 +24,14 @@ interface ConnectAppData {
 	jiraTenants: JiraTenant[];
 	logs: Log[];
 }
+
+/**
+ * Default data to be added to JSON db
+ */
+const defaults = {
+	jiraTenants: [],
+	logs: []
+};
 
 // Extend Low class with a new `chain` field
 class LowWithLodash<T> extends Low<T> {
@@ -41,13 +53,11 @@ const initialized = () => {
 	};
 };
 
-// Default data to be added to JSON db
-const defaults = {
-	jiraTenants: [],
-	logs: []
-};
 
-// This is a stand in for any kind of DB/ORM library you'd like to use to store data
+
+/**
+ * This is a stand-in for any kind of DB/ORM library you'd like to use to store data0
+ */
 class ConnectAppDatabase extends LowWithLodash<ConnectAppData> {
 	constructor() {
 		super(adapter);

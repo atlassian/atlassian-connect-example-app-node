@@ -13,6 +13,7 @@ renderer.link = (href: string, _, text: string): string => {
 		return `<span class="link-span" id="${page}" data-connect-module-key="${page}">${text}</span>`;
 	}
 };
+
 const getMarkdownAndConvertToHtml = (fileName: string): string => {
 	const filePath = path.join(__dirname, "..", "content", fileName);
 	const contents = fs.readFileSync(filePath);
@@ -26,6 +27,5 @@ const getMarkdownAndConvertToHtml = (fileName: string): string => {
 		}
 	});
 };
-
 
 export default getMarkdownAndConvertToHtml;

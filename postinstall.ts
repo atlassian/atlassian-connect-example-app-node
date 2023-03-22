@@ -6,7 +6,9 @@ const envExampleFileName = `${envFileName}.example`;
 const envFilePath = path.resolve(__dirname, envFileName);
 const envExampleFilePath = path.resolve(__dirname, envExampleFileName);
 
-// Creates the .env file
+/**
+ * Creates the env file
+ */
 const createEnvFile = async () => {
     if (!fs.existsSync(envFilePath)) {
         await fs.copyFile(envExampleFilePath, envFilePath, (err) => {
@@ -19,6 +21,10 @@ const createEnvFile = async () => {
     }
 };
 
+/**
+ * This script creates an env file if there isn't one,
+ * The env file is based off from .env.example
+ */
 (async function main() {
     try {
         await createEnvFile();

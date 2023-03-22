@@ -19,7 +19,6 @@ webhooksRouter.post("/jira/issue-created", async (req, res) => {
 });
 
 webhooksRouter.post("/jira/issue-updated", async (req, res) => {
-	// Mapping the host set during the installation with the url coming in from the webhooks
 	const host = new URL(req.body.user.self).origin;
 	const tenant = await database.findJiraTenant({ url: host });
 	await database.addLogs({
@@ -33,7 +32,6 @@ webhooksRouter.post("/jira/issue-updated", async (req, res) => {
 });
 
 webhooksRouter.post("/jira/issue-deleted", async (req, res) => {
-	// Mapping the host set during the installation with the url coming in from the webhooks
 	const host = new URL(req.body.user.self).origin;
 	const tenant = await database.findJiraTenant({ url: host });
 	await database.addLogs({
