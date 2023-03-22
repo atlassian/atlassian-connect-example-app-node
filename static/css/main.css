@@ -24,7 +24,7 @@ body {
     align-items: center;
 }
 
-.config-container {
+pre {
     background: #f4f5f7;
     padding: 0.75em;
     border-radius: 4px;
@@ -36,5 +36,9 @@ body {
     color: #fff;
     border-radius: 4px;
     padding: 0.3em 0.75em;
+    margin-top: 0.5em;
+}
+.logs-container > pre {
+    background: #000;
 }
 

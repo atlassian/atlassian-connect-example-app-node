@@ -8,6 +8,7 @@
         <div id="webhooks" data-page-content="{{ it.pageContent.toString() }}"></div>
 
         <div class="flexed">
+            <h2>Example logs:</h2>
             <div>
                 <a class="aui-button" onclick="AP.navigator.reload();">
                     <span class="aui-icon aui-icon-small aui-iconfont-refresh">Refresh</span>
@@ -15,8 +16,8 @@
                 </a>
             </div>
         </div>
-        <br>
-        <div class="logs-container">
+
+        <div class="logs-container" style="width: 900px;">
             {{@if(it.logs)}}
             {{@each(it.logs) => log}}
             <pre>{{log.message}} -----> {{log.data}}</pre>
