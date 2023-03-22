@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/public/css/sidebar.css" media="all">
     <link rel="stylesheet" href="/public/css/back-nav.css" media="all">
 
-    <!-- This script is needed for all the views in the connect app -->
+    <!-- This script is needed for all the views in the Connect app -->
     <script src="https://connect-cdn.atl-paas.net/all.js" data-options="sizeToParent:true" async></script>
 </head>
 

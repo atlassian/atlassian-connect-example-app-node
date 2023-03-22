@@ -105,7 +105,7 @@ and verify future requests e.g.
 Knowledge of JWT is a prerequisite. Check out the [Understanding JWT](https://developer.atlassian.com/cloud/bitbucket/understanding-jwt-for-apps/) 
 for apps page if you are unfamiliar with JWT.
 
-For more details on how to create a jwt token, see [Creating a JWT Token](https://developer.atlassian.com/cloud/bitbucket/understanding-jwt-for-apps/#creating-a-jwt-token).
+For more details on how to create a JWT token, see [Creating a JWT Token](https://developer.atlassian.com/cloud/bitbucket/understanding-jwt-for-apps/#creating-a-jwt-token).
 
 **Exposing a service**
 
@@ -136,9 +136,9 @@ called `connectIframeJWTMiddleware`, which decodes the JWT token from Jira, veri
 The tenant (Jira site) for each instance of the app is recognized based on this `clientKey`. Step by step, 
 `connectIframeJWTMiddleware` is responsible for:
 - injecting the Jira instance URL into the [iframe](./modules.md/#iframe) url
-- decoding jwt token without verification
+- decoding JWT token without verification
 - get the jira tenant associated with the url
-- tries to verify the jwt token
+- tries to verify the JWT token
 - verify the query string hash
 - save the jiraTenant to `res.locals` to be used later if all verifications pass
 

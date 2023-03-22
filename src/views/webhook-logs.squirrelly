@@ -18,12 +18,12 @@
         </div>
 
         <div class="logs-container">
-            {{@if(it.logs)}}
-            {{@each(it.logs) => log}}
-            <pre>{{log.message}} -----> {{log.data}}</pre>
-            {{/each}}
+            {{@if(it.logs.length)}}
+                {{@each(it.logs) => log}}
+                    <pre>{{log.message}} -----> {{log.data}}</pre>
+                {{/each}}
             {{#else}}
-            <pre>No logs yet!</pre>
+                <pre>No logs yet!</pre>
             {{/if}}
         </div>
     </div>
