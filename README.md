@@ -17,7 +17,7 @@ This app is aimed to help you to easily add your integration in Jira.
 
 ## Pre-requisites
 - yarn
-- docker
+- docker & docker-compose
 - ngrok account
 
 ## Features
@@ -34,6 +34,15 @@ Simply go to [ngrok](https://dashboard.ngrok.com/get-started/your-authtoken) and
 ![img.png](static/images/tunnel-output.png)
 
 After you have the tunneled URL, check for the config in the url `/atlassian-connect.json`(`https://TUNNELED_URL/atlassian-connect.json`). This is the __app descriptor URL__ for uploading the app and installing in Jira.
+
+## Installing the App
+Go to your Jira instance and do the following steps:
+- From the header menu, select Apps -> Manage your apps.
+- Verify the filter is set to User-installed, and select Settings beneath the User-installed apps table.
+- On the Settings pop-up, add Enable development mode and click Apply. Refresh the page. 
+- On the right side of the header, there should now appear a button Upload app. Click it and enter the tunneled URL `/atlassian-connect.json`(`https://TUNNELED_URL/atlassian-connect.json`)
+- Click Upload. 
+- That's it! You're done. 🎉
 
 ## Running your application
 - TBD
