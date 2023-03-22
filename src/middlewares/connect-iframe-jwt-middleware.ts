@@ -11,7 +11,7 @@ import { fromExpressRequest } from "atlassian-jwt/dist/lib/jwt";
  */
 export const connectIframeJWTMiddleware = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 
-	// This is the Jira instance url injected into the iframe url
+	// This query parameter is injected into the iframe url
 	const jwt = req.query.jwt as string;
 
 	// if JWT is missing, return a 401
