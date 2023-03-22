@@ -18,23 +18,28 @@ body {
     cursor: pointer;
 }
 
-.flexed {
+.logs-title {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 2.5em 0 1em;
 }
 
-.config-container {
+pre {
     background: #f4f5f7;
     padding: 0.75em;
     border-radius: 4px;
 }
 
 .logs-container {
+    width: calc(100vw - 340px);
     overflow: auto;
     background: #000;
     color: #fff;
     border-radius: 4px;
     padding: 0.3em 0.75em;
+}
+.logs-container > pre {
+    background: #000;
 }
 

@@ -20,5 +20,3 @@ Webhooks can be manually created in
 
 For more information about webhooks, and for a full list of available webhooks, please refer to our
 [documentation](https://developer.atlassian.com/cloud/jira/platform/webhooks/#registering-a-webhook-using-the-jira-rest-api--other-integrations-).
-
-## Example logs:
