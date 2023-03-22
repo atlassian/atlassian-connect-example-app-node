@@ -2,7 +2,6 @@ import path from "path";
 import { chain, ExpChain, remove } from "lodash";
 import { JSONFile, Low } from "@commonify/lowdb";
 
-
 /**
  * Type Definitions for the database
  */
@@ -25,9 +24,11 @@ interface ConnectAppData {
 	logs: Log[];
 }
 
-/**
- * Default data to be added to JSON db
- */
+// Configure lowdb to write to JSONFile
+const dbFile = path.join(process.cwd(), "db.json");
+const adapter = new JSONFile<ConnectAppData>(dbFile);
+
+// Default data to be added to JSON db
 const defaults = {
 	jiraTenants: [],
 	logs: []
@@ -38,10 +39,7 @@ class LowWithLodash<T> extends Low<T> {
 	chain: ExpChain<this["data"]> = chain(this).get("data");
 }
 
-// Configure lowdb to write to JSONFile
-const dbFile = path.join(process.cwd(), "db.json");
-const adapter = new JSONFile<ConnectAppData>(dbFile);
-
+// Initializes the db
 const initialized = () => {
 	return (_target: unknown, _propertyKey: string, descriptor: TypedPropertyDescriptor<(...params: any[]) => Promise<any>>) => {
 		const fn = descriptor.value;
@@ -52,8 +50,6 @@ const initialized = () => {
 		};
 	};
 };
-
-
 
 /**
  * This is a stand-in for any kind of DB/ORM library you'd like to use to store data0
