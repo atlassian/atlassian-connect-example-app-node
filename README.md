@@ -7,12 +7,18 @@ This repository contains a [Express](https://expressjs.com/en/4x/api.html) start
 This app is aimed to help you to easily add your integration in Jira.
 
 ## Table of Contents
+- [Pre-requisites](#pre-requisites)
 - [Features](#features)
 - [Getting started](#getting-started)
 - [Running your application](#running-your-application)
 - [Testing](#testing)
 - [Getting help](#getting-help)
 - [License](#license)
+
+## Pre-requisites
+- yarn
+- docker
+- ngrok account
 
 ## Features
 - TBD
