@@ -1,4 +1,4 @@
-.acn-header-text {
+.acn-header {
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -7,6 +7,10 @@
     margin-bottom: 12px;
 }
 
-.acn-header-text > .aui-icon {
+.acn-header > .aui-icon {
     margin-right: 2px;
+}
+
+.acn-header-text:hover {
+    text-decoration: underline;
 }
