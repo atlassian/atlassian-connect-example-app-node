@@ -2,5 +2,9 @@
     {{#title}}
     API Requests
     {{#content}}
-    <div id="makingApiRequests" data-page-content="{{ it.pageContent }}"></div>
+    {{@includeFile('./partial/sidebar.squirrelly') /}}
+    <div>
+        {{@includeFile('./partial/back-nav.squirrelly') /}}
+        <div id="makingApiRequests" data-page-content="{{ it.pageContent }}"></div>
+    </div>
 {{/extendsFile}}

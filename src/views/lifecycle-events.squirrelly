@@ -2,5 +2,9 @@
     {{#title}}
     Lifecycle Events
     {{#content}}
-    <div id="lifecycleEvents" data-page-content="{{ it.pageContent }}"></div>
+    {{@includeFile('./partial/sidebar.squirrelly') /}}
+    <div>
+        {{@includeFile('./partial/back-nav.squirrelly') /}}
+        <div id="lifecycleEvents" data-page-content="{{ it.pageContent }}"></div>
+    </div>
 {{/extendsFile}}

@@ -1,0 +1,16 @@
+.acn-header {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    color: #5E6C84;
+    font-size: 0.9rem;
+    margin-bottom: 1.5em;
+}
+
+.acn-header > .aui-icon {
+    margin-right: 0.12em;
+}
+
+.acn-header-text:hover {
+    text-decoration: underline;
+}

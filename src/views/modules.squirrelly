@@ -2,5 +2,9 @@
     {{#title}}
     Connect modules
     {{#content}}
-    <div id="connectModulesForJira" data-page-content="{{ it.pageContent }}"></div>
+    {{@includeFile('./partial/sidebar.squirrelly') /}}
+    <div>
+        {{@includeFile('./partial/back-nav.squirrelly') /}}
+        <div id="connectModulesForJira" data-page-content="{{ it.pageContent }}"></div>
+    </div>
 {{/extendsFile}}

@@ -2,12 +2,11 @@
     {{#title}}
     Webhook logs
     {{#content}}
-        <br/>
-        <br/>
-        <button class="aui-button" data-connect-module-key="acn-introduction">Home</button>
-        <br/>
-        <br/>
-        <div id="webhooks" data-page-content="{{ it.pageContent.toString() }}""></div>
+    {{@includeFile('./partial/sidebar.squirrelly') /}}
+    <div>
+        {{@includeFile('./partial/back-nav.squirrelly') /}}
+        <div id="webhooks" data-page-content="{{ it.pageContent.toString() }}"></div>
+
         <div class="flexed">
             <div>
                 <a class="aui-button" onclick="AP.navigator.reload();">
@@ -19,13 +18,12 @@
         <br>
         <div class="logs-container">
             {{@if(it.logs)}}
-                {{@each(it.logs) => log}}
-                <pre>{{log.message}} -----> {{log.data}}</pre>
-                {{/each}}
+            {{@each(it.logs) => log}}
+            <pre>{{log.message}} -----> {{log.data}}</pre>
+            {{/each}}
             {{#else}}
-                <pre>No logs yet!</pre>
+            <pre>No logs yet!</pre>
             {{/if}}
         </div>
-        <br/>
-        <br/>
+    </div>
 {{/extendsFile}}

@@ -1,7 +1,6 @@
 const setPageContent = (elementId) => {
 	const pageContainer = document.getElementById(elementId);
-	const pageContent = pageContainer.getAttribute("data-page-content")
-	pageContainer.innerHTML = pageContent;
+	pageContainer.innerHTML = pageContainer.getAttribute("data-page-content");
 }
 
 const getPageElement = (id) => {
@@ -9,6 +8,12 @@ const getPageElement = (id) => {
 	if (pageContainer !== null) {
 		setPageContent(id);
 	}
+}
+
+const highlightCurrentMenuInSidebar = () => {
+	const currentLocation = AP._data.options.key;
+
+	document.querySelector("[data-connect-module-key=" + currentLocation + "]").classList.add("selected");
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -49,4 +54,6 @@ document.addEventListener("DOMContentLoaded", () => {
 				AP.navigator.go('addonmodule', { moduleKey: el.getAttribute('data-connect-module-key') }))
 			}
 		);
+
+	highlightCurrentMenuInSidebar();
 });

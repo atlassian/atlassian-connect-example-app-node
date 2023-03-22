@@ -2,5 +2,9 @@
     {{#title}}
     Connect Library
     {{#content}}
-    <div id="connectLibrary" data-page-content="{{ it.pageContent }}"></div>
+    {{@includeFile('./partial/sidebar.squirrelly') /}}
+    <div>
+        {{@includeFile('./partial/back-nav.squirrelly') /}}
+        <div id="connectLibrary" data-page-content="{{ it.pageContent }}"></div>
+    </div>
 {{/extendsFile}}
