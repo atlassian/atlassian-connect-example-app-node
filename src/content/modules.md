@@ -39,9 +39,9 @@ Please refer to our documentation for information about [Opting in to cacheable 
 ## Jira modules
 
 For Jira, there are 2 types of modules: 
-- **basic iFrames** these include [location-based modules](https://developer.atlassian.com/cloud/jira/platform/about-connect-modules-for-jira/#location-based-modules), 
-[new jira issue view modules](https://developer.atlassian.com/cloud/jira/platform/about-connect-modules-for-jira/#new-jira-issue-view-modules), 
-and [pages and dialogs](https://developer.atlassian.com/cloud/jira/platform/about-connect-modules-for-jira/#pages-and-dialogs.
+- **basic iframes**: these include [location-based modules](https://developer.atlassian.com/cloud/jira/platform/about-connect-modules-for-jira/#location-based-modules), 
+[new Jira issue view modules](https://developer.atlassian.com/cloud/jira/platform/about-connect-modules-for-jira/#new-jira-issue-view-modules), 
+and [pages and dialogs](https://developer.atlassian.com/cloud/jira/platform/about-connect-modules-for-jira/#pages-and-dialogs).
 - [**advanced modules**](https://developer.atlassian.com/cloud/jira/platform/about-connect-modules-for-jira/#advanced-ui-modules): 
 these allow you to extend specific Jira features such as the issue tab panel and dashboard
 items.

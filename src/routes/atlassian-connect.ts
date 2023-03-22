@@ -11,17 +11,17 @@ export const connectDescriptorGet = async (_: Request, res: Response): Promise<v
 export const connectAppDescriptor = {
 
 	/**
-	 * Name of the connect app
+	 * Name of the Connect app
 	 */
 	name: "Atlassian Connect Sample Node App",
 
 	/**
-	 * Description for the connect app
+	 * Description for the Connect app
 	 */
 	description: "Atlassian Connect Sample Node App",
 
 	/**
-	 *  A unique key to identify your connect app. This key must be <= 64 characters.
+	 *  A unique key to identify your Connect app. This key must be <= 64 characters.
 	 */
 	key: envVars.APP_KEY,
 
@@ -33,19 +33,19 @@ export const connectAppDescriptor = {
 	baseUrl: envVars.APP_URL,
 
 	/**
-	 * The vendor who is offering this connect app.
+	 * The vendor who is offering this Connect app.
 	 */
 	vendor: {
-		name: "Node connect app sample",
+		name: "Node Connect app sample",
 		url: "https://github.com/atlassian/atlassian-connect-sample-app-node/"
 	},
 
 	/**
-	 * Defines the authentication type to use when signing requests between the host application and the connect app.
+	 * Defines the authentication type to use when signing requests between the host application and the Connect app.
 	 * Types include: `jwt`, `JWT`, `none`, `NONE`
 	 *
-	 * Pages defined in the connect app(by default) run within the iframe inside Jira,
-	 * Defining this authentication will pass the jwt token for each page running within the iframe.
+	 * Pages defined in the Connect app(by default) run within the iframe inside Jira,
+	 * Defining this authentication will pass the JWT token for each page running within the iframe.
 	 */
 	authentication: {
 		type: "jwt"
@@ -91,7 +91,7 @@ export const connectAppDescriptor = {
 		},
 
 		/**
-		 * List of all the webhooks for the connect app.
+		 * List of all the webhooks for the Connect app.
 		 * For this sample app, we've added some Jira webhooks events.
 		 *
 		 * https://developer.atlassian.com/cloud/jira/platform/webhooks/

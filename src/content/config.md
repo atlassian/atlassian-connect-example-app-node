@@ -7,12 +7,12 @@ app descriptor is:
 
 - `name`: the name of the Connect app
 - `description`: description for the Connect app
-- `key`: a unique key to identify your connect app. This key must be <= 64 characters
+- `key`: a unique key to identify your Connect app. This key must be <= 64 characters
 - `baseUrl`: The base url of the remote app, which is used for all communications back to the app instance. For this 
 sample app, this is the tunneled URL which is set in the `prestart.ts`
 - `vendor`: the vendor who is offering this Connect app
 - `authentication`: this defines the authentication type to use when signing requests between the host application 
-and the connect app. The supported types include `jwt`, `JWT`, `none`, `NONE`. We'll go into more detail around 
+and the Connect app. The supported types include `jwt`, `JWT`, `none`, `NONE`. We'll go into more detail around 
 authentication in **Auth with JWT and Storage**
 - `scopes`: sets the [scopes](https://developer.atlassian.com/cloud/jira/platform/scopes-for-connect-apps/) requested 
 by the app
@@ -23,7 +23,7 @@ more detail in **Lifecycle Events**
 - `modules`: the list of modules this app provides.
   - `postInstallPage`: this is the first page where the user lands after clicking on the `Get Started` link after 
   installing the app. You can think of this page as the main index page for the app.
-  - `webhooks`: list of all the webhooks for the connect app. For this sample app, we've added some Jira webhooks 
+  - `webhooks`: list of all the webhooks for the Connect app. For this sample app, we've added some Jira webhooks 
   events. In our **Webhooks** page, we'll provide some webhook logs so you can get a better picture of what your app 
   will be listening to
   - `generalPages`: list of [pages/views](https://developer.atlassian.com/cloud/jira/software/modules/page/) within the app.
