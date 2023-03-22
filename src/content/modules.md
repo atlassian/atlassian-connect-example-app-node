@@ -46,7 +46,7 @@ and [pages and dialogs](https://developer.atlassian.com/cloud/jira/platform/abou
 these allow you to extend specific Jira features such as the issue tab panel and dashboard
 items.
 
-Please refer to our documentation for more information on [Jira modules](https://developer.atlassian.com/cloud/jira/platform/about-connect-modules-for-jira/.
+Please refer to our documentation for more information on [Jira modules](https://developer.atlassian.com/cloud/jira/platform/about-connect-modules-for-jira/).
 Connect modules
 ## 
 
