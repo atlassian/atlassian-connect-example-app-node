@@ -1,9 +1,9 @@
 import { envVars } from "./src/env";
 
 const appDescriptorUrl = `${envVars.APP_URL}/atlassian-connect.json`;
-const baseUrl = envVars.ATLASSIAN_URL;
-const username = envVars.JIRA_ADMIN_USERNAME;
-const password = envVars.JIRA_ADMIN_PASSWORD;
+const baseUrl = envVars.INSTALL_ATLASSIAN_URL;
+const username = envVars.INSTALL_JIRA_ADMIN_USERNAME;
+const password = envVars.INSTALL_JIRA_ADMIN_PASSWORD;
 
 const getUPMToken = async () => {
 	const apiUrl = `${baseUrl}/rest/plugins/1.0/`;
