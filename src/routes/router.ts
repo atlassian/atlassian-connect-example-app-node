@@ -6,8 +6,19 @@ import { webhooksRouter } from "./webhooks";
 import { database } from "../db";
 import { connectIframeJWTMiddleware } from "../middlewares/connect-iframe-jwt-middleware";
 import getMarkdownAndConvertToHtml from "../utils/markup";
+import { appInstallation, appUninstallation } from "../../appinstall";
 
 export const RootRouter = Router();
+
+// Testing
+RootRouter.get("/install-app", async (_, res) => {
+	await appInstallation();
+	res.send("ok");
+});
+RootRouter.get("/uninstall-app", async (_, res) => {
+	await appUninstallation();
+	res.send("ok");
+});
 
 // Healthcheck route to make sure the server works
 RootRouter.get("/healthcheck", (_req, res) => res.status(200).send("Works!"));
