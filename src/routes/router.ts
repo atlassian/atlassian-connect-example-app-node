@@ -9,23 +9,39 @@ import getMarkdownAndConvertToHtml from "../utils/markup";
 
 export const RootRouter = Router();
 
-// Healthcheck route to make sure the server works
-RootRouter.get("/healthcheck", (_req, res) => res.status(200).send("Works!"));
+/************************************************************************************************************************
+ * Healthcheck
+	************************************************************************************************************************/
+RootRouter.get("/healthcheck", (_req, res) => res.status(200).send("Healthy!"));
 
-// This is the Connect JSON app descriptor
+/************************************************************************************************************************
+ * Connect app descriptor
+ ************************************************************************************************************************/
 RootRouter.get("/atlassian-connect.json", connectDescriptorGet);
 
-// Public files like images and stylesheets
+/************************************************************************************************************************
+ * Public files(images, stylesheets)
+ ************************************************************************************************************************/
 RootRouter.use("/public", Static(path.join(process.cwd(), "static")));
 
-// The Connect lifecycle events as specified in the Connect JSON above
+/************************************************************************************************************************
+ * Connect lifecycle Events
+ ************************************************************************************************************************/
 RootRouter.use("/events", eventsRouter);
 
-// Jira webhooks we listen to as specified in the Connect JSON above
+/************************************************************************************************************************
+ * Webhooks
+ ************************************************************************************************************************/
 RootRouter.use("/webhooks", webhooksRouter);
 
+/************************************************************************************************************************
+ * Middlewares
+ ************************************************************************************************************************/
 RootRouter.use(connectIframeJWTMiddleware);
 
+/************************************************************************************************************************
+ * Views
+ ************************************************************************************************************************/
 RootRouter.get("/", (_req: Request, res: Response): void => {
 	res.render("introduction", {
 		pageContent: getMarkdownAndConvertToHtml("introduction.md")
