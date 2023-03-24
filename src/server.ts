@@ -26,16 +26,38 @@ app.use(RootRouter);
 
 const port = 3000;
 app.listen(port, async () => {
+	// App is now running
 	console.log(`Sample app listening on port ${port}`);
 
+	// This step is done for the free ngrok users, so that we bypass ngrok warning page
 	await byPassNgrokPage();
 	console.log("Starting the installation----------------");
 
+	// Install the app in Jira
 	await appInstallation();
 	console.log("App installation complete----------------");
 
-	console.log(`Before going to your app, please open this URL first: ${envVars.APP_URL}(this is just to bypass the ngrok page for free ngrok users)`);
-	console.log(`Then open your app in this URL: ${envVars.INSTALL_ATLASSIAN_URL}/plugins/servlet/ac/${envVars.APP_KEY}/acn-introduction`);
+	console.log(`
+	*********************************************************************************************************************
+	*********************************************************************************************************************
+
+	If you have a free account in ngrok, PLEASE DO THIS STEP FIRST!!!
+	Before going to your app, please open this URL first: ${envVars.APP_URL}.
+	This will open up the ngrok page, don't worry just click on the Visit button.
+	That's it, you're all ready!
+
+	*********************************************************************************************************************
+	*********************************************************************************************************************
+	`);
+	console.log(`
+	*********************************************************************************************************************
+	*********************************************************************************************************************
+
+	Now open your app in this URL: ${envVars.INSTALL_ATLASSIAN_URL}/plugins/servlet/ac/${envVars.APP_KEY}/acn-introduction
+
+	*********************************************************************************************************************
+	*********************************************************************************************************************
+	`);
 });
 
 
