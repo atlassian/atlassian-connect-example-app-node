@@ -26,6 +26,7 @@
     "baseUrl": "."
   },
   "include": [
+		"*.ts",
     "src/**/*",
     "test/**/*"
   ]

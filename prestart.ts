@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import { appInstallation } from "./appinstall";
 
 const envFileName = '.env';
 const envFilePath = path.resolve(__dirname, envFileName);
@@ -50,6 +51,8 @@ const waitForTunnel = async () => {
 (async function main() {
     try {
         await waitForTunnel();
+				console.log("Starting the installation----------------");
+				await appInstallation();
         process.exit();
     } catch (e) {
         process.exit(1);

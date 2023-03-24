@@ -6,7 +6,6 @@ import { webhooksRouter } from "./webhooks";
 import { database } from "../db";
 import { connectIframeJWTMiddleware } from "../middlewares/connect-iframe-jwt-middleware";
 import getMarkdownAndConvertToHtml from "../utils/markup";
-import { appInstallation, appUninstallation } from "../../appinstall";
 
 export const RootRouter = Router();
 
@@ -29,18 +28,6 @@ RootRouter.use("/public", Static(path.join(process.cwd(), "static")));
  * Connect lifecycle Events
  ************************************************************************************************************************/
 RootRouter.use("/events", eventsRouter);
-
-/************************************************************************************************************************
- * Install/Uninstall
- ************************************************************************************************************************/
-RootRouter.get("/install-app", async (_, res) => {
-	await appInstallation();
-	res.status(200).send("Successfully Installed");
-});
-RootRouter.get("/uninstall-app", async (_, res) => {
-	await appUninstallation();
-	res.status(200).send("Successfully Uninstalled");
-});
 
 /************************************************************************************************************************
  * Webhooks
