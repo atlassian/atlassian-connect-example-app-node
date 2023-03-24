@@ -1,4 +1,4 @@
-import { envVars } from "./src/env";
+import { envVars } from "../env";
 
 const appDescriptorUrl = `${envVars.APP_URL}/atlassian-connect.json`;
 const baseUrl = envVars.INSTALL_ATLASSIAN_URL;
@@ -45,7 +45,6 @@ const appInstallation = async () => {
 	}
 };
 
-
 const appUninstallation = async () => {
 	const apiUrl = `${baseUrl}/rest/plugins/1.0/${envVars.APP_KEY}-key`;
 
@@ -65,4 +64,13 @@ const appUninstallation = async () => {
 	}
 };
 
-export { appInstallation, appUninstallation };
+const byPassNgrokPage = () => fetch(envVars.APP_URL, {
+	method: "GET",
+	headers: new Headers({
+		"ngrok-skip-browser-warning": "1"
+	})
+}).then(response => response.text())
+	.then(data => console.log("Successfully bypassed ngrok: ", data))
+	.catch(err => console.error("Error when bypassing ngrok: ", err));
+
+export { appInstallation, appUninstallation, byPassNgrokPage };

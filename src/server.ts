@@ -1,7 +1,7 @@
 import express, { json } from "express";
 import { RootRouter } from "./routes/router";
 import { envVars } from "./env";
-import { appInstallation } from "../appinstall";
+import { appInstallation, byPassNgrokPage } from "./utils/appinstall";
 
 const app = express();
 
@@ -39,11 +39,4 @@ app.listen(port, async () => {
 });
 
 
-const byPassNgrokPage = () => fetch(envVars.APP_URL, {
-	method: "GET",
-	headers: new Headers({
-		"ngrok-skip-browser-warning": "1"
-	})
-}).then(response => response.text())
-	.then(data => console.log("Successfully bypassed ngrok", data))
-	.catch(err => console.error("Error when bypassing ngrok: ", err));
+
