@@ -75,7 +75,8 @@ export const connectAppDescriptor = {
 	},
 
 	/**
-	 * The list of modules this app provides.
+	 * Extensions for the user interfaces of Jira
+	 * like links, panels, pages, permissions, workflows etc.
 	 */
 	modules: {
 		/**
