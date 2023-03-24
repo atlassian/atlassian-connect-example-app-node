@@ -20,7 +20,7 @@ by the app
 - `lifecycle`: allows an app to register callbacks for events that occur in the lifecycle of an installation. When a 
 lifecycle event is fired, a POST request will be made to the appropriate URL registered for the event. We'll go into
 more detail in **Lifecycle Events**
-- `modules`: the list of modules this app provides.
+- `modules`: extensions for the parts of Jira.
   - `postInstallPage`: this is the first page where the user lands after clicking on the `Get Started` link after 
   installing the app. You can think of this page as the main index page for the app.
   - `webhooks`: list of all the webhooks for the Connect app. For this sample app, we've added some Jira webhooks 

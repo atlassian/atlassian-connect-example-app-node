@@ -10,33 +10,51 @@ import { appInstallation, appUninstallation } from "../../appinstall";
 
 export const RootRouter = Router();
 
-// Testing
+/************************************************************************************************************************
+ * Healthcheck
+ ************************************************************************************************************************/
+RootRouter.get("/healthcheck", (_req, res) => res.status(200).send("Healthy!"));
+
+/************************************************************************************************************************
+ * Connect app descriptor
+ ************************************************************************************************************************/
+RootRouter.get("/atlassian-connect.json", connectDescriptorGet);
+
+/************************************************************************************************************************
+ * Public files(images, stylesheets)
+ ************************************************************************************************************************/
+RootRouter.use("/public", Static(path.join(process.cwd(), "static")));
+
+/************************************************************************************************************************
+ * Connect lifecycle Events
+ ************************************************************************************************************************/
+RootRouter.use("/events", eventsRouter);
+
+/************************************************************************************************************************
+ * Install/Uninstall
+ ************************************************************************************************************************/
 RootRouter.get("/install-app", async (_, res) => {
 	await appInstallation();
-	res.send("ok");
+	res.status(200).send("Successfully Installed");
 });
 RootRouter.get("/uninstall-app", async (_, res) => {
 	await appUninstallation();
-	res.send("ok");
+	res.status(200).send("Successfully Uninstalled");
 });
 
-// Healthcheck route to make sure the server works
-RootRouter.get("/healthcheck", (_req, res) => res.status(200).send("Works!"));
-
-// This is the Connect JSON app descriptor
-RootRouter.get("/atlassian-connect.json", connectDescriptorGet);
-
-// Public files like images and stylesheets
-RootRouter.use("/public", Static(path.join(process.cwd(), "static")));
-
-// The Connect lifecycle events as specified in the Connect JSON above
-RootRouter.use("/events", eventsRouter);
-
-// Jira webhooks we listen to as specified in the Connect JSON above
+/************************************************************************************************************************
+ * Webhooks
+ ************************************************************************************************************************/
 RootRouter.use("/webhooks", webhooksRouter);
 
+/************************************************************************************************************************
+ * Middlewares
+ ************************************************************************************************************************/
 RootRouter.use(connectIframeJWTMiddleware);
 
+/************************************************************************************************************************
+ * Views
+ ************************************************************************************************************************/
 RootRouter.get("/", (_req: Request, res: Response): void => {
 	res.render("introduction", {
 		pageContent: getMarkdownAndConvertToHtml("introduction.md")
