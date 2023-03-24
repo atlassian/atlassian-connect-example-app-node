@@ -34,8 +34,8 @@ app.listen(port, async () => {
 	await appInstallation();
 	console.log("App installation complete----------------");
 
-	console.log(`Open this URL: ${envVars.INSTALL_ATLASSIAN_URL}/plugins/servlet/ac/${envVars.APP_KEY}/acn-introduction`);
-	// await open(`${envVars.INSTALL_ATLASSIAN_URL}/plugins/servlet/ac/${envVars.APP_KEY}/acn-introduction`);
+	console.log(`Before going to your app, please open this URL first: ${envVars.APP_URL}(this is just to bypass the ngrok page for free ngrok users)`);
+	console.log(`Then open your app in this URL: ${envVars.INSTALL_ATLASSIAN_URL}/plugins/servlet/ac/${envVars.APP_KEY}/acn-introduction`);
 });
 
 
