@@ -1,5 +1,7 @@
 import express, { json } from "express";
 import { RootRouter } from "./routes/router";
+import { envVars } from "./env";
+import { appInstallation } from "../appinstall";
 
 const app = express();
 
@@ -23,6 +25,25 @@ app.use(json());
 app.use(RootRouter);
 
 const port = 3000;
-app.listen(port, () => {
-	console.log(`Example app listening on port ${port}`);
+app.listen(port, async () => {
+	console.log(`Sample app listening on port ${port}`);
+
+	await byPassNgrokPage();
+	console.log("Starting the installation----------------");
+
+	await appInstallation();
+	console.log("App installation complete----------------");
+
+	console.log(`Open this URL: ${envVars.INSTALL_ATLASSIAN_URL}/plugins/servlet/ac/${envVars.APP_KEY}/acn-introduction`);
+	// await open(`${envVars.INSTALL_ATLASSIAN_URL}/plugins/servlet/ac/${envVars.APP_KEY}/acn-introduction`);
 });
+
+
+const byPassNgrokPage = () => fetch(envVars.APP_URL, {
+	method: "GET",
+	headers: new Headers({
+		"ngrok-skip-browser-warning": "1"
+	})
+}).then(response => response.text())
+	.then(data => console.log("Successfully bypassed ngrok", data))
+	.catch(err => console.error("Error when bypassing ngrok: ", err));
