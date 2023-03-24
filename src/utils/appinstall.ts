@@ -5,6 +5,9 @@ const baseUrl = envVars.INSTALL_ATLASSIAN_URL;
 const username = envVars.INSTALL_JIRA_ADMIN_USERNAME;
 const password = envVars.INSTALL_JIRA_ADMIN_PASSWORD;
 
+/**
+ * Get the UPM token first, this token is needed for installing the app
+ */
 const getUPMToken = async () => {
 	const apiUrl = `${baseUrl}/rest/plugins/1.0/`;
 
@@ -21,6 +24,9 @@ const getUPMToken = async () => {
 	}
 };
 
+/**
+ * Installing the Connect app in Jira
+ */
 const appInstallation = async () => {
 	const upmToken = await getUPMToken();
 	const apiUrl = `${baseUrl}/rest/plugins/1.0/?token=${upmToken}`;
@@ -45,6 +51,9 @@ const appInstallation = async () => {
 	}
 };
 
+/**
+ * Uninstall the Connect app from Jira
+ */
 const appUninstallation = async () => {
 	const apiUrl = `${baseUrl}/rest/plugins/1.0/${envVars.APP_KEY}-key`;
 
@@ -64,6 +73,11 @@ const appUninstallation = async () => {
 	}
 };
 
+/**
+ * Bypassing the ngrok Visit Page,
+ * to resolve the ERR_NGROK_6024 error coming from ngrok
+ * (Only for free users in ngrok)
+ */
 const byPassNgrokPage = () => fetch(envVars.APP_URL, {
 	method: "GET",
 	headers: new Headers({
