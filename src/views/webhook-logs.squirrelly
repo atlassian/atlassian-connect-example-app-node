@@ -17,6 +17,9 @@
             </div>
         </div>
 
+        <p>Whenever you create, update or delete any issue, the events are being captured using webhooks and can be seen below.</p>
+        <p>You can check out the <code>atlassian-connect.json</code> to view the webhooks defined.</p>
+
         <div class="logs-container">
             {{@if(it.logs.length)}}
                 {{@each(it.logs) => log}}
