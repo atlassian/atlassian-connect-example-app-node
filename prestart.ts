@@ -4,6 +4,11 @@ import * as path from 'path';
 const envFileName = '.env';
 const envFilePath = path.resolve(__dirname, envFileName);
 
+/**
+ * Fetching the list of running tunnels
+ *
+ * https://ngrok.com/docs/ngrok-agent/api/#request
+ */
 const callTunnel = async () => {
     const results = await Promise.all([
         fetch('http://tunnel:4040/api/tunnels').catch(() => undefined),
@@ -38,6 +43,10 @@ const waitForTunnel = async () => {
     }
 };
 
+
+/**
+ * This method update the APP_URL in the env file with the ngrok tunneled URL
+ */
 (async function main() {
     try {
         await waitForTunnel();
