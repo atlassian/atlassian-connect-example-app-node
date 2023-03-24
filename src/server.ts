@@ -40,16 +40,16 @@ app.listen(port, async () => {
 	console.log(`
 *********************************************************************************************************************
 
-	IF YOU ARE USING A FREE NGROK ACCOUNT, PLEASE DO THIS STEP FIRST!!!
-	Before going to your app, please open this URL first: ${envVars.APP_URL}.
-	This will open up the ngrok page, don't worry just click on the Visit button.
-	That's it, you're all ready!
+IF YOU ARE USING A FREE NGROK ACCOUNT, PLEASE DO THIS STEP FIRST!!!
+Before going to your app, please open this URL first: ${envVars.APP_URL}.
+This will open up the ngrok page, don't worry just click on the Visit button.
+That's it, you're all ready!
 
 *********************************************************************************************************************
 
 *********************************************************************************************************************
 
-	Now open your app in this URL: ${envVars.INSTALL_ATLASSIAN_URL}/plugins/servlet/ac/${envVars.APP_KEY}/acn-introduction
+Now open your app in this URL: ${envVars.INSTALL_ATLASSIAN_URL}/plugins/servlet/ac/${envVars.APP_KEY}/acn-introduction
 
 *********************************************************************************************************************
 `);
