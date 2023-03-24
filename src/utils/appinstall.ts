@@ -84,7 +84,7 @@ const byPassNgrokPage = () => fetch(envVars.APP_URL, {
 		"ngrok-skip-browser-warning": "1"
 	})
 }).then(response => response.text())
-	.then(() => console.log("Successfully bypassed ngrok: "))
+	.then(() => console.log("Successfully bypassed ngrok"))
 	.catch(err => console.error("Error when bypassing ngrok: ", err));
 
 export { appInstallation, appUninstallation, byPassNgrokPage };
