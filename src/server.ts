@@ -1,7 +1,7 @@
 import express, { json } from "express";
 import { RootRouter } from "./routes/router";
 import { envVars } from "./env";
-import { appInstallation, byPassNgrokPage } from "./utils/appinstall";
+import { appInstallation, appUninstallation, byPassNgrokPage } from "./utils/appinstall";
 
 const app = express();
 
@@ -31,11 +31,16 @@ app.listen(port, async () => {
 
 	// This step is done for the free ngrok users, so that we bypass ngrok warning page
 	await byPassNgrokPage();
-	console.log("Starting the installation----------------");
+
+	// Uninstall the app first
+	console.log("Uninstalling the app----------------");
+	await appUninstallation();
+	console.log("Uninstallation complete----------------");
 
 	// Install the app in Jira
+	console.log("Installing the app----------------");
 	await appInstallation();
-	console.log("App installation complete----------------");
+	console.log("Installation complete----------------");
 
 	console.log(`
 *********************************************************************************************************************
@@ -51,9 +56,5 @@ That's it, you're all ready!
 
 Now open your app in this URL: ${envVars.INSTALL_ATLASSIAN_URL}/plugins/servlet/ac/${envVars.APP_KEY}/acn-introduction
 
-*********************************************************************************************************************
-`);
+*********************************************************************************************************************`);
 });
-
-
-
