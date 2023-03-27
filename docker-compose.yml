@@ -17,3 +17,17 @@ services:
     ports:
       - "3000:3000" # server port
       - "9229:9229" # debug port
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/healthcheck"]
+      interval: 10s
+      retries: 5
+
+  installation:
+    container_name: install-to-jira
+    depends_on:
+      app:
+        condition: service_healthy
+    build:
+      dockerfile: etc/app-install/Dockerfile
+    env_file:
+      - .env
