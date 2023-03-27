@@ -34,19 +34,11 @@ You can run this app in 3 simple steps:
 
 - **Running docker compose** 
   - Then simply run `docker-compose up`.
-  - Once the docker finishes running, you can view the tunneled URL in the logs. ![img.png](static/images/tunnel-output.png)
+  - Please be patient as it will take a few minutes for everything to be setup. When everything is setup, you should see the URL in the terminal as in the picture below. ![img.png](static/images/tunnel-output.png)
 
-After you have the tunneled URL, check for the config in the url `/atlassian-connect.json`(`https://TUNNELED_URL/atlassian-connect.json`). This is the __app descriptor URL__ for uploading the app and installing in Jira.
 > **Note:** _If you are using a free version of ngrok, please open the tunneled URL first. This needs to be done to bypass the ngrok browser warning. Just visit the ngrok warning page and just click on the Visit button._
 
-## Installing the App
-Go to your Jira instance and do the following steps:
-- From the header menu, select Apps -> Manage your apps.
-- Verify the filter is set to User-installed, and select Settings beneath the User-installed apps table.
-- On the Settings pop-up, add Enable development mode and click Apply. Refresh the page. 
-- On the right side of the header, there should now appear a button Upload app. Click it and enter the tunneled URL `/atlassian-connect.json`(`https://TUNNELED_URL/atlassian-connect.json`)
-- Click Upload. 
-- That's it! You're done. 🎉
+At the very end, you can see the URL the index page of your app. Just open the URL and that's it, you're ready!
 
 ## Running your application
 - TBD
