@@ -1,4 +1,4 @@
-# [WIP] atlassian-connect-sample-app-node
+# atlassian-connect-sample-app-node
 
 > **_NOTE:_**  This repository is in progress and is not ready yet.
 
@@ -25,15 +25,19 @@ This app is aimed to help you to easily add your integration in Jira.
 
 ## Getting started
 You can run this app in 3 simple steps:
-- **Installing dependencies** - Run `yarn install` for installing all the dependencies for this app.
+- **Installing dependencies** 
+  - Run `yarn install` for installing all the dependencies for this app.
 
-- **Tunneling** - For this purpose, we are using [ngrok](https://ngrok.com/docs/getting-started). You need to set the ngrok authtoken in the env file, so please make sure you have a ngrok account. 
-Simply go to [ngrok](https://dashboard.ngrok.com/get-started/your-authtoken) and copy your authtoken and paste it in the [.env](./.env) file.
+- **Tunneling**
+  - For this purpose, we are using [ngrok](https://ngrok.com/docs/getting-started). You need to set the ngrok authtoken in the env file, so please make sure you have a ngrok account.
+  - Simply go to [ngrok](https://dashboard.ngrok.com/get-started/your-authtoken) and copy your authtoken and paste it in the [.env](./.env) file.
 
-- **Running docker compose** - Then simply run `docker-compose up`. Once the docker finishes running, you can view the tunneled URL in the logs. 
-![img.png](static/images/tunnel-output.png)
+- **Running docker compose** 
+  - Then simply run `docker-compose up`.
+  - Once the docker finishes running, you can view the tunneled URL in the logs. ![img.png](static/images/tunnel-output.png)
 
 After you have the tunneled URL, check for the config in the url `/atlassian-connect.json`(`https://TUNNELED_URL/atlassian-connect.json`). This is the __app descriptor URL__ for uploading the app and installing in Jira.
+> **Note:** _If you are using a free version of ngrok, please open the tunneled URL first. This needs to be done to bypass the ngrok browser warning. Just visit the ngrok warning page and just click on the Visit button._
 
 ## Installing the App
 Go to your Jira instance and do the following steps:

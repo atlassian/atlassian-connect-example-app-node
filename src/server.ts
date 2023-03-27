@@ -1,7 +1,7 @@
 import express, { json } from "express";
 import { RootRouter } from "./routes/router";
 import { envVars } from "./env";
-import { appInstallation, appUninstallation, byPassNgrokPage } from "./utils/appinstall";
+import { appInstallation, appUninstallation, byPassNgrokPage } from "./utils/app-installation";
 
 const app = express();
 
