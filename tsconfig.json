@@ -1,32 +1,32 @@
 {
-	"compilerOptions": {
-		"experimentalDecorators": true,
-		"target": "ES2020",
-		"module": "commonjs",
-		"moduleResolution": "node",
-		"resolveJsonModule": true,
-		"allowSyntheticDefaultImports": true,
+  "compilerOptions": {
+      "experimentalDecorators": true,
+    "target": "ES2020",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
 		"allowJs": true,
-		"importHelpers": true,
-		"alwaysStrict": true,
-		"strictNullChecks": true,
-		"strictBindCallApply": true,
-		"strictFunctionTypes": true,
-		"sourceMap": true,
-		"forceConsistentCasingInFileNames": true,
-		"noFallthroughCasesInSwitch": true,
-		"noImplicitReturns": true,
-		"noUnusedLocals": true,
-		"noUnusedParameters": true,
-		"noImplicitAny": false,
-		"noImplicitThis": false,
-		"esModuleInterop": true,
+    "importHelpers": true,
+    "alwaysStrict": true,
+    "strictNullChecks": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "sourceMap": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitAny": false,
+    "noImplicitThis": false,
+    "esModuleInterop": true,
 		"jsx": "react",
-		"outDir": "build",
-		"baseUrl": "."
-	},
-	"include": [
-		"src/**/*",
-		"test/**/*"
-	]
+    "outDir": "build",
+    "baseUrl": "."
+  },
+  "include": [
+    "src/**/*",
+    "test/**/*"
+  ]
 }
