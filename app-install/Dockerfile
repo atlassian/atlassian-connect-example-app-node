@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 
-COPY ./app-install.sh ./app-install.sh
+COPY app-install/app-install.sh ./app-install.sh
 RUN chmod +x app-install.sh
 
 RUN apt update

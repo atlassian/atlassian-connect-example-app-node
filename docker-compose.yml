@@ -28,6 +28,6 @@ services:
       app:
         condition: service_healthy
     build:
-      dockerfile: etc/app-install/Dockerfile
+      dockerfile: app-install/Dockerfile
     env_file:
       - .env
