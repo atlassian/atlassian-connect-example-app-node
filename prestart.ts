@@ -15,12 +15,10 @@ const callTunnel = async () => {
         fetch('http://localhost:4040/api/tunnels').catch(() => undefined)
     ]);
 
-    const response = results.find((value) => value?.ok);
-
-    return response ? response.json() : Promise.reject();
+    return await results.find((value) => value?.ok)?.json() || Promise.reject();
 };
 
-const waitForTunnel = async () => {
+const waitForTunnel = async ():Promise<string | void> => {
     // Call the service 3 times until ready
     const response = await callTunnel()
         .catch(callTunnel)
@@ -30,11 +28,12 @@ const waitForTunnel = async () => {
         try {
             let envContents = fs.readFileSync(envFilePath, { encoding: 'utf-8' });
             const tunnel = response.tunnels.find(tunnel => tunnel.public_url.startsWith('https'));
-            const ngrokDomain = tunnel.public_url;
-            console.info(`ngrok forwarding ${ngrokDomain} to ${tunnel.config.addr}`);
-            envContents = envContents.replace(/APP_URL=.*/, `APP_URL=${ngrokDomain}`);
+            const ngrokUrl = tunnel.public_url;
+            console.info(`ngrok forwarding ${ngrokUrl} to ${tunnel.config.addr}`);
+            envContents = envContents.replace(/APP_URL=.*/, `APP_URL=${ngrokUrl}`);
             fs.writeFileSync(envFilePath, envContents);
-            console.info(`Updated ${envFileName} file to use ngrok domain '${ngrokDomain}'.`);
+            console.info(`Updated ${envFileName} file to use ngrok domain '${ngrokUrl}'.`);
+						return ngrokUrl;
         } catch (e) {
             console.info(`'${envFilePath}' not found, skipping...`, e);
         }
