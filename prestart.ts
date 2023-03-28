@@ -48,15 +48,7 @@ const waitForTunnel = async ():Promise<string | void> => {
  */
 (async function main() {
     try {
-        const tunnelUrl = await waitForTunnel();
-				if(tunnelUrl) {
-					// Check to see if tunnel has browser
-					/*const response = await fetch(tunnelUrl).catch(() => undefined)
-					const body = await response?.text();
-					if(body?.includes("#ngrok")) {
-
-					}*/
-				}
+        await waitForTunnel();
         process.exit();
     } catch (e) {
         process.exit(1);
