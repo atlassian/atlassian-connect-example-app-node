@@ -1,7 +1,7 @@
 {
-  "name": "@atlassian/atlassian-connect-sample-app-node",
+  "name": "@atlassian/node-connect-example",
   "version": "1.0.0",
-  "repository": "git@github.com:atlassian/atlassian-connect-sample-app-node.git",
+  "repository": "git@github.com:atlassian/atlassian-connect-example-app-node.git",
   "license": "MIT",
   "private": false,
   "scripts": {

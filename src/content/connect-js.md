@@ -37,7 +37,7 @@ Once this has been added you'll be able to access the following features:
 - Request—make an XMLHttpRequest to the host product
 - User—obtain the user's Atlassian account ID, time zone, and locale
 
-In this sample app you'll see that in our views, we're using the navigator feature to navigate from one page to the next:
+In this example app you'll see that in our views, we're using the navigator feature to navigate from one page to the next:
 
 ```
 document.getElementById('homePage').addEventListener('click', () => {

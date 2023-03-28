@@ -1,9 +1,9 @@
 # Introduction
 
-Welcome to the Node.js Connect sample app! This sample app has been built to help you and your team get up-and-running faster
+Welcome to the Atlassian Connect Node.js example app! This has been built to help you and your team get up-and-running faster
 by providing examples of the key features, functionality and things you'll need to create a
 [Connect](https://developer.atlassian.com/cloud/bitbucket/faqs/#:~:text=Atlassian%20Connect%20is%20a%20distributed,wherever%2C%20whenever%2C%20and%20however)
-app. In this sample app you'll find information about the following:
+app. In this example app you'll find information about the following:
 
 - [**Atlassian Connect JSON**](/acn-config): what it is, an example of an Atlassian Connect JSON file, and a link to where you can get more information
 - [**Lifecycle Events**](/acn-lifecycle-events): outline of what lifecycle events are supported, an example of how to use them, and a link to documentation
