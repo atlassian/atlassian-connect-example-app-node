@@ -13,12 +13,12 @@ export const connectAppDescriptor = {
 	/**
 	 * Name of the Connect app
 	 */
-	name: "Atlassian Connect Sample Node App",
+	name: "Atlassian Connect Example Node App",
 
 	/**
 	 * Description for the Connect app
 	 */
-	description: "Atlassian Connect Sample Node App",
+	description: "Atlassian Connect Example Node App",
 
 	/**
 	 *  A unique key to identify your Connect app. This key must be <= 64 characters.
@@ -26,9 +26,9 @@ export const connectAppDescriptor = {
 	key: envVars.APP_KEY,
 
 	/**
-	 * The base url of the remote app, which is used for all communications back to the app instance.
+	 * The base url of the server, which is used for all communications between Connect and the app.
 	 *
-	 * For this sample app, this is the tunneled URL which is set in the `prestart.ts`
+	 * The tunneled URL which is set in the `prestart.ts`
 	 */
 	baseUrl: envVars.APP_URL,
 
@@ -36,8 +36,8 @@ export const connectAppDescriptor = {
 	 * The vendor who is offering this Connect app.
 	 */
 	vendor: {
-		name: "Node Connect app sample",
-		url: "https://github.com/atlassian/atlassian-connect-sample-app-node/"
+		name: "Atlassian",
+		url: "https://atlassian.com"
 	},
 
 	/**
@@ -93,7 +93,7 @@ export const connectAppDescriptor = {
 
 		/**
 		 * List of all the webhooks for the Connect app.
-		 * For this sample app, we've added some Jira webhooks events.
+		 * For this example, we've added some Jira webhooks events.
 		 *
 		 * https://developer.atlassian.com/cloud/jira/platform/webhooks/
 		 */
@@ -122,7 +122,7 @@ export const connectAppDescriptor = {
 				key: "addon-web-section",
 				location: "admin_plugins_menu",
 				name: {
-					value: "Connect Sample Node App"
+					value: "Node Connect Example App"
 				}
 			}
 		],
@@ -144,7 +144,7 @@ export const connectAppDescriptor = {
 				 * The url is generated as a combination of your add-on key and module key.
 				 *
 				 * For instance:
-				 * The node app URL `https://<TUNNELED_URL>/config` is now mapped to `https://<JIRAHOST_INSTANCE>/plugins/servlet/ac/com.atlassian.sample-app-node/acn-config`
+				 * The node app URL `https://<TUNNELED_URL>/config` is now mapped to `https://<JIRAHOST_INSTANCE>/plugins/servlet/ac/com.example.node-connect-app/acn-config`
 				 */
 				key: "acn-config",
 

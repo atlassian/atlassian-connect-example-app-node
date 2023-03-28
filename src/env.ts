@@ -19,6 +19,6 @@ if (!variables?.NGROK_AUTHTOKEN) {
 }
 
 export const envVars: EnvVars = {
-	APP_KEY: "com.atlassian.sample-app-node",
+	APP_KEY: "com.example.node-connect-app",
 	...variables
 } as EnvVars;
