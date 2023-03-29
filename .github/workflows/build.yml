@@ -48,7 +48,7 @@ jobs:
       - run: yarn install --frozen-lockfile
       - name: create .env file
         run: |
-          echo "APP_URL=http://localhost" >> .env
+          echo "APP_URL=http://localhost" > .env
           echo "NGROK_AUTHTOKEN=${{ secrets.NGROK_AUTHTOKEN }}" >> .env
           echo "E2E_ATLASSIAN_URL=${{ secrets.E2E_ATLASSIAN_URL }}" >> .env
           echo "E2E_JIRA_ADMIN_USERNAME=${{ secrets.E2E_JIRA_ADMIN_USERNAME }}" >> .env

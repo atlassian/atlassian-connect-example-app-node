@@ -7,8 +7,6 @@
         Please replace this if you want to add your own css frameworks -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aui/9.5.1/aui/aui-prototyping.min.css" />
     <link rel="stylesheet" href="/public/css/main.css" media="all">
-    <link rel="stylesheet" href="/public/css/sidebar.css" media="all">
-    <link rel="stylesheet" href="/public/css/back-nav.css" media="all">
 
     <!-- This script is needed for all the views in the Connect app -->
     <script src="https://connect-cdn.atl-paas.net/all.js" data-options="sizeToParent:true" async></script>
@@ -16,6 +14,10 @@
 
 <body>
     <section class="ac-content">
+        <button class="aui-button aui-button-subtle" id="feedback-button" onclick="window.open('https://github.com/atlassian/atlassian-connect-example-app-node/issues/new/choose')">
+            <span class="aui-icon aui-icon-small aui-iconfont-feedback">Feedback</span>
+            Give Feedback
+        </button>
         {{* it.content }}
     </section>
     <script src="/public/js/index.js"></script>
