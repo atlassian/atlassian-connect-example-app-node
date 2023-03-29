@@ -36,7 +36,7 @@ contained in this security context include:
 - a `clientKey` for identifying the app
 - a `sharedSecret` (used to create and validate JWT tokens). The shared secret can be up to 128 characters in length.
 
-![installation handshake diagram](./images/connect-installation-handshake.png)
+![installation handshake diagram](images/connect-installation-handshake.png)
 
 > **_NOTE:_**  The installation handshake only occurs when you are using the optional [lifecycle event](https://developer.atlassian.com/platform/forge/events-reference/life-cycle/) `installed`.
 

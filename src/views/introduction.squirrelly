@@ -1,6 +1,0 @@
-{{@extendsFile('./layout.squirrelly')}}
-    {{#title}}
-    Introduction
-    {{#content}}
-    <div id="introductionPageContent" data-page-content="{{ it.pageContent }}"></div>
-{{/extendsFile}}

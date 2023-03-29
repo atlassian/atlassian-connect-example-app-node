@@ -5,6 +5,6 @@
     {{@includeFile('./partial/sidebar.squirrelly') /}}
     <div>
         {{@includeFile('./partial/back-nav.squirrelly') /}}
-        <div id="authWithJwtAndStorage" data-page-content="{{ it.pageContent }}"></div>
+        {{* it.pageContent }}
     </div>
 {{/extendsFile}}

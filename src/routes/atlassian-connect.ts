@@ -84,33 +84,12 @@ export const connectAppDescriptor = {
 		 * You can think of this page as the main index page for the app.
 		 */
 		postInstallPage: {
-			url: "/",
-			key: "acn-introduction",
+			url: "/get-started",
+			key: "acn-get-started",
 			name: {
-				value: "Index"
+				value: "Get Started"
 			}
 		},
-
-		/**
-		 * List of all the webhooks for the Connect app.
-		 * For this example, we've added some Jira webhooks events.
-		 *
-		 * https://developer.atlassian.com/cloud/jira/platform/webhooks/
-		 */
-		webhooks: [
-			{
-				event: "jira:issue_created",
-				url: "/webhooks/jira/issue-created"
-			},
-			{
-				event: "jira:issue_deleted",
-				url: "/webhooks/jira/issue-deleted"
-			},
-			{
-				event: "jira:issue_updated",
-				url: "/webhooks/jira/issue-updated"
-			}
-		],
 
 		/**
 		 * Defines the new sections in the application menus.
@@ -119,10 +98,11 @@ export const connectAppDescriptor = {
 		 */
 		webSections: [
 			{
-				key: "addon-web-section",
+				key: "connect-node-app-section",
 				location: "admin_plugins_menu",
+				weight: 0,
 				name: {
-					value: "Node Connect Example App"
+					value: "Connect Example Node App"
 				}
 			}
 		],
@@ -132,6 +112,22 @@ export const connectAppDescriptor = {
 		 * https://developer.atlassian.com/cloud/jira/software/modules/page/
 		 */
 		generalPages: [
+			/**
+			 * The postInstall page is defined here again with a different key and a different location
+			 *
+			 * Key has to be unique, so used a different one for this
+			 * Location is pointing to the key defined in the webSection module
+			 *
+			 * This ensures that this page will always have Jira's left sidebar opened for this page
+			 */
+			{
+				url: "/introduction",
+				key: "acn-introduction",
+				name: {
+					value: "Introduction"
+				},
+				location: "admin_plugins_menu/connect-node-app-section"
+			},
 			{
 				/**
 				 * The url to retrieve the content from. This must be relative to the add-on's baseUrl.
@@ -154,7 +150,7 @@ export const connectAppDescriptor = {
 				 * Jira -> https://marketplace.atlassian.com/apps/1211656/web-fragment-finder?hosting=cloud&tab=overview
 				 * Confluence -> https://marketplace.atlassian.com/apps/1215092/web-fragment-finder-for-confluence?hosting=cloud&tab=overview
 				 */
-				location: "none",
+				location: "admin_plugins_menu/connect-node-app-section",
 
 				/**
 				 * A human-readable name for the page.
@@ -166,7 +162,7 @@ export const connectAppDescriptor = {
 			{
 				url: "/logs/webhooks",
 				key: "acn-logs-webhooks",
-				location: "none",
+				location: "admin_plugins_menu/connect-node-app-section",
 				name: {
 					"value": "Logs for webhooks"
 				}
@@ -174,7 +170,7 @@ export const connectAppDescriptor = {
 			{
 				url: "/connect-library",
 				key: "acn-js-library",
-				location: "none",
+				location: "admin_plugins_menu/connect-node-app-section",
 				name: {
 					"value": "Connect JS library"
 				}
@@ -182,7 +178,7 @@ export const connectAppDescriptor = {
 			{
 				url: "/authentication",
 				key: "acn-authentication",
-				location: "none",
+				location: "admin_plugins_menu/connect-node-app-section",
 				name: {
 					"value": "iFrame jwt authentication"
 				}
@@ -190,7 +186,7 @@ export const connectAppDescriptor = {
 			{
 				url: "/modules",
 				key: "acn-modules",
-				location: "none",
+				location: "admin_plugins_menu/connect-node-app-section",
 				name: {
 					"value": "Creating modules with Connect"
 				}
@@ -198,7 +194,7 @@ export const connectAppDescriptor = {
 			{
 				url: "/lifecycle-events",
 				key: "acn-lifecycle-events",
-				location: "none",
+				location: "admin_plugins_menu/connect-node-app-section",
 				name: {
 					"value": "Lifecycle events"
 				}
@@ -206,7 +202,7 @@ export const connectAppDescriptor = {
 			{
 				url: "/making-api-requests",
 				key: "acn-api-requests",
-				location: "none",
+				location: "admin_plugins_menu/connect-node-app-section",
 				name: {
 					"value": "Making API requests"
 				}
@@ -214,26 +210,31 @@ export const connectAppDescriptor = {
 			{
 				url: "/marketplace",
 				key: "acn-marketplace",
-				location: "none",
+				location: "admin_plugins_menu/connect-node-app-section",
 				name: {
 					"value": "Atlassian Marketplace"
 				}
-			},
-			/**
-			 * The postInstall page is defined here again with a different key and a different location
-			 *
-			 * Key has to be unique, so used a different one for this
-			 * Location is pointing to the key defined in the webSection module
-			 *
-			 * This ensures that this page will always have Jira's left sidebar opened for this page
-			 */
+			}
+		],
+
+		/**
+		 * List of all the webhooks for the Connect app.
+		 * For this example, we've added some Jira webhooks events.
+		 *
+		 * https://developer.atlassian.com/cloud/jira/platform/webhooks/
+		 */
+		webhooks: [
 			{
-				url: "/",
-				key: "acn-home",
-				name: {
-					value: "Introduction"
-				},
-				location: "admin_plugins_menu/addon-web-section"
+				event: "jira:issue_created",
+				url: "/webhooks/jira/issue-created"
+			},
+			{
+				event: "jira:issue_deleted",
+				url: "/webhooks/jira/issue-deleted"
+			},
+			{
+				event: "jira:issue_updated",
+				url: "/webhooks/jira/issue-updated"
 			}
 		]
 	}

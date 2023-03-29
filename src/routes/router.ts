@@ -5,7 +5,7 @@ import { eventsRouter } from "./events";
 import { webhooksRouter } from "./webhooks";
 import { database } from "../db";
 import { connectIframeJWTMiddleware } from "../middlewares/connect-iframe-jwt-middleware";
-import getMarkdownAndConvertToHtml from "../utils/markup";
+import { getMarkdownAndConvertToHtml } from "../utils/markup";
 
 export const RootRouter = Router();
 
@@ -42,9 +42,17 @@ RootRouter.use(connectIframeJWTMiddleware);
 /************************************************************************************************************************
  * Views
  ************************************************************************************************************************/
-RootRouter.get("/", (_req: Request, res: Response): void => {
-	res.render("introduction", {
-		pageContent: getMarkdownAndConvertToHtml("introduction.md")
+RootRouter.get("/get-started", (_req: Request, res: Response): void => {
+	res.render("layout", {
+		title: "Get Started",
+		content: getMarkdownAndConvertToHtml("get-started.md")
+	});
+});
+
+RootRouter.get("/introduction", (_req: Request, res: Response): void => {
+	res.render("layout", {
+		title: "Introduction",
+		content: getMarkdownAndConvertToHtml("introduction.md")
 	});
 });
 

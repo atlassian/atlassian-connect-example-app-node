@@ -23,8 +23,8 @@ renderer.link = (href: string, _, text: string): string => {
 /**
  * Converts the content of the markdown files to corresponding HTML
  */
-const getMarkdownAndConvertToHtml = (fileName: string): string => {
-	const filePath = path.join(__dirname, "..", "content", fileName);
+export const getMarkdownAndConvertToHtml = (fileName: string): string => {
+	const filePath = path.resolve(__dirname, "../views/content", fileName);
 	const contents = fs.readFileSync(filePath);
 	// TODO - see if there's a way to modify the way we are using marked.js so we can pass data directly to HTML elements
 	const markdownToHtml = marked.parse(contents.toString(), { renderer });
@@ -32,9 +32,7 @@ const getMarkdownAndConvertToHtml = (fileName: string): string => {
 	return sanitizeHtml(markdownToHtml, {
 		allowedAttributes: {
 			span: [ "class", "id", "data-connect-module-key" ],
-			a: [ "href", "target" ]
+			a: [ "href", "target", "data-connect-module-key" ]
 		}
 	});
 };
-
-export default getMarkdownAndConvertToHtml;
