@@ -1,5 +1,5 @@
-# App key defined for this sample app
-APP_KEY=com.atlassian.sample-app-node
+# App key defined for this example app
+APP_KEY=com.example.node-connect-app
 # Fetching the new ngrok URL, not fetching the one from the .env because its not updated
 BASE_URL=$(curl --silent http://tunnel:4040/api/tunnels | jq -r '.tunnels[] | select(.proto == "https") | .public_url')
 
