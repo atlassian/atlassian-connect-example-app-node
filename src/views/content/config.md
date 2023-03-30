@@ -1,5 +1,3 @@
-# Atlassian Connect JSON
-
 When you create a Connect app you'll need to include an app descriptor JSON file. This is what you'll use to
 provide information to Atlassian about your application, also known as an add-on. In this example app you'll find 
 the configuration for this in src/config/index.ts which is what we are rendering below. Included in this project's 
@@ -30,7 +28,7 @@ more detail in **Lifecycle Events**
     - `url`: the url to retrieve the content from. This must be relative to your app's baseUrl.
     - `key`: a key to identify this module. The key is used to generate the url to your add-on's module e.g.
     The node app URL `https://<TUNNELED_URL>/config` is now mapped to 
-    `https://<JIRAHOST_INSTANCE>/plugins/servlet/ac/com.example.node-connect-app/acn-config`
+    `https://<JIRAHOST_INSTANCE>/plugins/servlet/ac/com.example.node-connect-app/config`
     - `location`: defines the location in the application interface where the page's link should appear. For finding 
     locations, please use the linked web fragment finders for 
     [Jira](https://marketplace.atlassian.com/apps/1211656/web-fragment-finder?hosting=cloud&tab=overview)

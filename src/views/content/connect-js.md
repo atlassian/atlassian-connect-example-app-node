@@ -1,5 +1,3 @@
-# Connect JavaScript API
-
 Connect apps extend Jira and Confluence by adding a custom iframe into the products' web pages. This iframe instance is 
 on a different domain or hostname from the parent page and so is a 
 [sandboxed environment](https://en.wikipedia.org/wiki/Sandbox_%28computer_security%29). The browser's same origin policy 
@@ -41,7 +39,7 @@ In this example app you'll see that in our views, we're using the navigator feat
 
 ```
 document.getElementById('homePage').addEventListener('click', () => {
-  AP.navigator.go('addonmodule', { moduleKey: 'acn-introduction' });
+  AP.navigator.go('addonmodule', { moduleKey: 'introduction' });
 });
 ```
 

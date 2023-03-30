@@ -84,8 +84,8 @@ export const connectAppDescriptor = {
 		 * You can think of this page as the main index page for the app.
 		 */
 		postInstallPage: {
-			url: "/get-started",
-			key: "acn-get-started",
+			url: "/pages/get-started",
+			key: "get-started",
 			name: {
 				value: "Get Started"
 			}
@@ -121,8 +121,8 @@ export const connectAppDescriptor = {
 			 * This ensures that this page will always have Jira's left sidebar opened for this page
 			 */
 			{
-				url: "/introduction",
-				key: "acn-introduction",
+				url: "/pages/introduction",
+				key: "introduction",
 				name: {
 					value: "Introduction"
 				},
@@ -132,7 +132,7 @@ export const connectAppDescriptor = {
 				/**
 				 * The url to retrieve the content from. This must be relative to the add-on's baseUrl.
 				 */
-				url: "/config",
+				url: "/pages/config",
 
 				/**
 				 * A key to identify this module.
@@ -140,9 +140,9 @@ export const connectAppDescriptor = {
 				 * The url is generated as a combination of your add-on key and module key.
 				 *
 				 * For instance:
-				 * The node app URL `https://<TUNNELED_URL>/config` is now mapped to `https://<JIRAHOST_INSTANCE>/plugins/servlet/ac/com.example.node-connect-app/acn-config`
+				 * The node app URL `https://<TUNNELED_URL>/config` is now mapped to `https://<JIRAHOST_INSTANCE>/plugins/servlet/ac/com.example.node-connect-app/config`
 				 */
-				key: "acn-config",
+				key: "config",
 
 				/**
 				 * Defines the location in the application interface where the page's link should appear.
@@ -156,60 +156,60 @@ export const connectAppDescriptor = {
 				 * A human-readable name for the page.
 				 */
 				name: {
-					"value": "Connect Descriptor"
+					"value": "Connect JSON Manifest"
 				}
 			},
 			{
-				url: "/logs/webhooks",
-				key: "acn-logs-webhooks",
+				url: "/pages/lifecycle-events",
+				key: "lifecycle-events",
 				location: "admin_plugins_menu/connect-node-app-section",
 				name: {
-					"value": "Logs for webhooks"
+					"value": "Lifecycle Events"
 				}
 			},
 			{
-				url: "/connect-library",
-				key: "acn-js-library",
+				url: "/pages/modules",
+				key: "modules",
+				location: "admin_plugins_menu/connect-node-app-section",
+				name: {
+					"value": "Connect Modules"
+				}
+			},
+			{
+				url: "/pages/connect-library",
+				key: "js-library",
 				location: "admin_plugins_menu/connect-node-app-section",
 				name: {
 					"value": "Connect JS library"
 				}
 			},
 			{
-				url: "/authentication",
-				key: "acn-authentication",
+				url: "/pages/authentication",
+				key: "authentication",
 				location: "admin_plugins_menu/connect-node-app-section",
 				name: {
-					"value": "iFrame jwt authentication"
+					"value": "Iframe JWT Authentication"
 				}
 			},
 			{
-				url: "/modules",
-				key: "acn-modules",
+				url: "/pages/making-api-requests",
+				key: "api-requests",
 				location: "admin_plugins_menu/connect-node-app-section",
 				name: {
-					"value": "Creating modules with Connect"
+					"value": "Making API Requests"
 				}
 			},
 			{
-				url: "/lifecycle-events",
-				key: "acn-lifecycle-events",
+				url: "/pages/webhooks",
+				key: "webhooks",
 				location: "admin_plugins_menu/connect-node-app-section",
 				name: {
-					"value": "Lifecycle events"
+					"value": "Webhooks"
 				}
 			},
 			{
-				url: "/making-api-requests",
-				key: "acn-api-requests",
-				location: "admin_plugins_menu/connect-node-app-section",
-				name: {
-					"value": "Making API requests"
-				}
-			},
-			{
-				url: "/marketplace",
-				key: "acn-marketplace",
+				url: "/pages/marketplace",
+				key: "marketplace",
 				location: "admin_plugins_menu/connect-node-app-section",
 				name: {
 					"value": "Atlassian Marketplace"

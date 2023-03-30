@@ -1,5 +1,3 @@
-# Auth with JWT and Storage
-
 Atlassian Connect authenticates apps using JWT tokens. At installation time, the Connect app and the Atlassian host 
 product exchange a security context containing an installation secret used to create and validate JWT tokens for use 
 in API calls.
@@ -135,7 +133,7 @@ In this example app, we use the [atlassian-jwt](https://www.npmjs.com/package/at
 called `connectIframeJWTMiddleware`, which decodes the JWT token from Jira, verifies it and sets the `clientKey` in `res.locals`.
 The tenant (Jira site) for each instance of the app is recognized based on this `clientKey`. Step by step, 
 `connectIframeJWTMiddleware` is responsible for:
-- injecting the Jira instance URL into the [iframe](./modules.md/#iframe) url
+- injecting the Jira instance URL into the iframe url
 - decoding JWT token without verification
 - get the jira tenant associated with the url
 - tries to verify the JWT token

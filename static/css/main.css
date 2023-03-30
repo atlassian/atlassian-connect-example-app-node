@@ -2,18 +2,49 @@ body {
     background: #fff;
 }
 
-.ac-content {
-    position: relative;
-    font-size: 14px;
-    line-height: 1.7;
-    height: 100%;
+body > .container {
+    display: flex;
+    flex-direction: column;
     margin: 1.6em 2.6em;
 }
 
-#feedback-button {
-    position: absolute;
-    top: 0;
-    right: 0;
+.ac-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    position: relative;
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 3em;
+}
+
+nav {
+    display:flex;
+    flex-direction: row;
+}
+
+nav > div {
+    display: flex;
+    flex-grow: 1;
+}
+
+nav #back-button {
+    justify-content: flex-start;
+}
+
+nav #next-button {
+    justify-content: flex-end;
+}
+
+#title {
+    display: flex;
+    flex-direction: row;
+    margin: 1em 0 1.6em;
+}
+
+#title h1 {
+    display: flex;
+    flex-grow: 1;
 }
 
 .link-span:first-of-type {
@@ -49,7 +80,7 @@ pre {
 
 
 /* SIDEBAR */
-.acn-sidebar {
+.sidebar {
     list-style: none;
     padding: 1.6em 1.5em;
     width: 50%;
@@ -57,7 +88,7 @@ pre {
     border-right: 1px solid #efeff2;
 }
 
-.acn-sidebar-submenu {
+.sidebar-submenu {
     margin-top: 0;
     list-style: none;
     padding-left: 1.2em;
@@ -72,7 +103,7 @@ pre {
 }
 
 /* BACK NAV */
-.acn-header {
+.header {
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -81,10 +112,10 @@ pre {
     margin-bottom: 1.5em;
 }
 
-.acn-header > .aui-icon {
+.header > .aui-icon {
     margin-right: 0.12em;
 }
 
-.acn-header-text:hover {
+.header-text:hover {
     text-decoration: underline;
 }

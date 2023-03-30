@@ -1,5 +1,3 @@
-# Webhooks
-
 A webhook is an HTTP request, triggered by an event in a source system and sent to a destination system, often with a 
 payload of data. Webhooks are automated, in other words they are automatically sent out when their event is fired in the 
 source system.

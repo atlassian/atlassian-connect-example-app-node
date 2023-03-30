@@ -1,0 +1,18 @@
+<nav>
+    <div id="back-button">
+        {{@if(it.back)}}
+        <a class="aui-button aui-button-subtle" href="~{{* it.back.key }}">
+            <span class="aui-icon aui-icon-small aui-iconfont-arrow-left">back</span>
+            {{ it.back.title }}
+        </a>
+        {{/if}}
+    </div>
+    <div id="next-button">
+        {{@if(it.next)}}
+        <a class="aui-button aui-button-subtle" id="nav-next" href="~{{* it.next.key }}">
+            {{ it.next.title }}
+            <span class="aui-icon aui-icon-small aui-iconfont-arrow-right">next</span>
+        </a>
+        {{/if}}
+    </div>
+</nav>

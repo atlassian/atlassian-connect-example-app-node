@@ -1,10 +1,6 @@
-{{@extendsFile('./layout.squirrelly')}}
-    {{#title}}
-    Connect JSON
+{{@extendsFile('./layout.squirrelly', it)}}
     {{#content}}
-    {{@includeFile('./partial/sidebar.squirrelly') /}}
     <div>
-        {{@includeFile('./partial/back-nav.squirrelly') /}}
         {{* it.pageContent }}
         <br/>
         <pre class="config-container">{{ it.config }}</pre>

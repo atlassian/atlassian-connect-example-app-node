@@ -1,10 +1,6 @@
-{{@extendsFile('./layout.squirrelly')}}
-    {{#title}}
-    Webhook logs
+{{@extendsFile('./layout.squirrelly', it)}}
     {{#content}}
-    {{@includeFile('./partial/sidebar.squirrelly') /}}
     <div>
-        {{@includeFile('./partial/back-nav.squirrelly') /}}
         {{* it.pageContent }}
 
         <div class="logs-title">

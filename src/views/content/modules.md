@@ -1,5 +1,3 @@
-# Connect Modules for Jira
-
 As mentioned in our **Introduction**, modules can be used to extend the functionality of the Jira/Confluence platform or a Jira/Confluence 
 application. They are commonly used to extend the user interface by adding links, panels, or pages, or to extend 
 permissions or workflows.
