@@ -130,9 +130,9 @@ which also provides a comprehensive list of claims supported by Atlassian produc
 ### Atlassian JWT libraries
 
 In this example app, we use the [atlassian-jwt](https://www.npmjs.com/package/atlassian-jwt) library to create a middleware 
-called `connectIframeJWTMiddleware`, which decodes the JWT token from Jira, verifies it and sets the `clientKey` in `res.locals`.
+called `connectIframeJwtMiddleware`, which decodes the JWT token from Jira, verifies it and sets the `clientKey` in `res.locals`.
 The tenant (Jira site) for each instance of the app is recognized based on this `clientKey`. Step by step, 
-`connectIframeJWTMiddleware` is responsible for:
+`connectIframeJwtMiddleware` is responsible for:
 - injecting the Jira instance URL into the iframe url
 - decoding JWT token without verification
 - get the jira tenant associated with the url

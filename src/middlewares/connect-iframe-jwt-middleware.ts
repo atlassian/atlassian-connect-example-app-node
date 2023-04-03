@@ -9,7 +9,7 @@ import { fromExpressRequest } from "atlassian-jwt/dist/lib/jwt";
  * The tenant for each instance of the app is recognized based on this `clientKey`
  * https://developer.atlassian.com/cloud/jira/platform/understanding-jwt-for-connect-apps/#decoding-and-verifying-a-jwt-token
  */
-export const connectIframeJWTMiddleware = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+export const connectIframeJwtMiddleware = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 
 	// This query parameter is injected into the iframe url
 	const jwt = req.query.jwt as string;
