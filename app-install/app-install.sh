@@ -1,25 +1,26 @@
+# Checks to see if required env vars are set
+if [[ -z "$INSTALL_JIRA_ADMIN_EMAIL" ]] || [[ -z "$INSTALL_JIRA_ADMIN_API_TOKEN" ]] || [[ -z "$ATLASSIAN_URL" ]]
+then
+  echo "Missing environment variables from .env - Please fill in 'INSTALL_JIRA_ADMIN_EMAIL', 'INSTALL_JIRA_ADMIN_API_TOKEN' and 'ATLASSIAN_URL' to be able to have the app install automatically."
+  exit 1
+fi
+
 # App key defined for this example app
 APP_KEY=com.example.node-connect-app
 # Fetching the new ngrok URL, not fetching the one from the .env because its not updated
-BASE_URL=$(curl --silent http://tunnel:4040/api/tunnels | jq -r '.tunnels[] | select(.proto == "https") | .public_url')
-
-# Bypassing the ngrok warning page
-curl -H "ngrok-skip-browser-warning: 1" BASE_URL
+BASE_URL=$(curl -s http://tunnel:4040/api/tunnels | jq -r '.tunnels[] | select(.proto == "https") | .public_url')
 
 # Uninstalling the app first
-curl -X DELETE -u $INSTALL_JIRA_ADMIN_USERNAME:$INSTALL_JIRA_ADMIN_PASSWORD \
--H "Content-Type: application/vnd.atl.plugins.install.uri+json" "${INSTALL_ATLASSIAN_URL}/rest/plugins/1.0/${APP_KEY}-key"
-echo "Uninstalling old version of the app \n\n"
+curl -s -X DELETE -u "$INSTALL_JIRA_ADMIN_EMAIL:$INSTALL_JIRA_ADMIN_API_TOKEN" -H "Content-Type: application/vnd.atl.plugins.install.uri+json" "${ATLASSIAN_URL}/rest/plugins/1.0/${APP_KEY}-key"
+echo "Uninstalling old version of the app"
 
 # Getting the UPM token first, which will be used for app installation
-UPM_TOKEN=$(curl -u $INSTALL_JIRA_ADMIN_USERNAME:$INSTALL_JIRA_ADMIN_PASSWORD --head ${INSTALL_ATLASSIAN_URL}/rest/plugins/1.0/| fgrep upm-token | cut -c 12- | tr -d '\r\n')
+UPM_TOKEN=$(curl -s -u "$INSTALL_JIRA_ADMIN_EMAIL:$INSTALL_JIRA_ADMIN_API_TOKEN" --head "${ATLASSIAN_URL}/rest/plugins/1.0/" | fgrep upm-token | cut -c 12- | tr -d '\r\n')
 
 # Installing the app
-curl -u $INSTALL_JIRA_ADMIN_USERNAME:$INSTALL_JIRA_ADMIN_PASSWORD -H "Content-Type: application/vnd.atl.plugins.install.uri+json" \
--X POST ${INSTALL_ATLASSIAN_URL}/rest/plugins/1.0/?token=${UPM_TOKEN} \
--d "{\"pluginUri\":\"${BASE_URL}/atlassian-connect.json\", \"pluginName\": \"Sample Connect Node App\"}"
-
-echo "The app has been successfully installed \n\n"
+curl -s  -o /dev/null -u "$INSTALL_JIRA_ADMIN_EMAIL:$INSTALL_JIRA_ADMIN_API_TOKEN" -H "Content-Type: application/vnd.atl.plugins.install.uri+json" -X POST "${ATLASSIAN_URL}/rest/plugins/1.0/?token=${UPM_TOKEN}" -d "{\"pluginUri\":\"${BASE_URL}/atlassian-connect.json\", \"pluginName\": \"Atlassian Connect Example Node App\"}"
+echo ""
+echo "The app has been successfully installed."
 echo "
 *********************************************************************************************************************
 IF YOU ARE USING A FREE NGROK ACCOUNT, PLEASE DO THIS STEP FIRST!!!
@@ -28,6 +29,6 @@ This will open up the ngrok page, don't worry just click on the Visit button.
 That's it, you're all ready!
 *********************************************************************************************************************
 *********************************************************************************************************************
-Now open your app in this URL: ${INSTALL_ATLASSIAN_URL}/plugins/servlet/ac/${APP_KEY}/acn-introduction
+Now open your app in this URL: ${ATLASSIAN_URL}/plugins/servlet/ac/${APP_KEY}/introduction
 *********************************************************************************************************************
 "

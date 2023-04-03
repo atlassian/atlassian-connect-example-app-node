@@ -1,9 +1,8 @@
-FROM ubuntu:latest
+FROM alpine:latest as build
 
-COPY app-install/app-install.sh ./app-install.sh
-RUN chmod +x app-install.sh
+RUN apk --no-cache add curl jq
 
-RUN apt update
-RUN apt install -y curl jq
+COPY app-install/app-install.sh ./app/app-install.sh
+WORKDIR /app
 
-CMD ["bash", "app-install.sh"]
+CMD ["sh", "app-install.sh"]
