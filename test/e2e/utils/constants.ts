@@ -7,12 +7,12 @@ export const testData: TestData = {
 	appUrl: e2eEnvVars.APP_URL,
 	jira: {
 		urls: {
-			base: e2eEnvVars.E2E_ATLASSIAN_URL,
-			login: `${e2eEnvVars.E2E_ATLASSIAN_URL}/login`,
+			base: e2eEnvVars.ATLASSIAN_URL,
+			login: `${e2eEnvVars.ATLASSIAN_URL}/login`,
 			auth: `https://id.atlassian.com/login`,
-			logout: `${e2eEnvVars.E2E_ATLASSIAN_URL}/logout`,
-			yourWork: `${e2eEnvVars.E2E_ATLASSIAN_URL}/jira/your-work`,
-			manageApps: `${e2eEnvVars.E2E_ATLASSIAN_URL}/plugins/servlet/upm`,
+			logout: `${e2eEnvVars.ATLASSIAN_URL}/logout`,
+			yourWork: `${e2eEnvVars.ATLASSIAN_URL}/jira/your-work`,
+			manageApps: `${e2eEnvVars.ATLASSIAN_URL}/plugins/servlet/upm`,
 			connectJson: `${e2eEnvVars.APP_URL}/atlassian-connect.json`
 		},
 		roles: {
