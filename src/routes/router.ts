@@ -4,8 +4,9 @@ import { connectAppDescriptor, connectDescriptorGet } from "./atlassian-connect"
 import { eventsRouter } from "./events";
 import { webhooksRouter } from "./webhooks";
 import { database } from "../db";
-import { connectIframeJWTMiddleware } from "../middlewares/connect-iframe-jwt-middleware";
+import { connectIframeJwtMiddleware } from "../middlewares/connect-iframe-jwt-middleware";
 import { getMarkdownAndConvertToHtml } from "../utils/markup";
+import { apiRouter } from "./api";
 
 export const RootRouter = Router();
 const modules = connectAppDescriptor.modules.generalPages.map(page => ({
@@ -56,7 +57,7 @@ RootRouter.use("/webhooks", webhooksRouter);
 /************************************************************************************************************************
  * Middlewares
  ************************************************************************************************************************/
-RootRouter.use(connectIframeJWTMiddleware);
+RootRouter.use(connectIframeJwtMiddleware);
 
 /************************************************************************************************************************
  * Views
@@ -101,3 +102,8 @@ RootRouter.get("/pages/webhooks", async (req: Request, res: Response): Promise<v
 		})
 	});
 });
+
+/************************************************************************************************************************
+ * API
+ ************************************************************************************************************************/
+RootRouter.use("/api/example", apiRouter);
