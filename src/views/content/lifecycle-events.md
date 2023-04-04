@@ -1,5 +1,3 @@
-# Lifecycle Events
-
 As outlined in **Atlassian Connect JSON**, lifecycle events allow an app to register callbacks for events that occur 
 in the lifecycle of an installation. These include:
 

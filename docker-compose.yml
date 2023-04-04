@@ -3,13 +3,12 @@ version: '3'
 services:
   tunnel:
     image: wernight/ngrok
-    container_name: ngrok
     ports:
       - "4040:4040"
     command: ngrok http -log stdout --authtoken $NGROK_AUTHTOKEN app:3000
 
   app:
-    container_name: app
+    container_name: connect-example-app-node
     volumes:
       - .:/app
     build:
@@ -19,14 +18,15 @@ services:
       - "9229:9229" # debug port
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000/healthcheck"]
-      interval: 10s
-      retries: 5
+      interval: 1s
+      retries: 50
 
   installation:
-    container_name: install-in-jira
     depends_on:
       app:
         condition: service_healthy
+    volumes:
+      - ./app-install:/app
     build:
       context: .
       dockerfile: app-install/Dockerfile

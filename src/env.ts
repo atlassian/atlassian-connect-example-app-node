@@ -4,9 +4,7 @@ export type EnvVars = {
 	APP_URL: string;
 	APP_KEY: string;
 	NGROK_AUTHTOKEN: string;
-	INSTALL_ATLASSIAN_URL: string;
-	INSTALL_JIRA_ADMIN_USERNAME: string;
-	INSTALL_JIRA_ADMIN_PASSWORD: string;
+	ATLASSIAN_URL: string;
 };
 
 const variables = config().parsed as Partial<EnvVars>;

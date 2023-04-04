@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>{{ it.title }}</title>
+    <title>{{ it.title }} - Atlassian Connect Node Example App</title>
     <meta charset="UTF-8">
     <!-- AUI is being used for styling here [https://aui.atlassian.com/aui/latest/docs/getting-started.html]
         Please replace this if you want to add your own css frameworks -->
@@ -11,15 +11,37 @@
     <!-- This script is needed for all the views in the Connect app -->
     <script src="https://connect-cdn.atl-paas.net/all.js" data-options="sizeToParent:true" async></script>
 </head>
-
 <body>
-    <section class="ac-content">
-        <button class="aui-button aui-button-subtle" id="feedback-button" onclick="window.open('https://github.com/atlassian/atlassian-connect-example-app-node/issues/new/choose')">
-            <span class="aui-icon aui-icon-small aui-iconfont-feedback">Feedback</span>
-            Give Feedback
-        </button>
-        {{* it.content }}
-    </section>
-    <script src="/public/js/index.js"></script>
+    <div class="container">
+        {{@includeFile('./partials/nav.squirrelly', it) /}}
+        <div id="title">
+            <h1>{{ it.title }}</h1>
+            <button class="aui-button aui-button-subtle" onclick="window.open('https://github.com/atlassian/atlassian-connect-example-app-node/issues/new/choose')">
+                <span class="aui-icon aui-icon-small aui-iconfont-feedback">Feedback</span>
+                Give Feedback
+            </button>
+        </div>
+        <section class="ac-content">
+            {{* it.content }}
+        </section>
+        {{@includeFile('./partials/nav.squirrelly', it) /}}
+    </div>
+    <script>
+        /**
+         *  Page navigation is handled by AP.navigator
+         *  source: https://developer.atlassian.com/cloud/jira/software/jsapi/navigator/
+         */
+        document.querySelectorAll('a')
+            .forEach(el => {
+				var attr = el.getAttribute('href');
+				if(attr && attr.startsWith('~')) {
+					el.addEventListener('click', (e) => {
+						e.preventDefault();
+						AP.navigator.go('addonmodule', { moduleKey: attr.slice(1) })
+                    });
+					el.href = "javascript:;";
+                }
+            });
+    </script>
 </body>
 </html>

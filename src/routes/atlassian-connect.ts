@@ -84,12 +84,138 @@ export const connectAppDescriptor = {
 		 * You can think of this page as the main index page for the app.
 		 */
 		postInstallPage: {
-			url: "/",
-			key: "acn-introduction",
+			url: "/pages/get-started",
+			key: "get-started",
 			name: {
-				value: "Index"
+				value: "Get Started"
 			}
 		},
+
+		/**
+		 * Defines the new sections in the application menus.
+		 *
+		 * https://developer.atlassian.com/cloud/jira/platform/modules/web-section/
+		 */
+		webSections: [
+			{
+				key: "connect-node-app-section",
+				location: "admin_plugins_menu",
+				weight: 0,
+				name: {
+					value: "Connect Example Node App"
+				}
+			}
+		],
+
+		/**
+		 * The list of pages/views within the app.
+		 * https://developer.atlassian.com/cloud/jira/software/modules/page/
+		 */
+		generalPages: [
+			/**
+			 * The postInstall page is defined here again with a different key and a different location
+			 *
+			 * Key has to be unique, so used a different one for this
+			 * Location is pointing to the key defined in the webSection module
+			 *
+			 * This ensures that this page will always have Jira's left sidebar opened for this page
+			 */
+			{
+				url: "/pages/introduction",
+				key: "introduction",
+				name: {
+					value: "Introduction"
+				},
+				location: "admin_plugins_menu/connect-node-app-section"
+			},
+			{
+				/**
+				 * The url to retrieve the content from. This must be relative to the add-on's baseUrl.
+				 */
+				url: "/pages/config",
+
+				/**
+				 * A key to identify this module.
+				 * The key is used to generate the url to your add-on's module.
+				 * The url is generated as a combination of your add-on key and module key.
+				 *
+				 * For instance:
+				 * The node app URL `https://<TUNNELED_URL>/config` is now mapped to `https://<JIRAHOST_INSTANCE>/plugins/servlet/ac/com.example.node-connect-app/config`
+				 */
+				key: "config",
+
+				/**
+				 * Defines the location in the application interface where the page's link should appear.
+				 * For finding locations, please use these web fragment finders:
+				 * Jira -> https://marketplace.atlassian.com/apps/1211656/web-fragment-finder?hosting=cloud&tab=overview
+				 * Confluence -> https://marketplace.atlassian.com/apps/1215092/web-fragment-finder-for-confluence?hosting=cloud&tab=overview
+				 */
+				location: "admin_plugins_menu/connect-node-app-section",
+
+				/**
+				 * A human-readable name for the page.
+				 */
+				name: {
+					"value": "Connect JSON Manifest"
+				}
+			},
+			{
+				url: "/pages/lifecycle-events",
+				key: "lifecycle-events",
+				location: "admin_plugins_menu/connect-node-app-section",
+				name: {
+					"value": "Lifecycle Events"
+				}
+			},
+			{
+				url: "/pages/modules",
+				key: "modules",
+				location: "admin_plugins_menu/connect-node-app-section",
+				name: {
+					"value": "Connect Modules"
+				}
+			},
+			{
+				url: "/pages/connect-library",
+				key: "js-library",
+				location: "admin_plugins_menu/connect-node-app-section",
+				name: {
+					"value": "Connect JS library"
+				}
+			},
+			{
+				url: "/pages/authentication",
+				key: "authentication",
+				location: "admin_plugins_menu/connect-node-app-section",
+				name: {
+					"value": "Iframe JWT Authentication"
+				}
+			},
+			{
+				url: "/pages/making-api-requests",
+				key: "api-requests",
+				location: "admin_plugins_menu/connect-node-app-section",
+				name: {
+					"value": "Making API Requests"
+				}
+			},
+			{
+				url: "/pages/webhooks",
+				key: "webhooks",
+				location: "admin_plugins_menu/connect-node-app-section",
+				name: {
+					"value": "Webhooks"
+				}
+			},
+			{
+				url: "/pages/marketplace",
+				key: "marketplace",
+				location: "admin_plugins_menu/connect-node-app-section",
+				name: {
+					"value": "Atlassian Marketplace"
+				}
+			}
+		],
 
 		/**
 		 * List of all the webhooks for the Connect app.
@@ -109,131 +235,6 @@ export const connectAppDescriptor = {
 			{
 				event: "jira:issue_updated",
 				url: "/webhooks/jira/issue-updated"
-			}
-		],
-
-		/**
-		 * Defines the new sections in the application menus.
-		 *
-		 * https://developer.atlassian.com/cloud/jira/platform/modules/web-section/
-		 */
-		webSections: [
-			{
-				key: "addon-web-section",
-				location: "admin_plugins_menu",
-				name: {
-					value: "Node Connect Example App"
-				}
-			}
-		],
-
-		/**
-		 * The list of pages/views within the app.
-		 * https://developer.atlassian.com/cloud/jira/software/modules/page/
-		 */
-		generalPages: [
-			{
-				/**
-				 * The url to retrieve the content from. This must be relative to the add-on's baseUrl.
-				 */
-				url: "/config",
-
-				/**
-				 * A key to identify this module.
-				 * The key is used to generate the url to your add-on's module.
-				 * The url is generated as a combination of your add-on key and module key.
-				 *
-				 * For instance:
-				 * The node app URL `https://<TUNNELED_URL>/config` is now mapped to `https://<JIRAHOST_INSTANCE>/plugins/servlet/ac/com.example.node-connect-app/acn-config`
-				 */
-				key: "acn-config",
-
-				/**
-				 * Defines the location in the application interface where the page's link should appear.
-				 * For finding locations, please use these web fragment finders:
-				 * Jira -> https://marketplace.atlassian.com/apps/1211656/web-fragment-finder?hosting=cloud&tab=overview
-				 * Confluence -> https://marketplace.atlassian.com/apps/1215092/web-fragment-finder-for-confluence?hosting=cloud&tab=overview
-				 */
-				location: "none",
-
-				/**
-				 * A human-readable name for the page.
-				 */
-				name: {
-					"value": "Connect Descriptor"
-				}
-			},
-			{
-				url: "/logs/webhooks",
-				key: "acn-logs-webhooks",
-				location: "none",
-				name: {
-					"value": "Logs for webhooks"
-				}
-			},
-			{
-				url: "/connect-library",
-				key: "acn-js-library",
-				location: "none",
-				name: {
-					"value": "Connect JS library"
-				}
-			},
-			{
-				url: "/authentication",
-				key: "acn-authentication",
-				location: "none",
-				name: {
-					"value": "iFrame jwt authentication"
-				}
-			},
-			{
-				url: "/modules",
-				key: "acn-modules",
-				location: "none",
-				name: {
-					"value": "Creating modules with Connect"
-				}
-			},
-			{
-				url: "/lifecycle-events",
-				key: "acn-lifecycle-events",
-				location: "none",
-				name: {
-					"value": "Lifecycle events"
-				}
-			},
-			{
-				url: "/making-api-requests",
-				key: "acn-api-requests",
-				location: "none",
-				name: {
-					"value": "Making API requests"
-				}
-			},
-			{
-				url: "/marketplace",
-				key: "acn-marketplace",
-				location: "none",
-				name: {
-					"value": "Atlassian Marketplace"
-				}
-			},
-			/**
-			 * The postInstall page is defined here again with a different key and a different location
-			 *
-			 * Key has to be unique, so used a different one for this
-			 * Location is pointing to the key defined in the webSection module
-			 *
-			 * This ensures that this page will always have Jira's left sidebar opened for this page
-			 */
-			{
-				url: "/",
-				key: "acn-home",
-				name: {
-					value: "Introduction"
-				},
-				location: "admin_plugins_menu/addon-web-section"
 			}
 		]
 	}

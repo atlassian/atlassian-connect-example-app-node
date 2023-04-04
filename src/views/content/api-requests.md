@@ -1,4 +1,4 @@
-# Making API requests
+# 
 
 If you need to make API requests, this can be easily achieved via any HTTP client library or API designed
 for making API requests. The key to successfully making API requests from your Connect add-on is ensuring

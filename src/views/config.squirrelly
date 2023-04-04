@@ -1,11 +1,7 @@
-{{@extendsFile('./layout.squirrelly')}}
-    {{#title}}
-    Connect JSON
+{{@extendsFile('./layout.squirrelly', it)}}
     {{#content}}
-    {{@includeFile('./partial/sidebar.squirrelly') /}}
     <div>
-        {{@includeFile('./partial/back-nav.squirrelly') /}}
-        <div id="atlassianConnectJson" data-page-content="{{ it.pageContent.toString() }}"></div>
+        {{* it.pageContent }}
         <br/>
         <pre class="config-container">{{ it.config }}</pre>
     </div>

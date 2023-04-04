@@ -1,5 +1,3 @@
-# Marketplace
-
 Congratulations! You've finished building your app and unleash it into the wild. But before it goes public you'll need to
 ensure you meet our [approval guidelines](https://developer.atlassian.com/platform/marketplace/app-approval-guidelines/).
 Once you're sure all the criteria is met, simply follow the steps in 
