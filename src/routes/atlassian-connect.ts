@@ -174,7 +174,7 @@ export const connectAppDescriptor = {
 				}
 			},
 			{
-				url: "/pages/context",
+				url: `/pages/context?input={ac.input}`,
 				key: "context",
 				location: "admin_plugins_menu/connect-node-app-section",
 				name: {
