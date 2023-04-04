@@ -4,6 +4,7 @@ export type EnvVars = {
 	APP_URL: string;
 	APP_KEY: string;
 	NGROK_AUTHTOKEN: string;
+	ATLASSIAN_URL: string;
 };
 
 const variables = config().parsed as Partial<EnvVars>;

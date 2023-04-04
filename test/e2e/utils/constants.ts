@@ -17,8 +17,8 @@ export const testData: TestData = {
 		},
 		roles: {
 			admin: {
-				username: e2eEnvVars.JIRA_ADMIN_USERNAME,
-				password: e2eEnvVars.JIRA_ADMIN_PASSWORD,
+				username: e2eEnvVars.E2E_JIRA_ADMIN_EMAIL,
+				password: e2eEnvVars.E2E_JIRA_ADMIN_API_TOKEN,
 				state: `${STATE_PATH}/jira-admin.json`
 			}
 		}

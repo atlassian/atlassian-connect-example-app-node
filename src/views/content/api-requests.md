@@ -12,9 +12,10 @@ REST API to build add-ons.
 
 ## Example
 
-Here's an example of calling a Jira REST API and returning the result via our own local API call.
+Here's an example of calling the [User Get Jira REST API](https://developer.atlassian.
+com/cloud/jira/platform/rest/v3/api-group-users/#api-rest-api-3-user-get) via our app's own API.
 
-<button class="aui-button aui-primary-button" onclick="callAPI()">Call Jira API</button>
+<button class="aui-button aui-primary-button" onclick="callAPI()">Get current user information from Jira API</button>
 <pre id="api-results" class="aui-message aui-message-info">
     Results will show here
 </pre>

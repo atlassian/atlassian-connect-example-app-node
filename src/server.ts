@@ -23,6 +23,7 @@ app.use(json());
 app.use(RootRouter);
 
 const port = 3000;
-app.listen(port, () => {
-	console.log(`Example app listening on port ${port}`);
+app.listen(port, async () => {
+	// App is now running
+	console.log(`Sample app listening on port ${port}`);
 });

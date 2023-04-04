@@ -1,30 +1,38 @@
-import { NextFunction, Request, Response, Router } from "express";
-import { database } from "../db";
-import { encodeSymmetric } from "atlassian-jwt";
+import { Request, Response, Router } from "express";
+import { createQueryStringHash, encodeSymmetric } from "atlassian-jwt";
+import { envVars } from "../env";
+import axios from "axios";
 
 export const apiRouter = Router();
-/*
-apiRouter.use(async (req:Request, res:Response, next: NextFunction) => {
-	req.query.jwt;
-	next();
-});*/
 
-apiRouter.get("/", async (_req:Request, res:Response) => {
-	/*const jwtToken = encodeSymmetric(
+apiRouter.get("/user/:userId", async (req: Request, res: Response) => {
+	const pathname = "/rest/api/3/user";
+	const query = {
+		accountId: req.params.userId
+	};
+	const nowInSeconds = Math.floor(Date.now() / 1000);
+	const jwtToken = encodeSymmetric(
 		{
-			...getExpirationInSeconds(),
-			iss,
+			iat: nowInSeconds,
+			exp: nowInSeconds + 3 * 60, // 3 minutes
+			iss: envVars.APP_KEY,
 			qsh: createQueryStringHash({
-				method: config.method || "GET", // method can be undefined, defaults to GET
-				pathname: pathname || undefined,
+				method: "GET", // method can be undefined, defaults to GET
+				pathname,
 				query
 			})
 		},
-		secret
+		res.locals.jiraTenant.sharedSecret
 	);
 
-	// Set authorization headers
-	config.headers = config.headers || {};
-	config.headers.Authorization = `JWT ${jwtToken}`;*/
-	res.send(res.locals.jiraTenant);
+	const response = await axios.request({
+		baseURL: envVars.ATLASSIAN_URL,
+		url: pathname,
+		params: query,
+		headers: {
+			"Authorization": `JWT ${jwtToken}`
+		}
+	});
+
+	res.send(response.data);
 });
