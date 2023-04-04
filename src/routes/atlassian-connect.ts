@@ -112,28 +112,11 @@ export const connectAppDescriptor = {
 		 * https://developer.atlassian.com/cloud/jira/software/modules/page/
 		 */
 		generalPages: [
-			/**
-			 * The postInstall page is defined here again with a different key and a different location
-			 *
-			 * Key has to be unique, so used a different one for this
-			 * Location is pointing to the key defined in the webSection module
-			 *
-			 * This ensures that this page will always have Jira's left sidebar opened for this page
-			 */
-			{
-				url: "/pages/introduction",
-				key: "introduction",
-				name: {
-					value: "Introduction"
-				},
-				location: "admin_plugins_menu/connect-node-app-section"
-			},
 			{
 				/**
 				 * The url to retrieve the content from. This must be relative to the add-on's baseUrl.
 				 */
-				url: "/pages/config",
-
+				url: "/pages/introduction",
 				/**
 				 * A key to identify this module.
 				 * The key is used to generate the url to your add-on's module.
@@ -142,7 +125,7 @@ export const connectAppDescriptor = {
 				 * For instance:
 				 * The node app URL `https://<TUNNELED_URL>/config` is now mapped to `https://<JIRAHOST_INSTANCE>/plugins/servlet/ac/com.example.node-connect-app/config`
 				 */
-				key: "config",
+				key: "introduction",
 
 				/**
 				 * Defines the location in the application interface where the page's link should appear.
@@ -151,10 +134,17 @@ export const connectAppDescriptor = {
 				 * Confluence -> https://marketplace.atlassian.com/apps/1215092/web-fragment-finder-for-confluence?hosting=cloud&tab=overview
 				 */
 				location: "admin_plugins_menu/connect-node-app-section",
-
 				/**
 				 * A human-readable name for the page.
 				 */
+				name: {
+					value: "Introduction"
+				}
+			},
+			{
+				url: "/pages/config",
+				key: "config",
+				location: "admin_plugins_menu/connect-node-app-section",
 				name: {
 					"value": "Connect JSON Manifest"
 				}
@@ -181,6 +171,14 @@ export const connectAppDescriptor = {
 				location: "admin_plugins_menu/connect-node-app-section",
 				name: {
 					"value": "Connect JS library"
+				}
+			},
+			{
+				url: "/pages/context",
+				key: "context",
+				location: "admin_plugins_menu/connect-node-app-section",
+				name: {
+					"value": "Context Parameters"
 				}
 			},
 			{

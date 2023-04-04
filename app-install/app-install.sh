@@ -29,6 +29,6 @@ This will open up the ngrok page, don't worry just click on the Visit button.
 That's it, you're all ready!
 *********************************************************************************************************************
 *********************************************************************************************************************
-Now open your app in this URL: ${ATLASSIAN_URL}/plugins/servlet/ac/${APP_KEY}/introduction
+Now open your app in this URL: ${ATLASSIAN_URL}/plugins/servlet/ac/${APP_KEY}/get-started
 *********************************************************************************************************************
 "
