@@ -67,6 +67,7 @@ RootRouter.get("/pages/introduction", renderPage("Introduction", "introduction.m
 RootRouter.get("/pages/authentication", renderPage("Authentication with JWT and Storage", "authentication.md"));
 RootRouter.get("/pages/connect-library", renderPage("Connect Javascript Library", "connect-js.md"));
 RootRouter.get("/pages/modules", renderPage("Connect Modules", "modules.md"));
+RootRouter.get("/pages/context", renderPage("Context Parameters", "context-parameters.md"));
 RootRouter.get("/pages/lifecycle-events", renderPage("Lifecycle Events", "lifecycle-events.md"));
 RootRouter.get("/pages/making-api-requests", renderPage("Making API Requests", "api-requests.md"));
 RootRouter.get("/pages/marketplace", renderPage("Marketplace", "marketplace.md"));

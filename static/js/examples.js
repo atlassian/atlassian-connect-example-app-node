@@ -8,3 +8,12 @@ function callAPI() {
 		});
 	});
 }
+
+function showContextExample() {
+	AP.navigator.go('addonmodule', {
+		moduleKey: 'context',
+		customData: {
+			input: document.querySelector("#form-input").value
+		}
+	});
+}
