@@ -6,7 +6,7 @@ import { v4 as uuid } from "uuid";
 /**
  * Type Definitions for the database
  */
-export interface JiraTenant extends JiraTenantWithoutId{
+export interface JiraTenant extends JiraTenantWithoutId {
 	id: string;
 }
 
@@ -14,9 +14,10 @@ export interface JiraTenantWithoutId {
 	url: string;
 	sharedSecret: string;
 	clientKey: string;
+	enabled?: boolean;
 }
 
-export interface Log<T = any> extends LogWithoutId<T>{
+export interface Log<T = any> extends LogWithoutId<T> {
 	id: string;
 }
 
@@ -79,6 +80,7 @@ class ConnectAppDatabase extends LowWithLodash<ConnectAppData> {
 		if (!checkIfAlreadyExists) {
 			this.data?.jiraTenants.push({
 				id: uuid(),
+				enabled: false,
 				...props
 			});
 			await this.write();
@@ -95,6 +97,18 @@ class ConnectAppDatabase extends LowWithLodash<ConnectAppData> {
 			tenant[key] = props[key];
 		});
 		tenant.clientKey = clientKey;
+		await this.write();
+	}
+
+	@initialized()
+	public async enableJiraTenant(clientKey: string) {
+		await this.updateJiraTenant(clientKey, { enabled: true });
+		await this.write();
+	}
+
+	@initialized()
+	public async disableJiraTenant(clientKey: string) {
+		await this.updateJiraTenant(clientKey, { enabled: false });
 		await this.write();
 	}
 

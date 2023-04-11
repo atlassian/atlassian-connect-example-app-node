@@ -1,10 +1,12 @@
 import { Router } from "express";
 import { database } from "../db";
+import { authHeaderAsymmetricJwtMiddleware } from "../middlewares/auth-header-asymmetric-jwt-middleware";
+import { authHeaderSymmetricJwtMiddleware } from "../middlewares/auth-header-symmetric-jwt-middleware";
 
 export const eventsRouter = Router();
 
-// TODO: add JWT token validation
-eventsRouter.post("/installed", async (req, res) => {
+
+eventsRouter.post("/installed", authHeaderAsymmetricJwtMiddleware, async (req, res) => {
 	const { baseUrl: url, clientKey, sharedSecret } = req.body;
 	// Find jira tenant if it already exists
 	const tenant = await database.findJiraTenant({ clientKey });
@@ -26,19 +28,17 @@ eventsRouter.post("/installed", async (req, res) => {
 	res.sendStatus(204);
 });
 
-eventsRouter.post("/enabled", async (req, res) => {
-	const { clientKey } = req.body;
-	await database.removeJiraTenant(clientKey);
+eventsRouter.post("/enabled", authHeaderSymmetricJwtMiddleware, async (req, res) => {
+	await database.enableJiraTenant(req.body.clientKey);
 	res.sendStatus(204);
 });
 
-eventsRouter.post("/disabled", async (req, res) => {
-	const { clientKey } = req.body;
-	await database.removeJiraTenant(clientKey);
+eventsRouter.post("/disabled", authHeaderSymmetricJwtMiddleware, async (req, res) => {
+	await database.disableJiraTenant(req.body.clientKey);
 	res.sendStatus(204);
 });
 
-eventsRouter.post("/uninstalled", async (req, res) => {
+eventsRouter.post("/uninstalled", authHeaderAsymmetricJwtMiddleware, async (req, res) => {
 	const { clientKey } = req.body;
 	await database.removeJiraTenant(clientKey);
 	res.sendStatus(204);

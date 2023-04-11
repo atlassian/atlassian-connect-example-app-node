@@ -1,19 +1,14 @@
-import { createQueryStringHash, decodeSymmetric, getAlgorithm } from "atlassian-jwt";
+import { createQueryStringHash, decodeAsymmetric, decodeSymmetric, getAlgorithm, getKeyId } from "atlassian-jwt";
 import { database, JiraTenant } from "../db";
 import { Request } from "atlassian-jwt/dist/lib/jwt";
-
-export interface JWTError {
-	status: number;
-	message: string;
-}
+import { envVars } from "../env";
 
 /**
- * This middleware decodes the JWT token from Jira, verifies it
- * And sets the `clientKey` in `res.locals`
- * The tenant for each instance of the app is recognized based on this `clientKey`
+ * This decodes the JWT token from Jira, verifies it against the jira tenant's shared secret
+ * And returns the verified Jira tenant if it passes
  * https://developer.atlassian.com/cloud/jira/platform/understanding-jwt-for-connect-apps/#decoding-and-verifying-a-jwt-token
  */
-export const validateJWTToken = async (request: Request, token?: string): Promise<JiraTenant> => {
+export const verifySymmetricJWTToken = async (request: Request, token?: string): Promise<JiraTenant> => {
 	// if JWT is missing, return a 401
 	if (!token) {
 		return Promise.reject({
@@ -38,10 +33,8 @@ export const validateJWTToken = async (request: Request, token?: string): Promis
 	try {
 		// Try to verify the jwt token
 		data = decodeSymmetric(token, jiraTenant.sharedSecret, getAlgorithm(token));
-		// Verify query string hash
-		if (data.qsh !== "context-qsh" && data.qsh !== createQueryStringHash(request, false)) {
-			throw "qsh doesn't match";
-		}
+		await validateQsh(data.qsh, request);
+
 		// If all verifications pass, save the jiraTenant to local to be used later
 		return jiraTenant;
 	} catch (e) {
@@ -51,4 +44,83 @@ export const validateJWTToken = async (request: Request, token?: string): Promis
 			message: `JWT verification failed: ${e}`
 		});
 	}
+};
+
+
+/**
+ * This decodes the JWT token from Jira, verifies it against the jira tenant's shared secret
+ * And returns the verified Jira tenant if it passes
+ * https://developer.atlassian.com/cloud/jira/platform/understanding-jwt-for-connect-apps/#decoding-and-verifying-a-jwt-token
+ */
+export const verifyAsymmetricJWTToken = async (request: Request, token?: string): Promise<void> => {
+	// if JWT is missing, return a 401
+	if (!token) {
+		return Promise.reject({
+			status: 401,
+			message: "Missing JWT token"
+		});
+	}
+
+	const publicKey = await queryAtlassianConnectPublicKey(getKeyId(token));
+	const unverifiedClaims = decodeAsymmetric(token, publicKey, getAlgorithm(token), true);
+
+	if (!unverifiedClaims.iss) {
+		return Promise.reject({
+			status: 401,
+			message: "JWT claim did not contain the issuer (iss) claim"
+		});
+	}
+
+	// Make sure the AUD claim has the correct URL
+	if (!unverifiedClaims?.aud?.[0]?.includes(envVars.APP_URL)) {
+		return Promise.reject({
+			status: 401,
+			message: "JWT claim did not contain the correct audience (aud) claim"
+		});
+	}
+
+	const verifiedClaims = decodeAsymmetric(token, publicKey, getAlgorithm(token));
+
+	// If claim doesn't have QSH, reject
+	if (!verifiedClaims.qsh) {
+		return Promise.reject({
+			status: 401,
+			message: "JWT validation Failed, no qsh"
+		});
+	}
+
+	// Check that claim is still within expiration, give 3 second leeway in case of time drift
+	if (verifiedClaims.exp && (Date.now() / 1000 - 3) >= verifiedClaims.exp) {
+		return Promise.reject({
+			status: 401,
+			message: "JWT validation failed, token is expired"
+		});
+	}
+
+	await validateQsh(verifiedClaims.qsh, request);
+};
+
+// Check to see if QSH from token is the same as the request
+const validateQsh = async (qsh: string, request: Request): Promise<void> => {
+	if (qsh !== "context-qsh" && qsh !== createQueryStringHash(request, false)) {
+		return Promise.reject({
+			status: 401,
+			message: "JWT Verification Failed, wrong qsh"
+		});
+	}
+};
+
+
+/**
+ * Queries the public key for the specified keyId
+ */
+const queryAtlassianConnectPublicKey = async (keyId: string): Promise<string> => {
+	const response = await fetch(`https://connect-install-keys.atlassian.com/${keyId}`);
+	if (response.status !== 200) {
+		return Promise.reject({
+			status: 401,
+			message: `Unable to get public key for keyId ${keyId}`
+		});
+	}
+	return response.text();
 };

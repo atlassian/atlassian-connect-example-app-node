@@ -1,19 +1,10 @@
-import { NextFunction, Request, Response, Router } from "express";
+import { Router } from "express";
 import { database } from "../db";
-import { validateJWTToken } from "../utils/jwt";
-import { fromExpressRequest } from "atlassian-jwt";
+import { authHeaderSymmetricJwtMiddleware } from "../middlewares/auth-header-symmetric-jwt-middleware";
 
 export const webhooksRouter = Router();
 
-webhooksRouter.use(async (req: Request, res: Response, next: NextFunction) => {
-	try {
-		// The jwt token is sent with the Authorization headers of the webhook
-		res.locals.jiraTenant = await validateJWTToken(fromExpressRequest(req), req.headers.authorization?.replace("JWT ", ""));
-		next();
-	} catch (e) {
-		res.status(e.status).send(e.message);
-	}
-});
+webhooksRouter.use(authHeaderSymmetricJwtMiddleware);
 
 // All webhooks just add an entry to the logs DB table to be viewed by the user in the webhooks section
 webhooksRouter.post("/jira/:event", async (req, res) => {
