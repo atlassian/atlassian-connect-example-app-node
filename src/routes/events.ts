@@ -1,9 +1,9 @@
 import { Router } from "express";
 import { database } from "../db";
-import { v4 as uuid } from "uuid";
 
 export const eventsRouter = Router();
 
+// TODO: add JWT token validation
 eventsRouter.post("/installed", async (req, res) => {
 	const { baseUrl: url, clientKey, sharedSecret } = req.body;
 	// Find jira tenant if it already exists
@@ -20,12 +20,21 @@ eventsRouter.post("/installed", async (req, res) => {
 		await database.updateJiraTenant(clientKey, data);
 	} else {
 		// If jira tenant doesn't exist, let's add it to the database
-		await database.addJiraTenant({
-			...data,
-			id: uuid()
-		});
+		await database.addJiraTenant(data);
 	}
 
+	res.sendStatus(204);
+});
+
+eventsRouter.post("/enabled", async (req, res) => {
+	const { clientKey } = req.body;
+	await database.removeJiraTenant(clientKey);
+	res.sendStatus(204);
+});
+
+eventsRouter.post("/disabled", async (req, res) => {
+	const { clientKey } = req.body;
+	await database.removeJiraTenant(clientKey);
 	res.sendStatus(204);
 });
 

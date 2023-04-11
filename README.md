@@ -8,7 +8,6 @@ This app is aimed to help you to easily add your integration in Jira.
 
 ## Table of Contents
 - [Pre-requisites](#pre-requisites)
-- [Features](#features)
 - [Getting started](#getting-started)
 - [Manual Install](#manually-installing-the-app)
 - [Running your application](#running-your-application)
@@ -17,12 +16,9 @@ This app is aimed to help you to easily add your integration in Jira.
 - [License](#license)
 
 ## Pre-requisites
-- yarn
-- docker & docker-compose
-- ngrok account
-
-## Features
-- TBD
+- [yarn](https://yarnpkg.com/getting-started/install)
+- [docker & docker-compose](https://docs.docker.com/engine/install/)
+- [ngrok account](https://ngrok.com/)
 
 ## Getting started
 You can run this app in 3 simple steps:
@@ -32,6 +28,9 @@ You can run this app in 3 simple steps:
 - **Tunneling**
   - For this purpose, we are using [ngrok](https://ngrok.com/docs/getting-started). You need to set the ngrok authtoken in the env file, so please make sure you have a ngrok account.
   - Simply go to [ngrok](https://dashboard.ngrok.com/get-started/your-authtoken) and copy your authtoken and paste it in the [.env](./.env) file.
+
+- **Configuration**
+  - Open your .env file and fill in the missing fields
 
 - **Running docker compose** 
   - Then simply run `docker-compose up`.
@@ -58,7 +57,7 @@ So, if you want to install the app in multiple Jira instances, please do it manu
 ## Testing
 We have added a basic end to end test for installing and uninstalling the app, using [playwright](https://playwright.dev/docs/intro). You can add your own test cases on top of it. 
 
-To run the end to end test, please add the values for `ATLASSIAN_URL`, `JIRA_ADMIN_USERNAME` and `JIRA_ADMIN_PASSWORD` in the `.env` file. Then simply run `yarn test:e2e` in the terminal.
+To run the end to end test, please add the values for `ATLASSIAN_URL`, `JIRA_ADMIN_EMAIL` and `JIRA_ADMIN_API_TOKEN` in the `.env` file. Then simply run `yarn test:e2e` in the terminal.
 
 ## Getting help
 - TBD

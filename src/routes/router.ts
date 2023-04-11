@@ -30,9 +30,9 @@ const renderPage = (title: string, markdownFile: string) => (req: Request, res: 
 };
 
 /************************************************************************************************************************
- * Healthcheck
+ * Root page
  ************************************************************************************************************************/
-RootRouter.get("/healthcheck", (_req, res) => res.status(200).send("Healthy!"));
+RootRouter.get("/", (_req, res) => res.status(200).send("Server up and working."));
 
 /************************************************************************************************************************
  * Connect app manifest

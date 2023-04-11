@@ -1,24 +1,24 @@
-import { e2eEnvVars } from "./env-e2e";
+import { envVars } from "../../../src/env";
 
 export const STATE_PATH = "./test/e2e/test-results/states";
 export const testData: TestData = {
 	stateDirectoryPath: STATE_PATH,
 	state: `${STATE_PATH}/default.json`,
-	appUrl: e2eEnvVars.APP_URL,
+	appUrl: envVars.APP_URL,
 	jira: {
 		urls: {
-			base: e2eEnvVars.ATLASSIAN_URL,
-			login: `${e2eEnvVars.ATLASSIAN_URL}/login`,
+			base: envVars.ATLASSIAN_URL,
+			login: `${envVars.ATLASSIAN_URL}/login`,
 			auth: `https://id.atlassian.com/login`,
-			logout: `${e2eEnvVars.ATLASSIAN_URL}/logout`,
-			yourWork: `${e2eEnvVars.ATLASSIAN_URL}/jira/your-work`,
-			manageApps: `${e2eEnvVars.ATLASSIAN_URL}/plugins/servlet/upm`,
-			connectJson: `${e2eEnvVars.APP_URL}/atlassian-connect.json`
+			logout: `${envVars.ATLASSIAN_URL}/logout`,
+			yourWork: `${envVars.ATLASSIAN_URL}/jira/your-work`,
+			manageApps: `${envVars.ATLASSIAN_URL}/plugins/servlet/upm`,
+			connectJson: `${envVars.APP_URL}/atlassian-connect.json`
 		},
 		roles: {
 			admin: {
-				username: e2eEnvVars.E2E_JIRA_ADMIN_EMAIL,
-				password: e2eEnvVars.E2E_JIRA_ADMIN_API_TOKEN,
+				username: envVars.JIRA_ADMIN_EMAIL,
+				password: envVars.JIRA_ADMIN_API_TOKEN,
 				state: `${STATE_PATH}/jira-admin.json`
 			}
 		}
@@ -58,7 +58,7 @@ export interface TestDataRoles {
 export type JiraTestDataRoles = TestDataRoles;
 
 export interface TestDataRole {
-	username: string;
-	password: string;
+	username?: string;
+	password?: string;
 	state?: string;
 }
