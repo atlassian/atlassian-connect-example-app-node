@@ -1,46 +1,17 @@
 import { Router } from "express";
 import { database } from "../db";
-import { v4 as uuid } from "uuid";
+import { authHeaderSymmetricJwtMiddleware } from "../middlewares/auth-header-jwt-middleware";
 
 export const webhooksRouter = Router();
 
-webhooksRouter.post("/jira/issue-created", async (req, res) => {
-	// Mapping the host set during the installation with the url coming in from the webhooks
-	const host = new URL(req.body.user.self).origin;
-	const tenant = await database.findJiraTenant({ url: host });
+webhooksRouter.use(authHeaderSymmetricJwtMiddleware);
+
+// All webhooks just add an entry to the logs DB table to be viewed by the user in the webhooks section
+webhooksRouter.post("/jira/:event", async (req, res) => {
 	await database.addLogs({
-		id: uuid(),
-		tenantId: tenant.id,
-		message: new Date().toISOString() + " Issue Created!",
+		tenantId: res.locals.jiraTenant.id,
+		message: `${new Date().toISOString()} ${req.params.event?.replace("-", " ").toUpperCase()}!`,
 		data: req.body
 	});
-
 	res.sendStatus(200);
 });
-
-webhooksRouter.post("/jira/issue-updated", async (req, res) => {
-	const host = new URL(req.body.user.self).origin;
-	const tenant = await database.findJiraTenant({ url: host });
-	await database.addLogs({
-		id: uuid(),
-		tenantId: tenant.id,
-		message: new Date().toISOString() + " Issue Updated!",
-		data: req.body
-	});
-
-	res.sendStatus(200);
-});
-
-webhooksRouter.post("/jira/issue-deleted", async (req, res) => {
-	const host = new URL(req.body.user.self).origin;
-	const tenant = await database.findJiraTenant({ url: host });
-	await database.addLogs({
-		id: uuid(),
-		tenantId: tenant.id,
-		message: new Date().toISOString() + " Issue Deleted!",
-		data: req.body
-	});
-
-	res.sendStatus(200);
-});
-
