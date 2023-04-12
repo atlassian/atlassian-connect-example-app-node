@@ -1,0 +1,108 @@
+name: Feedback & Suggestions
+description: Help us improve the example app with your suggestions and opinions
+title: ""
+labels: ["feedback"]
+body:
+  - type: markdown
+    attributes:
+      value: Please rate the following statements to help us improve this example app.
+
+  - type: dropdown
+    id: coverage
+    attributes:
+      label: The overall code coverage of app topics is sufficient.
+      options:
+        - Strongly agree
+        - Agree
+        - Neutral
+        - Disagree
+        - Strongly agree
+    validations:
+      required: true
+
+  - type: dropdown
+    id: quality
+    attributes:
+      label: The code quality and depth helped you understand the app topics.
+      options:
+        - Strongly agree
+        - Agree
+        - Neutral
+        - Disagree
+        - Strongly agree
+    validations:
+      required: true
+
+  - type: dropdown
+    id: code-examples
+    attributes:
+      label: The code examples are helpful.
+      options:
+        - Strongly agree
+        - Agree
+        - Neutral
+        - Disagree
+        - Strongly agree
+    validations:
+      required: true
+
+  - type: dropdown
+    id: build-faster
+    attributes:
+      label: This repository helped me build my Connect app faster.
+      options:
+        - Strongly agree
+        - Agree
+        - Neutral
+        - Disagree
+        - Strongly agree
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: missing
+    attributes:
+      label: What do you think is missing from the example Connect app?
+      options:
+        - label: More topics/use cases to build for
+        - label: Increased fidelity of the code examples
+        - label: More detailed documentation
+        - label: More streamlined documentation/Community posts
+        - label: Other (fill below)
+
+  - type: input
+    id: missing-other
+    attributes:
+      label: If Other, please elaborate
+
+  - type: checkboxes
+    id: improve-experience
+    attributes:
+      label: What else can we improve about the app building experience?
+      options:
+        - label: Help me understand customer problems/use cases I can build for
+        - label: Fix broken/out of date documentation
+        - label: Create an example app for the Forge platform
+        - label: Help me better access customer data/more granular data for my existing apps
+        - label: Help me better find what I need in documentation/Community posts
+        - label: Other (fill below)
+
+  - type: input
+    id: improve-experience-other
+    attributes:
+      label: If Other, please elaborate
+
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Anything else you'd like to let us know?
+
+  - type: textarea
+    id: app-kind
+    attributes:
+      label: What kind of app are you building?
+
+  - type: textarea
+    id: role
+    attributes:
+      label: What's your role?
