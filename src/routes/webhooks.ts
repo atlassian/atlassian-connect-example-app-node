@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { database } from "../db";
-import { authHeaderSymmetricJwtMiddleware } from "../middlewares/auth-header-symmetric-jwt-middleware";
+import { authHeaderSymmetricJwtMiddleware } from "../middlewares/auth-header-jwt-middleware";
 
 export const webhooksRouter = Router();
 

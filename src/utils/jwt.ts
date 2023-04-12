@@ -48,9 +48,9 @@ export const verifySymmetricJWTToken = async (request: Request, token?: string):
 
 
 /**
- * This decodes the JWT token from Jira, verifies it against the jira tenant's shared secret
- * And returns the verified Jira tenant if it passes
- * https://developer.atlassian.com/cloud/jira/platform/understanding-jwt-for-connect-apps/#decoding-and-verifying-a-jwt-token
+ * This decodes the JWT token from Jira, verifies it based on the connect public key
+ * This is used for installed and uninstalled lifecycle events
+ * https://developer.atlassian.com/cloud/jira/platform/security-for-connect-apps/#validating-installation-lifecycle-requests
  */
 export const verifyAsymmetricJWTToken = async (request: Request, token?: string): Promise<void> => {
 	// if JWT is missing, return a 401

@@ -1,10 +1,8 @@
 import { Router } from "express";
 import { database } from "../db";
-import { authHeaderAsymmetricJwtMiddleware } from "../middlewares/auth-header-asymmetric-jwt-middleware";
-import { authHeaderSymmetricJwtMiddleware } from "../middlewares/auth-header-symmetric-jwt-middleware";
+import { authHeaderSymmetricJwtMiddleware, authHeaderAsymmetricJwtMiddleware } from "../middlewares/auth-header-jwt-middleware";
 
 export const eventsRouter = Router();
-
 
 eventsRouter.post("/installed", authHeaderAsymmetricJwtMiddleware, async (req, res) => {
 	const { baseUrl: url, clientKey, sharedSecret } = req.body;

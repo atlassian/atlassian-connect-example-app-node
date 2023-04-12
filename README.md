@@ -16,6 +16,7 @@ This app is aimed to help you to easily add your integration in Jira.
 - [License](#license)
 
 ## Pre-requisites
+- [Node](https://nodejs.org)
 - [yarn](https://yarnpkg.com/getting-started/install)(recommended) or npm
 - [docker & docker-compose](https://docs.docker.com/engine/install/)
 - [ngrok account](https://ngrok.com/)
@@ -25,12 +26,10 @@ You can run this app in 3 simple steps:
 - **Installing dependencies** 
   - Run `yarn install` (recommended) or `npm install` for installing all the dependencies for this app.
 
-- **Tunneling**
-  - For this purpose, we are using [ngrok](https://ngrok.com/docs/getting-started). You need to set the ngrok authtoken in the env file, so please make sure you have a ngrok account.
-  - Simply go to [ngrok](https://dashboard.ngrok.com/get-started/your-authtoken) and copy your authtoken and paste it in the [.env](./.env) file.
-
 - **Configuration**
-  - Open your .env file and fill in the missing fields
+  - We are using [ngrok](https://ngrok.com/docs/getting-started) for tunnelling. You'll need to create an ngrok 
+    account to get access to the auth token.
+  - Open your .env file and fill in *all the missing fields*
 
 - **Running docker compose** 
   - Then simply run `docker-compose up`.
