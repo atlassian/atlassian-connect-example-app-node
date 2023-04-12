@@ -1,23 +1,32 @@
 import path from "path";
-import { chain, ExpChain, remove } from "lodash";
+import { chain, ExpChain } from "lodash";
 import { JSONFile, Low } from "@commonify/lowdb";
+import { v4 as uuid } from "uuid";
 
 /**
  * Type Definitions for the database
  */
-export interface JiraTenant {
+export interface JiraTenant extends JiraTenantWithoutId {
 	id: string;
+}
+
+export interface JiraTenantWithoutId {
 	url: string;
 	sharedSecret: string;
 	clientKey: string;
+	enabled?: boolean;
 }
 
-export interface Log<T = any> {
+export interface Log<T = any> extends LogWithoutId<T> {
 	id: string;
+}
+
+export interface LogWithoutId<T = any> {
 	tenantId: string;
 	message: string;
 	data?: T;
 }
+
 
 interface ConnectAppData {
 	jiraTenants: JiraTenant[];
@@ -65,11 +74,15 @@ class ConnectAppDatabase extends LowWithLodash<ConnectAppData> {
 	}
 
 	@initialized()
-	public async addJiraTenant(props: JiraTenant) {
+	public async addJiraTenant(props: JiraTenantWithoutId) {
 		// Considering hosts to be unique
 		const checkIfAlreadyExists = await this.findJiraTenant({ clientKey: props.clientKey });
 		if (!checkIfAlreadyExists) {
-			this.data?.jiraTenants.push(props);
+			this.data?.jiraTenants.push({
+				id: uuid(),
+				enabled: false,
+				...props
+			});
 			await this.write();
 		}
 	}
@@ -88,6 +101,18 @@ class ConnectAppDatabase extends LowWithLodash<ConnectAppData> {
 	}
 
 	@initialized()
+	public async enableJiraTenant(clientKey: string) {
+		await this.updateJiraTenant(clientKey, { enabled: true });
+		await this.write();
+	}
+
+	@initialized()
+	public async disableJiraTenant(clientKey: string) {
+		await this.updateJiraTenant(clientKey, { enabled: false });
+		await this.write();
+	}
+
+	@initialized()
 	public async removeJiraTenant(clientKey: string) {
 		const tenantIds = this.chain.get("jiraTenants").remove(tenant => tenant.clientKey === clientKey).map(t => t.id);
 		this.chain.get("logs").remove(log => tenantIds.includes(log.tenantId));
@@ -101,16 +126,19 @@ class ConnectAppDatabase extends LowWithLodash<ConnectAppData> {
 	}
 
 	@initialized()
-	public async addLogs(props: Log) {
-		this.data?.logs.push(props);
+	public async addLogs(props: LogWithoutId) {
+		this.data?.logs.push({
+			id: uuid(),
+			...props
+		});
 		await this.write();
 	}
 
 	@initialized()
-	public async removeLogsForJiraTenant(host: string) {
-		const tenant = await this.findJiraTenant({ url: host });
-		if (tenant) {
-			remove(this.data?.logs || [], log => log.tenantId === tenant.id);
+	public async removeLogsForJiraTenant(tenant: Partial<JiraTenant>) {
+		const tenantId = tenant.id || (await this.findJiraTenant(tenant))?.id;
+		if (tenantId) {
+			this.chain.get("logs").remove(log => log.tenantId === tenantId);
 			await this.write();
 		}
 	}
