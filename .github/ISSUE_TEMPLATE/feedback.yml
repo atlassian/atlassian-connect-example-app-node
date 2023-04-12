@@ -1,6 +1,6 @@
 name: Feedback & Suggestions
 description: Help us improve the example app with your suggestions and opinions
-title: "Feedback & Suggestions"
+title: ""
 labels: ["feedback"]
 body:
   - type: markdown
@@ -16,7 +16,7 @@ body:
         - Agree
         - Neutral
         - Disagree
-        - Strongly disagree
+        - Strongly agree
     validations:
       required: true
 
@@ -29,7 +29,7 @@ body:
         - Agree
         - Neutral
         - Disagree
-        - Strongly disagree
+        - Strongly agree
     validations:
       required: true
 
@@ -42,7 +42,7 @@ body:
         - Agree
         - Neutral
         - Disagree
-        - Strongly disagree
+        - Strongly agree
     validations:
       required: true
 
@@ -55,7 +55,7 @@ body:
         - Agree
         - Neutral
         - Disagree
-        - Strongly disagree
+        - Strongly agree
     validations:
       required: true
 
