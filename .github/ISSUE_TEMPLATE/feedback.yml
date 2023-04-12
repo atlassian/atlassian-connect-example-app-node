@@ -68,6 +68,12 @@ body:
         - label: Increased fidelity of the code examples
         - label: More detailed documentation
         - label: More streamlined documentation/Community posts
+        - label: Other (fill below)
+
+  - type: input
+    id: missing-other
+    attributes:
+      label: If Other, please elaborate
 
   - type: checkboxes
     id: improve-experience
@@ -79,6 +85,12 @@ body:
         - label: Create an example app for the Forge platform
         - label: Help me better access customer data/more granular data for my existing apps
         - label: Help me better find what I need in documentation/Community posts
+        - label: Other (fill below)
+
+  - type: input
+    id: improve-experience-other
+    attributes:
+      label: If Other, please elaborate
 
   - type: textarea
     id: suggestion
