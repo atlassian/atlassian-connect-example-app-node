@@ -1,8 +1,14 @@
 import { Request, Response, Router } from "express";
 import { createQueryStringHash, encodeSymmetric } from "atlassian-jwt";
 import { envVars } from "../env";
+import { querystringJwtMiddleware } from "../middlewares/querystring-jwt-middleware";
 
 export const apiRouter = Router();
+
+/************************************************************************************************************************
+ * Middlewares auth
+ ************************************************************************************************************************/
+apiRouter.use(querystringJwtMiddleware);
 
 apiRouter.get("/user/:userId", async (req: Request, res: Response) => {
 	// REST API url info

@@ -8,7 +8,6 @@ This app is aimed to help you to easily add your integration in Jira.
 
 ## Table of Contents
 - [Pre-requisites](#pre-requisites)
-- [Features](#features)
 - [Getting started](#getting-started)
 - [Manual Install](#manually-installing-the-app)
 - [Running your application](#running-your-application)
@@ -17,21 +16,20 @@ This app is aimed to help you to easily add your integration in Jira.
 - [License](#license)
 
 ## Pre-requisites
-- yarn
-- docker & docker-compose
-- ngrok account
-
-## Features
-- TBD
+- [Node](https://nodejs.org)
+- [yarn](https://yarnpkg.com/getting-started/install)(recommended) or npm
+- [docker & docker-compose](https://docs.docker.com/engine/install/)
+- [ngrok account](https://ngrok.com/)
 
 ## Getting started
 You can run this app in 3 simple steps:
 - **Installing dependencies** 
-  - Run `yarn install` for installing all the dependencies for this app.
+  - Run `yarn install` (recommended) or `npm install` for installing all the dependencies for this app.
 
-- **Tunneling**
-  - For this purpose, we are using [ngrok](https://ngrok.com/docs/getting-started). You need to set the ngrok authtoken in the env file, so please make sure you have a ngrok account.
-  - Simply go to [ngrok](https://dashboard.ngrok.com/get-started/your-authtoken) and copy your authtoken and paste it in the [.env](./.env) file.
+- **Configuration**
+  - We are using [ngrok](https://ngrok.com/docs/getting-started) for tunnelling. You'll need to create an ngrok 
+    account to get access to the auth token.
+  - Open your .env file and fill in *all the missing fields*
 
 - **Running docker compose** 
   - Then simply run `docker-compose up`.
@@ -44,24 +42,23 @@ At the very end, you can see the URL the index page of your app. Just open the U
 ## Manually Installing the App
 The above steps automatically installs the app, however you can only install one app at a time. 
 
-So, if you want to install the app in multiple Jira instances, please do it manually. Go to your Jira instances and do the following steps:
+If you want to install the app in multiple Jira instances, please do it manually. Go to your Jira instances and do 
+the following steps:
 - From the header menu, select Apps -> Manage your apps.
 - Verify the filter is set to User-installed, and select Settings beneath the User-installed apps table.
 - On the Settings pop-up, add Enable development mode and click Apply. Refresh the page.
-- On the right side of the header, there should now appear a button Upload app. Click it and enter the tunneled URL `/atlassian-connect.json`(`https://TUNNELED_URL/atlassian-connect.json`)
+- On the right side of the header, there should now appear a button Upload app. Click it and enter the app URL 
+  `/atlassian-connect.json`(`https://${APP_URL}/atlassian-connect.json`)
 - Click Upload.
 - That's it! You're done. 🎉
-
-## Running your application
-- TBD
 
 ## Testing
 We have added a basic end to end test for installing and uninstalling the app, using [playwright](https://playwright.dev/docs/intro). You can add your own test cases on top of it. 
 
-To run the end to end test, please add the values for `ATLASSIAN_URL`, `JIRA_ADMIN_USERNAME` and `JIRA_ADMIN_PASSWORD` in the `.env` file. Then simply run `yarn test:e2e` in the terminal.
+To run the end to end test, please add the values for `ATLASSIAN_URL`, `JIRA_ADMIN_EMAIL` and `JIRA_ADMIN_API_TOKEN` in the `.env` file. Then simply run `yarn test:e2e` in the terminal.
 
 ## Getting help
-- TBD
+If you have feedback, found a bug or need some help, please create a [new issue in this repo](https://github.com/atlassian/atlassian-connect-example-app-node/issues/new/choose).
 
 ## License
 The project is available as open source under the terms of the [MIT License](./LICENSE).
