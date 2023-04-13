@@ -1,7 +1,5 @@
 # Atlassian Connect example app - Node edition
 
-> **_NOTE:_**  This repository is in progress and is not ready yet.
-
 ## About
 This repository contains an example [Express](https://expressjs.com/en/4x/api.html) server for building an [Atlassian Connect app](https://developer.atlassian.com/cloud/jira/platform/getting-started-with-connect/).
 This app is aimed to help you to easily add your integration in Jira.
