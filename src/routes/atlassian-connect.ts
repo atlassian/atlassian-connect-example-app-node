@@ -107,6 +107,40 @@ export const connectAppDescriptor = {
 			}
 		],
 
+		webItems: [
+			{
+				location: "system.top.navigation.bar",
+				url: "/pages/marketplace",
+				weight: 200,
+				target: {
+					type: "dialog",
+					options: {
+						key: "dialog-module-key"
+					}
+				},
+				tooltip: {
+					"value": "You have hovered me"
+				},
+				name: {
+					"value": "Open Modal"
+				},
+				key: "web-item"
+			}
+		],
+
+		dialogs: [
+			{
+				url: "/pages/lifecycle-events",
+				options: {
+					size: "large",
+					header: {
+						value: "Config is here!"
+					}
+				},
+				key: "dialog-module-key"
+			}
+		],
+
 		/**
 		 * The list of pages/views within the app.
 		 * https://developer.atlassian.com/cloud/jira/software/modules/page/
