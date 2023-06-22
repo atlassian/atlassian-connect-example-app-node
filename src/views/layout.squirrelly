@@ -24,6 +24,11 @@
         <section class="ac-content">
             {{* it.content }}
         </section>
+        <div>
+            <button id="setAppProperty">Set</button>
+            <button id="getAppProperty">Get</button>
+            <button id="removeAppProperty">Delete</button>
+        </div>
         {{@includeFile('./partials/nav.squirrelly', it) /}}
     </div>
     <script>
@@ -44,5 +49,66 @@
             });
     </script>
     <script src="/public/js/examples.js"></script>
+    <script>
+        document.querySelector('#setAppProperty').onclick = () => {
+			AP.request({
+				url: '/rest/atlassian-connect/latest/addons/com.example.node-connect-app/properties/isNotConfigured?jsonValue=true',
+                type: 'PUT',
+                data: `false`,
+				success: function(response) {
+					// Convert the string response to JSON
+					response = JSON.parse(response);
+					console.log("Successfully set", response);
+				},
+				error: function(response) {
+					console.log(response);
+				},
+				contentType: "application/json",
+                headers: {
+					Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                }
+			});
+        }
+
+		document.querySelector('#getAppProperty').onclick = () => {
+			AP.request({
+				url: '/rest/atlassian-connect/latest/addons/com.example.node-connect-app/properties/isNotConfigured?jsonValue=true',
+				success: function(response) {
+					// Convert the string response to JSON
+					response = JSON.parse(response);
+					console.log("Successfully Get", response);
+				},
+				error: function(response) {
+					console.log(response);
+				},
+				headers: {
+					Accept: 'application/json',
+					'Content-Type': 'application/json'
+				},
+				contentType: "application/json"
+			});
+		}
+
+		document.querySelector('#removeAppProperty').onclick = () => {
+			AP.request({
+				url: '/rest/atlassian-connect/latest/addons/com.example.node-connect-app/properties/isNotConfigured?jsonValue=true',
+                type: 'DELETE',
+				success: function(response) {
+					// Convert the string response to JSON
+					response = JSON.parse(response);
+					console.log("Successfully Delete", response);
+				},
+				error: function(response) {
+					console.log(response);
+				},
+				headers: {
+					Accept: 'application/json',
+					'Content-Type': 'application/json'
+				},
+				contentType: "application/json"
+			});
+		}
+    </script>
 </body>
 </html>

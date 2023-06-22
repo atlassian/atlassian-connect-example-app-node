@@ -122,9 +122,18 @@ export const connectAppDescriptor = {
 					"value": "You have hovered me"
 				},
 				name: {
-					"value": "Open Modal"
+					"value": "Entity Property Equal to"
 				},
-				key: "web-item"
+				key: "web-item-2",
+				conditions: [
+					{
+						condition: "addon_property_equal_to",
+						params: {
+							propertyKey: "isNotConfigured",
+							value: "false"
+						}
+					}
+				]
 			}
 		],
 
