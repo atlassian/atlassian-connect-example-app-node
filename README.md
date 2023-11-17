@@ -8,7 +8,6 @@ This app is aimed to help you to easily add your integration in Jira.
 - [Pre-requisites](#pre-requisites)
 - [Getting started](#getting-started)
 - [Manual Install](#manually-installing-the-app)
-- [Running your application](#running-your-application)
 - [Testing](#testing)
 - [Getting help](#getting-help)
 - [License](#license)
@@ -30,16 +29,15 @@ This app is aimed to help you to easily add your integration in Jira.
    npm install
    ```
 2. Create `.env` file based on `.env.example` and set the environment variables.
-3. Start the app and install it on Jira.
+3. Start the app and install it on Jira. Please be patient as it will take a few minutes for everything to be setup. When everything is set up, you should see the URL in the terminal as in the picture below.
    ```shell
    docker-compose up
    ```
-
-Please be patient as it will take a few minutes for everything to be setup. When everything is set up, you should see the URL in the terminal as in the picture below. ![img.png](static/images/tunnel-output.png)
-
-> **Note:** _If you are using a free version of ngrok, please open the tunneled URL first. This needs to be done to bypass the ngrok browser warning. Just visit the ngrok warning page and just click on the Visit button._
+   ![img.png](static/images/tunnel-output.png)
 
 At the very end, you can see the URL the index page of your app. Just open the URL and that's it, you're ready!
+
+> **Note:** _If you are using a free version of ngrok, please open the tunneled URL first. This needs to be done to bypass the ngrok browser warning. Just visit the ngrok warning page and just click on the "Visit" button._
 
 ## Manually Installing the App
 
