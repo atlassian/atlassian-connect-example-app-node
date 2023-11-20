@@ -48,7 +48,7 @@ jobs:
       - run: yarn install --frozen-lockfile
       - name: create .env file
         run: |
-          echo "APP_URL=https://${{ secrets.NGROK_DOMAIN }}" >> .env
+          echo "APP_URL=https://${{ secrets.NGROK_DOMAIN }}" > .env
           echo "NGROK_AUTHTOKEN=${{ secrets.NGROK_AUTHTOKEN }}" >> .env
           echo "NGROK_DOMAIN=${{ secrets.NGROK_DOMAIN }}" >> .env
           echo "ATLASSIAN_URL=${{ secrets.E2E_ATLASSIAN_URL }}" >> .env
