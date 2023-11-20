@@ -38,7 +38,6 @@ export const jiraAppInstall = async (page: Page): Promise<Page> => {
 	await page.click("#upm-upload");
 	await page.fill("#upm-upload-url", data.urls.connectJson);
 	await page.click("#upm-upload-dialog .aui-button-primary");
-	await page.click(`#upm-plugin-status-dialog .confirm`);
 	const iframe = await page.frameLocator("#ak-main-content iframe");
 	await (await iframe.locator(".ac-content")).waitFor();
 	return page;
