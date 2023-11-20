@@ -50,6 +50,7 @@ jobs:
         run: |
           echo "APP_URL=https://${{ secrets.NGROK_DOMAIN }}" > .env
           echo "NGROK_AUTHTOKEN=${{ secrets.NGROK_AUTHTOKEN }}" >> .env
+          echo "NGROK_DOMAIN=${{ secrets.NGROK_DOMAIN }}" >> .env
           echo "ATLASSIAN_URL=${{ secrets.E2E_ATLASSIAN_URL }}" >> .env
           echo "JIRA_ADMIN_EMAIL=${{ secrets.E2E_JIRA_ADMIN_USERNAME }}" >> .env
           echo "JIRA_ADMIN_API_TOKEN=${{ secrets.E2E_JIRA_ADMIN_PASSWORD }}" >> .env
