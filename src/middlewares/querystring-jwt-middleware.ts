@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { verifySymmetricJWTToken } from "../utils/jwt";
+import { JwtVerificationError, verifySymmetricJWTToken } from "../utils/jwt";
 import { fromExpressRequest } from "atlassian-jwt";
 
 /**
@@ -11,6 +11,7 @@ export const querystringJwtMiddleware = async (req: Request, res: Response, next
 		res.locals.jiraTenant = await verifySymmetricJWTToken(fromExpressRequest(req), req.query.jwt as string);
 		next();
 	} catch (e) {
-		res.status(e.status).send(e.message);
+		const message = e instanceof JwtVerificationError ? e.message : "Unauthorized";
+		res.status(401).send(message);
 	}
 };
