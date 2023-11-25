@@ -6,8 +6,7 @@ app descriptor is:
 - `name`: the name of the Connect app
 - `description`: description for the Connect app
 - `key`: a unique key to identify your Connect app. This key must be <= 64 characters
-- `baseUrl`: The base url of the remote app, which is used for all communications back to the app instance. For this
-  example app, this is the tunneled URL which is set in the `prestart.ts`
+- `baseUrl`: The base url of the remote app, which is used for all communications back to the app instance.
 - `vendor`: the vendor who is offering this Connect app
 - `authentication`: this defines the authentication type to use when signing requests between the host application 
 and the Connect app. The supported types include `jwt`, `JWT`, `none`, `NONE`. We'll go into more detail around 

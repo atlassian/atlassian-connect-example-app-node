@@ -27,8 +27,6 @@ export const connectAppDescriptor = {
 
 	/**
 	 * The base url of the server, which is used for all communications between Connect and the app.
-	 *
-	 * The tunneled URL which is set in the `prestart.ts`
 	 */
 	baseUrl: envVars.APP_URL,
 

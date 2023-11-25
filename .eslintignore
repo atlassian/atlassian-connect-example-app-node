@@ -1,4 +1,2 @@
 /**/*.js
-prestart.ts
-postinstall.ts
 playwright.config.ts
