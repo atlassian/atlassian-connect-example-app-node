@@ -140,7 +140,9 @@ const validateExp = (exp: number): void => {
 };
 
 /**
- * Queries the public key for the specified keyId
+ * Queries the public key for the specified keyId.
+ *
+ * @see https://developer.atlassian.com/cloud/jira/platform/understanding-jwt-for-connect-apps/#verifying-a-asymmetric-jwt-token-for-install-callbacks
  */
 const queryAtlassianConnectPublicKey = async (keyId: string): Promise<string> => {
 	const response = await fetch(`https://connect-install-keys.atlassian.com/${keyId}`);
