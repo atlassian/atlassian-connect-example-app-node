@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { verifyAsymmetricJWTToken, verifySymmetricJWTToken } from "../utils/jwt";
+import { JwtVerificationError, verifyAsymmetricJWTToken, verifySymmetricJWTToken } from "../utils/jwt";
 import { fromExpressRequest } from "atlassian-jwt";
 
 
@@ -17,7 +17,8 @@ const validateAuthToken = (type: "symmetric" | "asymmetric") => async (req: Requ
 		}
 		next();
 	} catch (e) {
-		res.status(e.status).send(e.message);
+		const message = e instanceof JwtVerificationError ? e.message : "Unauthorized";
+		res.status(401).send(message);
 	}
 };
 /**
