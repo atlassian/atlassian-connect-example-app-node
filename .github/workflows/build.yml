@@ -27,9 +27,7 @@ jobs:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
       - run: |
-          echo "krazziekay:registry=https://npm.pkg.github.com" >> .npmrc
-          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN_FOR_NPM_PACKAGES }}" >> .npmrc
-      - run: yarn install --frozen-lockfile
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.GH_TOKEN_FOR_NPM_PACKAGES }}" > .npmrc && yarn install --frozen-lockfile
       - run: yarn lint
       - run: yarn build
 
