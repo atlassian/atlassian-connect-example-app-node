@@ -26,7 +26,10 @@ jobs:
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn --registry https://registry.npmjs.org install --frozen-lockfile
+      - name: Set up Git
+        run: |
+          git config --global url."https://x-access-token:${{ secrets.GH_TOKEN_FOR_NPM_PACKAGES }}@github.com/".insteadOf "https://github.com/"
+      - run: yarn install --frozen-lockfile
       - run: yarn lint
       - run: yarn build
 
