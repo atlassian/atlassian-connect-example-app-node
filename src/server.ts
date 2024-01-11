@@ -1,5 +1,7 @@
 import express, { json } from "express";
 import { RootRouter } from "./routes/router";
+import { proxyLocalUIForDev } from "./spa-proxy";
+
 
 const app = express();
 
@@ -16,13 +18,16 @@ app.use((_req, res, next) => {
 	next();
 });
 
+//Start FE proxy server
+proxyLocalUIForDev(app);
+
 // Calling the express.json() method for parsing
 app.use(json());
 
 // Setting the routes
 app.use(RootRouter);
 
-const port = 3000;
+const port = 4000;
 app.listen(port, async () => {
 	// App is now running
 	console.log(`Sample app listening on port ${port}`);
