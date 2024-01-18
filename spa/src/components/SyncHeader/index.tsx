@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { token, useThemeObserver } from "@atlaskit/tokens";
 import { css } from "@emotion/react";
+import jiraLogo from "../../../../static/assets/jira-logo.svg";
 
 const headerWrapperStyle = css`
 	text-align: center;
@@ -20,13 +21,17 @@ const syncLogoImg = css`
 	height: ${token("space.500")};
 	padding: ${token("space.100")};
 `;
+
 const titleStyle = css`
 	margin: ${token("space.400")} ${token("space.0")} ${token("space.300")};
 `;
 
-const SyncHeader = () => {
-	const { colorMode } = useThemeObserver();
+type Props = {
+	appName: string;
+	appLogoPath: string;
+};
 
+const SyncHeader: React.FC<Props> = ({ appName, appLogoPath }) => {
 	return (
 		<div css={headerWrapperStyle}>
 			<div css={logoContainerStyle}>
@@ -34,26 +39,22 @@ const SyncHeader = () => {
 					css={logoImgStyle}
 					className="logo"
 					src="/public/assets/jira-logo.svg"
-					alt=""
+					alt="loarguh"
 				/>
 				<img
 					css={syncLogoImg}
 					className="sync-logo"
 					src="/public/assets/sync.svg"
-					alt=""
+					alt="aiurghqi"
 				/>
 				<img
 					css={logoImgStyle}
 					className="logo"
-					src={
-						colorMode === "dark"
-							? "/public/assets/github-logo-dark-theme.svg"
-							: "/public/assets/github-logo.svg"
-					}
-					alt=""
+					src={appLogoPath}
+					alt="iughidfsu"
 				/>
 			</div>
-			<h2 css={titleStyle}>Connect Github to Jira</h2>
+			<h2 css={titleStyle}>Connect {appName} to Jira</h2>
 		</div>
 	);
 };
