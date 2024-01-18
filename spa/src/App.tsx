@@ -12,7 +12,8 @@ const App = () => {
 		typography: "typography-adg3",
 	});
 
-	// The path "/spa" maps to the StartConnection component
+	// The path "/spa" maps to the StartConnection component page
+	// Replace appLogoPath with the path to your app logo
 	return (
 		<BrowserRouter>
 			<Routes>

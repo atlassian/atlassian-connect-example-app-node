@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import { token, useThemeObserver } from "@atlaskit/tokens";
+import { token } from "@atlaskit/tokens";
 import { css } from "@emotion/react";
-import jiraLogo from "../../../../static/assets/jira-logo.svg";
 
 const headerWrapperStyle = css`
 	text-align: center;
@@ -39,19 +38,19 @@ const SyncHeader: React.FC<Props> = ({ appName, appLogoPath }) => {
 					css={logoImgStyle}
 					className="logo"
 					src="/public/assets/jira-logo.svg"
-					alt="loarguh"
+					alt="Jira"
 				/>
 				<img
 					css={syncLogoImg}
 					className="sync-logo"
 					src="/public/assets/sync.svg"
-					alt="aiurghqi"
+					alt="Syncing"
 				/>
 				<img
 					css={logoImgStyle}
 					className="logo"
 					src={appLogoPath}
-					alt="iughidfsu"
+					alt={appName}
 				/>
 			</div>
 			<h2 css={titleStyle}>Connect {appName} to Jira</h2>

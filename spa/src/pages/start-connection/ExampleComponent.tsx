@@ -33,13 +33,13 @@ const InlineDialog = styled(TooltipPrimitive)`
 export const ExampleComponent = () => {
 	const InlineDialogContent = () => (
 		<>
-			<div css={inlineDialogDivStyle}>Custom text</div>
+			<div css={inlineDialogDivStyle}>Your custom text</div>
 		</>
 	);
 
 	return (
 		<>
-			<span> Integration requirement with tooltip modal </span>
+			<span> Integration requirement with tooltip text modal </span>
 			<br />
 			<Tooltip
 				component={InlineDialog}

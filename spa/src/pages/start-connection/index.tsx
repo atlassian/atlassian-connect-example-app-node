@@ -1,9 +1,7 @@
 /** @jsxImportSource @emotion/react */
-import { useNavigate } from "react-router-dom";
 import Button from "@atlaskit/button";
 import ArrowRightIcon from "@atlaskit/icon/glyph/arrow-right";
-import UserAvatarCircleIcon from "@atlaskit/icon/glyph/user-avatar-circle";
-import UnlockFilledIcon from "@atlaskit/icon/glyph/unlock-filled";
+import InfoIcon from "@atlaskit/icon/glyph/info";
 import { css } from "@emotion/react";
 import { token } from "@atlaskit/tokens";
 import SyncHeader from "../../components/SyncHeader";
@@ -39,11 +37,11 @@ const buttonContainerStyle = css`
 export const data: RequirementType[] = [
 	{
 		description: "Integration requirement",
-		Icon: UserAvatarCircleIcon,
+		Icon: InfoIcon,
 	},
 	{
 		description: <ExampleComponent />,
-		Icon: UnlockFilledIcon,
+		Icon: InfoIcon,
 	},
 ];
 
@@ -58,8 +56,6 @@ const StartConnection: React.FC<Props> = ({
 	appLogoPath,
 	integrationRequirements,
 }) => {
-	const navigate = useNavigate();
-
 	return (
 		<Wrapper>
 			<SyncHeader appName={appName} appLogoPath={appLogoPath} />
@@ -78,22 +74,11 @@ const StartConnection: React.FC<Props> = ({
 					appearance="primary"
 					aria-label="continue"
 					onClick={() => {
-						// TODO: send event to analytics client and navigate to next steps
+						// TODO: send event to analytics client and navigate to next pages
 					}}
 				>
 					Continue
 				</Button>
-				{
-					<Button
-						appearance="subtle"
-						onClick={() => {
-							// Navigate to next page e.g. ("/spa/connections");
-							navigate("/spa/connections");
-						}}
-					>
-						Go to backfill page
-					</Button>
-				}
 			</div>
 		</Wrapper>
 	);
