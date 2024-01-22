@@ -1,14 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import Button from "@atlaskit/button";
 import ArrowRightIcon from "@atlaskit/icon/glyph/arrow-right";
-import InfoIcon from "@atlaskit/icon/glyph/info";
 import { css } from "@emotion/react";
 import { token } from "@atlaskit/tokens";
 import SyncHeader from "../../components/SyncHeader";
 import { PageWrapper } from "../../common/PageWrapper";
 import { RequirementComponent } from "./Requirements";
-import { RequirementType } from "../../common/constants";
-import { ExampleComponent } from "./ExampleComponent";
+import { startConnectionProps } from "../../pagesData/startConnectionData";
 
 const beforeTextStyle = css`
 	color: ${token("color.text.subtle")};
@@ -31,33 +29,14 @@ const buttonContainerStyle = css`
 	align-items: center;
 `;
 
-// 'data' is an array of objects, each containing specific app integration requirements and a corresponding bullet icon.
-// 'description' is an element that describes an integration requirement.
-// 'Icon' is an Atlaskit component and represents the icon associated with the requirement.
-export const data: RequirementType[] = [
-	{
-		description: "Integration requirement",
-		Icon: InfoIcon,
-	},
-	{
-		description: <ExampleComponent />,
-		Icon: InfoIcon,
-	},
-];
-
-type Props = {
-	appName: string;
-	appLogoPath: string;
-	integrationRequirements: RequirementType[];
-};
-
-const StartConnection: React.FC<Props> = ({
+const StartConnection: React.FC<startConnectionProps> = ({
 	appName,
 	appLogoPath,
+	AppMarketplaceUrl,
 	integrationRequirements,
 }) => {
 	return (
-		<PageWrapper AppMarketplaceUrl="com.github.integration.production">
+		<PageWrapper AppMarketplaceUrl={AppMarketplaceUrl}>
 			<SyncHeader appName={appName} appLogoPath={appLogoPath} />
 			<div css={beforeTextStyle}>Before you start, you should have:</div>
 			<div css={listContainerStyle}>

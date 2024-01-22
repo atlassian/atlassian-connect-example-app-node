@@ -1,7 +1,7 @@
 import { setGlobalTheme } from "@atlaskit/tokens";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import StartConnection from "./pages/StartConnection";
-import { data } from "./pages/StartConnection";
+import { startConnectionData } from "./pagesData/startConnectionData";
 
 const App = () => {
 	setGlobalTheme({
@@ -13,21 +13,11 @@ const App = () => {
 	});
 
 	// The path "/spa" is mapped to the StartConnection component page.
-	// Replace 'appLogoPath' with the path to your application's logo.
 	return (
 		<BrowserRouter>
 			<Routes>
 				<Route path="/spa">
-					<Route
-						index
-						element={
-							<StartConnection
-								appName="Your App"
-								appLogoPath="/public/assets/jira-logo.svg"
-								integrationRequirements={data}
-							/>
-						}
-					/>
+					<Route index element={<StartConnection {...startConnectionData} />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>
