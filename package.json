@@ -28,6 +28,7 @@
     "@emotion/styled": "^11.11.0",
     "@types/marked": "^4.0.8",
     "atlassian-jwt": "^2.0.2",
+    "eslint-config-react-app": "^7.0.1",
     "express": "^4.18.2",
     "http-proxy": "^1.18.1",
     "lodash": "^4.17.21",
