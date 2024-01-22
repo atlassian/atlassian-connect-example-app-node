@@ -1,7 +1,7 @@
 import { setGlobalTheme } from "@atlaskit/tokens";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import StartConnection from "./pages/start-connection";
-import { data } from "./pages/start-connection";
+import StartConnection from "./pages/StartConnection";
+import { data } from "./pages/StartConnection";
 
 const App = () => {
 	setGlobalTheme({

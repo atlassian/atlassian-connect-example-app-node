@@ -5,7 +5,7 @@ import InfoIcon from "@atlaskit/icon/glyph/info";
 import { css } from "@emotion/react";
 import { token } from "@atlaskit/tokens";
 import SyncHeader from "../../components/SyncHeader";
-import { Wrapper } from "../../common/Wrapper";
+import { PageWrapper } from "../../common/PageWrapper";
 import { RequirementComponent } from "./Requirements";
 import { RequirementType } from "../../common/constants";
 import { ExampleComponent } from "./ExampleComponent";
@@ -57,7 +57,7 @@ const StartConnection: React.FC<Props> = ({
 	integrationRequirements,
 }) => {
 	return (
-		<Wrapper>
+		<PageWrapper AppMarketplaceUrl="com.github.integration.production">
 			<SyncHeader appName={appName} appLogoPath={appLogoPath} />
 			<div css={beforeTextStyle}>Before you start, you should have:</div>
 			<div css={listContainerStyle}>
@@ -80,7 +80,7 @@ const StartConnection: React.FC<Props> = ({
 					Continue
 				</Button>
 			</div>
-		</Wrapper>
+		</PageWrapper>
 	);
 };
 

@@ -17,22 +17,35 @@ const wrapperCenterStyle = css`
 	justify-content: center;
 `;
 
-export const Wrapper = (attr: {
+export const PageWrapper = ({
+	AppMarketplaceUrl,
+	hideClosedBtn,
+	children,
+}: {
+	AppMarketplaceUrl: string;
 	hideClosedBtn?: boolean;
 	children?: ReactNode | undefined;
 }) => {
+	const navigateToHomePage = () => {
+		AP.getLocation((location: string) => {
+			const locationUrl = new URL(location);
+			AP.navigator.go("site", {
+				absoluteUrl: `${locationUrl.origin}/jira/marketplace/discover/app/${AppMarketplaceUrl}`,
+			});
+		});
+	};
 	return (
 		<div css={wrapperStyle}>
-			{!attr.hideClosedBtn && (
+			{!hideClosedBtn && (
 				<Button
 					style={{ float: "right" }}
 					iconBefore={<CrossIcon label="Close" size="medium" />}
 					appearance="subtle"
-					//onClick={navigateToHomePage}
+					onClick={navigateToHomePage}
 				/>
 			)}
 
-			<div css={wrapperCenterStyle}>{attr.children}</div>
+			<div css={wrapperCenterStyle}>{children}</div>
 		</div>
 	);
 };

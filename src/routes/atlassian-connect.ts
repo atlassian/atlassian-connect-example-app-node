@@ -210,6 +210,14 @@ export const connectAppDescriptor = {
 				name: {
 					"value": "Atlassian Marketplace"
 				}
+			},
+			{
+				url: "/spa",
+				key: "spa",
+				location: "admin_plugins_menu/connect-node-app-section",
+				name: {
+					"value": "spa"
+				}
 			}
 		],
 

@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   tunnel:
@@ -20,6 +20,15 @@ services:
       test: ["CMD", "curl", "-f", "http://localhost:3000/"]
       interval: 5s
       retries: 100
+
+  spa:
+    build:
+      context: .
+      dockerfile: spa-docker/Dockerfile
+    ports:
+      - "3010:3010" # server port
+    volumes:
+      - .:/app/spa
 
   installation:
     depends_on:

@@ -20,6 +20,8 @@
   },
   "dependencies": {
     "@atlaskit/button": "^17.1.0",
+    "@atlaskit/css-reset": "^6.6.2",
+    "@atlaskit/heading": "^1.4.4",
     "@atlaskit/icon": "^22.0.0",
     "@atlaskit/tooltip": "^18.1.0",
     "@commonify/lowdb": "^3.0.0",
