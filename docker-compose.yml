@@ -2,10 +2,10 @@ version: "3"
 
 services:
   tunnel:
-    image: wernight/ngrok
+    image: ngrok/ngrok:latest
     ports:
       - "4040:4040"
-    command: ngrok http -log stdout -hostname=$NGROK_DOMAIN --authtoken $NGROK_AUTHTOKEN app:3000
+    command: http --log stdout --domain $NGROK_DOMAIN --authtoken $NGROK_AUTHTOKEN app:3000
 
   app:
     container_name: connect-example-app-node
@@ -20,15 +20,6 @@ services:
       test: ["CMD", "curl", "-f", "http://localhost:3000/"]
       interval: 5s
       retries: 100
-
-  spa:
-    build:
-      context: .
-      dockerfile: spa-docker/Dockerfile
-    ports:
-      - "3010:3010" # server port
-    volumes:
-      - .:/app/spa
 
   installation:
     depends_on:
