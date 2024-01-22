@@ -28,8 +28,8 @@ const InlineDialog = styled(TooltipPrimitive)`
 	top: -22px;
 `;
 
-// The ExampleComponent component displays a inline tooltip modal with custom text
-// Content of the inline dialog can be defined here
+// The ExampleComponent component displays an inline tooltip modal with custom text.
+// The content of the inline dialog can be defined here.
 export const ExampleComponent = () => {
 	const InlineDialogContent = () => (
 		<>

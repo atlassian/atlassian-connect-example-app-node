@@ -31,9 +31,9 @@ const buttonContainerStyle = css`
 	align-items: center;
 `;
 
-// 'data' is an array of objects, with app specific integration requirements and a corresponding bullet icon.
-// 'description' is a element that describes and integration requirement.
-// 'Icon' is an atlaskit compnent and represents the icon associated with the requirement.
+// 'data' is an array of objects, each containing specific app integration requirements and a corresponding bullet icon.
+// 'description' is an element that describes an integration requirement.
+// 'Icon' is an Atlaskit component and represents the icon associated with the requirement.
 export const data: RequirementType[] = [
 	{
 		description: "Integration requirement",
@@ -74,7 +74,7 @@ const StartConnection: React.FC<Props> = ({
 					appearance="primary"
 					aria-label="continue"
 					onClick={() => {
-						// TODO: send event to analytics client and navigate to next pages
+						// TODO: navigate to next page
 					}}
 				>
 					Continue

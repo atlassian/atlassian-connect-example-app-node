@@ -216,7 +216,7 @@ export const connectAppDescriptor = {
 				key: "spa",
 				location: "admin_plugins_menu/connect-node-app-section",
 				name: {
-					"value": "spa"
+					"value": "Single Page Application"
 				}
 			}
 		],
