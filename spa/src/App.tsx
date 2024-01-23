@@ -2,6 +2,7 @@ import { setGlobalTheme } from "@atlaskit/tokens";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import StartConnection from "./pages/StartConnection";
 import { startConnectionData } from "./pagesData/startConnectionData";
+import Connected from "./pages/Connected";
 
 const App = () => {
 	setGlobalTheme({
@@ -18,6 +19,7 @@ const App = () => {
 			<Routes>
 				<Route path="/spa">
 					<Route index element={<StartConnection {...startConnectionData} />} />
+					<Route path="connected" element={<Connected />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>
