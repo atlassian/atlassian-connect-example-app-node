@@ -5,6 +5,7 @@
   "license": "MIT",
   "private": false,
   "scripts": {
+    "postinstall": "cd spa && yarn",
     "prepare": "husky install",
     "precommit": "run-p lint build",
     "clean": "rimraf src/**/*.js test/**/*.js build",
