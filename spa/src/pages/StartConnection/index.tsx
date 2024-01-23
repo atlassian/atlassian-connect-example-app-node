@@ -3,10 +3,9 @@ import Button from "@atlaskit/button";
 import ArrowRightIcon from "@atlaskit/icon/glyph/arrow-right";
 import { css } from "@emotion/react";
 import { token } from "@atlaskit/tokens";
-import SyncHeader from "../../components/SyncHeader";
 import { PageWrapper } from "../../common/PageWrapper";
-import { RequirementComponent } from "./Requirements";
 import { startConnectionProps } from "../../pagesData/startConnectionData";
+import { SyncHeader, RequirementComponent } from "../../components";
 
 const beforeTextStyle = css`
 	color: ${token("color.text.subtle")};

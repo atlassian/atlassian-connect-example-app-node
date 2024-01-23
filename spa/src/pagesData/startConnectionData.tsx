@@ -1,5 +1,5 @@
 import { RequirementType } from "../common/constants";
-import { ExampleComponent } from "../pages/StartConnection/ExampleComponent";
+import { ExampleComponent } from "../components";
 import InfoIcon from "@atlaskit/icon/glyph/info";
 
 // 'data' is an array of objects, each containing specific app integration requirements and a corresponding bullet icon.
