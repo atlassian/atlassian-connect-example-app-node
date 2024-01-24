@@ -32,9 +32,7 @@ const InlineDialog = styled(TooltipPrimitive)`
 // The content of the inline dialog can be defined here.
 export const ExampleComponent = () => {
 	const InlineDialogContent = () => (
-		<>
-			<div css={inlineDialogDivStyle}>Your custom text</div>
-		</>
+		<div css={inlineDialogDivStyle}>Your custom text</div>
 	);
 
 	return (
