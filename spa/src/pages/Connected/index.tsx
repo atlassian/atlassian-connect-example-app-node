@@ -6,6 +6,7 @@ import { PageWrapper } from "../../common/PageWrapper";
 import { token } from "@atlaskit/tokens";
 import Heading from "@atlaskit/heading";
 import Button from "@atlaskit/button";
+import { connectedProps } from "../../pagesData/connectedData";
 
 const connectedContainerStyle = css`
 	margin: 0 auto;
@@ -52,34 +53,31 @@ const subtleBtnStyle = css`
 	color: ${token("color.text.subtle")} !important;
 `;
 
-const Connected = () => {
-	// const location = useLocation();
-	// const { orgLogin, requestId } = location.state;
-	const navigate = useNavigate();
+const Connected: React.FC<connectedProps> = ({
+	appName,
+	appLogoPath,
+	AppMarketplaceUrl,
+	connectedNextSteps,
+}) => {
 	return (
-		<PageWrapper AppMarketplaceUrl="" hideClosedBtn={true}>
+		<PageWrapper AppMarketplaceUrl={AppMarketplaceUrl} hideClosedBtn={true}>
 			<div css={connectedContainerStyle}>
-				<img
-					css={headerImgStyle}
-					src={"/public/assets/jira-github-connected.svg"}
-					alt=""
-				/>
-				<h2 css={titleStyle}>{`Your App is now connected!`}</h2>
+				<img css={headerImgStyle} src={appLogoPath} alt="" />
+				<h2 css={titleStyle}>{`${appName} is now connected!`}</h2>
 				<div css={flexWrapperStyle}>
 					<div css={sectionStyle}>
 						<img
 							css={sectionImgStyle}
-							src="/public/assets/github-integration.svg"
+							src={connectedNextSteps.graphic}
 							alt=""
 						/>
-						<Heading level="h400">Provide information about next steps</Heading>
-						<div css={paragraphStyle}>Further guidance</div>
-						{/* {!requestId && ( */}
+						<Heading level="h400">{connectedNextSteps.header}</Heading>
+						<div css={paragraphStyle}>{connectedNextSteps.information}</div>
 						{
 							<Button
 								css={[buttonStyle, subtleBtnStyle]}
 								appearance="subtle"
-								onClick={() => navigate("/spa/steps")}
+								// TODO navigate to next steps
 							>
 								Button
 							</Button>
@@ -87,7 +85,7 @@ const Connected = () => {
 						<Button
 							css={buttonStyle}
 							appearance="primary"
-							//onClick={learnAboutIssueLinking}
+							//TODO navigate to new page
 						>
 							Button
 						</Button>
