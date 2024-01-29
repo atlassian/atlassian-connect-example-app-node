@@ -1,17 +1,23 @@
 # Overview
 
-This is the frontend of the Connect Node app in React. The React app renders the configuration flow of your Connect app. Reusable page components have been created with examples.
+This is the front end of the Connect Node app in React. 
 
-# For Development
+This React app renders the configuration flow of your Connect app. 
 
-For local instances, a proxy server has been set up to run this locally. Three procedures must be run in order to view the frontend on a Jira instance:
+Reusable page components are included, plus examples.
 
-1. **Run the Node app:** This app serves as the backend of your Connect app and handles requests from Jira. Use the command "yarn start" to start the application.
+# How to use the app
 
-2. **Run the React app:** This app is the frontend of your Connect app, providing the interface that users will interact with. Navigate to the SPA directory and then use the command "yarn start" to start the application.
+A proxy server has been set up for local instances. 
 
-3. **Run ngrok:** Ngrok provides a public URL that forwards incoming requests to your local server. In this case, the command "ngrok http --domain="your domain name" 3000" starts ngrok and points it to your local server running on port 3000. Be sure to replace "your domain name" with your actual domain name.
+This lets you work on your Connect app locally while still interacting with Jira.
 
-All three processes (Node app, React app, and ngrok) need to be running simultaneously for the local development environment to run correctly. Each process should run in its own terminal window or tab.
+To view the front end on a Jira instance:
 
-This setup allows you to work on your Connect app locally while still interacting with Jira.
+1. **Run the Node app:** the Node app is the back end of your Connect app and handles requests from Jira. Use the command "yarn start" to start the app.
+
+2. **Run the React app:** the React app is the front end of your Connect app and provides the user interface. Use the command “yarn start” from the SPA directory to start the app.
+
+3. **Run ngrok:** ngrok provides a public URL that forwards incoming requests to your local server. Run the command "ngrok http --domain="yourdomainname.com" 3000" to start ngrok and point it to your local server  on port 3000 (make sure to add in your actual domain name).
+
+The Node app, React app, and ngrok all need to be running for the local development environment to run correctly. Run each process in its own terminal window or tab.
