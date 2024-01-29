@@ -1,0 +1,67 @@
+{
+  "name": "connect-app",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "/spa",
+  "dependencies": {
+    "@atlaskit/avatar": "^21.4.3",
+    "@atlaskit/badge": "^15.2.1",
+    "@atlaskit/dropdown-menu": "^12.1.10",
+    "@atlaskit/icon": "^22.0.0",
+    "@atlaskit/lozenge": "^11.5.0",
+    "@atlaskit/tokens": "^1.33.0",
+    "@sentry/react": "^7.93.0",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.21.3",
+    "react-scripts": "5.0.1"
+  },
+  "scripts": {
+    "start": "BROWSER=none WDS_SOCKET_HOST=localhost WDS_SOCKET_PORT=3010 PORT=3010 react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.1.4",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.4.3",
+    "@types/jest": "^29.5.2",
+    "@types/react": "^18.2.14",
+    "@types/react-dom": "^18.2.6",
+    "@types/react-router-dom": "^5.3.3",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "@typescript-eslint/parser": "^6.10.0",
+    "eslint": "^8.53.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.4",
+    "jest": "^29.5.0",
+    "jest-environment-jsdom": "^29.5.0",
+    "nock": "^13.3.2",
+    "react-app-rewired": "^2.2.1",
+    "react-scripts": "^5.0.1",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.0.2"
+  }
+}

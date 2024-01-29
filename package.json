@@ -5,6 +5,7 @@
   "license": "MIT",
   "private": false,
   "scripts": {
+    "postinstall": "cd spa && yarn",
     "prepare": "husky install",
     "precommit": "run-p lint build",
     "clean": "rimraf src/**/*.js test/**/*.js build",
@@ -19,10 +20,17 @@
     "test:e2e:headed": "playwright test --headed"
   },
   "dependencies": {
+    "@atlaskit/button": "^17.1.0",
+    "@atlaskit/css-reset": "^6.6.2",
+    "@atlaskit/heading": "^1.4.4",
+    "@atlaskit/icon": "^22.0.0",
+    "@atlaskit/tooltip": "^18.1.0",
     "@commonify/lowdb": "^3.0.0",
+    "@emotion/styled": "^11.11.0",
     "@types/marked": "^4.0.8",
     "atlassian-jwt": "^2.0.2",
     "express": "^4.18.2",
+    "http-proxy": "^1.18.1",
     "lodash": "^4.17.21",
     "marked": "^4.2.12",
     "squirrelly": "^8.0.8",
@@ -51,12 +59,12 @@
     "tslib": "^2.4.1",
     "typescript": "^4.9.5"
   },
-	"engines": {
-		"node": ">= 16",
-		"yarn": "^1.22.0"
-	},
-	"volta": {
-		"node": "18.15.0",
-		"yarn": "1.22.18"
-	}
+  "engines": {
+    "node": ">= 16",
+    "yarn": "^1.22.0"
+  },
+  "volta": {
+    "node": "18.15.0",
+    "yarn": "1.22.18"
+  }
 }

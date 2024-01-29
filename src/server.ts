@@ -1,5 +1,7 @@
 import express, { json } from "express";
 import { RootRouter } from "./routes/router";
+import { proxyLocalUIForDev } from "./spa-proxy";
+
 
 const app = express();
 
@@ -15,6 +17,9 @@ app.use((_req, res, next) => {
 	res.set("Cache-Control", "no-store");
 	next();
 });
+
+//Start FE proxy server
+proxyLocalUIForDev(app);
 
 // Calling the express.json() method for parsing
 app.use(json());
