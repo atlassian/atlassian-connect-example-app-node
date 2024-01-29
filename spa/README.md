@@ -21,3 +21,5 @@ To view the front end on a Jira instance:
 3. **Run ngrok:** ngrok provides a public URL that forwards incoming requests to your local server. Run the command "ngrok http --domain="yourdomainname.com" 3000" to start ngrok and point it to your local server  on port 3000 (make sure to add in your actual domain name).
 
 The Node app, React app, and ngrok all need to be running for the local development environment to run correctly. Run each process in its own terminal window or tab.
+
+Note: These three steps will not be necessary once Docker support is implemented.
