@@ -5,7 +5,7 @@ const SPA_PATH = "/spa";
 
 const proxy = httpProxy.createProxyServer({
 	target: {
-		host: "localhost",
+		host: "single-page-app",
 		port: 3010,
 		path: SPA_PATH
 	},
