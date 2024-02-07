@@ -211,6 +211,7 @@ export const connectAppDescriptor = {
 					"value": "Atlassian Marketplace"
 				}
 			},
+			// This page will not function correctly if you're running the app solely through Docker, as Docker support isn't available yet. However, all other existing features should continue to function as before.
 			{
 				url: "/spa",
 				key: "spa",
