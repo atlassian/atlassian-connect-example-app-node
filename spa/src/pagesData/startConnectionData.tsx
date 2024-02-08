@@ -26,6 +26,6 @@ export interface startConnectionProps {
 export const startConnectionData = {
 	appName: "Your App",
 	appLogoPath: "/public/assets/jira-logo.svg", // Replace 'appLogoPath' with the path to your application's logo.
-	AppMarketplaceUrl: "",
+	AppMarketplaceUrl: "com.github.integration.production",
 	integrationRequirements: data,
 };

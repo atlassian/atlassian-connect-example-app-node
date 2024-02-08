@@ -21,6 +21,17 @@ services:
       interval: 5s
       retries: 100
 
+  spa:
+    container_name: single-page-app
+    build:
+      context: .
+      dockerfile: spa-docker/Dockerfile
+    volumes:
+      - ./spa:/app/spa
+    ports:
+      - "3010:3010"
+    command: yarn start
+
   installation:
     depends_on:
       app:
