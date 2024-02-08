@@ -1,11 +1,12 @@
 import { Express } from "express";
 import httpProxy from "http-proxy";
+import { isNodeDev } from "./utils/is-node-dev";
 
 const SPA_PATH = "/spa";
 
 const proxy = httpProxy.createProxyServer({
 	target: {
-		host: "localhost",
+		host: "single-page-app",
 		port: 3010,
 		path: SPA_PATH
 	},
@@ -13,8 +14,8 @@ const proxy = httpProxy.createProxyServer({
 });
 
 export const proxyLocalUIForDev = (app: Express) => {
-	app.use(SPA_PATH, (req, res) => {
-		return proxy.web(req, res);
-	});
+	if (isNodeDev()) {
+		app.use(SPA_PATH, (req, res) => proxy.web(req, res));
+	}
 };
 

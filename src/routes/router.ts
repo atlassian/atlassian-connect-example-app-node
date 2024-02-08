@@ -5,6 +5,7 @@ import { eventsRouter } from "./events";
 import { webhooksRouter } from "./webhooks";
 import { apiRouter } from "./api";
 import { pageRouter } from "./pages";
+import { spaRouter } from "./spa";
 
 export const RootRouter = Router();
 
@@ -42,3 +43,10 @@ RootRouter.use("/webhooks", webhooksRouter);
  * API
  ************************************************************************************************************************/
 RootRouter.use("/api/example", apiRouter);
+
+/************************************************************************************************************************
+ * Single Page App Views
+ *
+ * This route is only used for the production builds of SPA.
+ ************************************************************************************************************************/
+RootRouter.use("/spa", spaRouter);
