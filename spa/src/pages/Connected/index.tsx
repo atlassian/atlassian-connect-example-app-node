@@ -1,7 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { useLocation } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import { PageWrapper } from "../../common/PageWrapper";
 import { token } from "@atlaskit/tokens";
 import Heading from "@atlaskit/heading";

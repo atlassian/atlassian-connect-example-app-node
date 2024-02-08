@@ -1,4 +1,4 @@
-import { ConnectedInformationType } from "../common/constants";
+import { ConnectedInformationType } from "../common/types/constants";
 
 export const data: ConnectedInformationType = {
 	header: "Provide information about next steps",
