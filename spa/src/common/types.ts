@@ -8,3 +8,9 @@ export type RequirementType = {
 	description: ReactNode;
 	Icon: Icon;
 };
+
+export type ConnectedInformationType = {
+	header: string;
+	graphic?: string;
+	information: string
+};

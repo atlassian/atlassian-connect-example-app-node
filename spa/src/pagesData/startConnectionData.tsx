@@ -1,4 +1,4 @@
-import { RequirementType } from "../common/constants";
+import { RequirementType } from "../common/types";
 import { ExampleComponent } from "../components";
 import InfoIcon from "@atlaskit/icon/glyph/info";
 
@@ -25,7 +25,7 @@ export interface startConnectionProps {
 
 export const startConnectionData = {
 	appName: "Your App",
-	appLogoPath: "/public/assets/jira-logo.svg", // Replace 'appLogoPath' with the path to your application's logo.
-	AppMarketplaceUrl: "com.github.integration.production",
+	appLogoPath: "/public/assets/3P-logo-placeholder.svg", // Replace 'appLogoPath' with the path to your application's logo.
+	AppMarketplaceUrl: "com.github.integration.production", // Replace 'AppMarketplaceUrl' with the url to your app's marketplace url.
 	integrationRequirements: data,
 };
