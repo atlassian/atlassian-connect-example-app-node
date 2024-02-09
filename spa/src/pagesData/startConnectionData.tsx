@@ -1,4 +1,4 @@
-import { RequirementType } from "../common/types/constants";
+import { RequirementType } from "../common/types";
 import { ExampleComponent } from "../components";
 import InfoIcon from "@atlaskit/icon/glyph/info";
 
